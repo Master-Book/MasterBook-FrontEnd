@@ -5,18 +5,23 @@ import "./Header.css";
 function Header() {
   return (
     <header className="header">
+      <div className="login">
+        <Link to="/login">로그인/회원가입</Link>
+      </div>
       <nav className="nav">
+        <h2 className="title">Master Book</h2>
+      </nav>
+      <nav className="game-arr">
         <ul>
           <li>
             <Link to="/">홈</Link>
           </li>
           <li>
-            <Link to="/league_of_legends">리그 오브 레전드</Link>
+            <Link to="/league_of_legends">League of Legends</Link>
           </li>
           <li>
-            <Link to="/stardew_valley">스타듀밸리</Link>
+            <Link to="/stardew_valley">Stardew Valley</Link>
           </li>
-          {/* 다른 게임들에 대한 링크를 추가하세요 */}
         </ul>
       </nav>
     </header>

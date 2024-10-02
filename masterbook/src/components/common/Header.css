@@ -1,28 +1,54 @@
 .header {
-  background-color: #333;
-  padding: 10px 0;
+  padding: 0;
+}
+
+.login {
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px 20px;
+}
+
+.login a {
+  color: white;
+  text-decoration: none;
+}
+
+.login a:hover {
+  text-decoration: underline;
 }
 
 .nav {
+  background-color: #333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 60px;
+}
+
+.title {
+  margin: 0;
+  color: #fff;
+}
+
+.game-arr {
+  background-color: #262626;
   display: flex;
   justify-content: center;
 }
 
-.nav ul {
+.game-arr ul {
   list-style: none;
   display: flex;
   gap: 20px;
+  margin: 0;
+  padding: 10px 0;
 }
 
-.nav ul li {
-  color: #fff;
-}
-
-.nav ul li a {
+.game-arr ul li a {
   color: #fff;
   text-decoration: none;
 }
 
-.nav ul li a:hover {
-  text-decoration: underline;
+.game-arr ul li a:hover {
+  font-weight: bold;
 }
