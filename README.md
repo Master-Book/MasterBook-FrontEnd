@@ -1,4 +1,6 @@
-# Front
+## Master-Book Front Repository
+<p>2143538 김하진</p>
+<p>2142851 김형준</p>
 
 ## (임시) src 파일 구조 (by. file-tree-generator)
 ```
