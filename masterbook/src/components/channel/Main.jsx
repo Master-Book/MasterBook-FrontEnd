@@ -8,12 +8,18 @@ function Channel() {
   const [selectedInitial, setSelectedInitial] = useState(null);
 
   useEffect(() => {
+    // 상태 초기화
+    setCharacterData([]);
+    setSelectedInitial(null);
+
     import(`../../data/${gameId}/character_data.js`)
       .then((module) => {
         setCharacterData(module.default);
       })
       .catch((error) => {
         console.error("캐릭터 데이터를 로드하는 중 오류 발생:", error);
+        // 에러 발생 시 characterData를 빈 배열로 설정
+        setCharacterData([]);
       });
   }, [gameId]);
 
@@ -31,8 +37,8 @@ function Channel() {
       {displayedCharacters.length > 0 ? (
         displayedCharacters.map((character) => (
           <div key={character.id}>
-            <h2>{character.name}</h2>
             <img src={character.imgPath} alt={character.name} />
+            <p>{character.name}</p>
           </div>
         ))
       ) : (
