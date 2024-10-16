@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import InitialFilter from "./InitialFilter";
+import "./Main.css"; // 스타일을 적용하기 위해 CSS 파일을 임포트합니다.
 
 function Channel() {
   const { gameId } = useParams();
@@ -31,16 +32,28 @@ function Channel() {
     ? characterData.filter((character) => character.initial === selectedInitial)
     : characterData;
 
+  // 기본 이미지 경로 설정
+  const defaultImagePath = require("../../assets/images/default/characters/default_profile.jpg");
+
   return (
-    <div>
+    <div className="channel-container">
       <InitialFilter onSelectInitial={handleSelectInitial} />
       {displayedCharacters.length > 0 ? (
-        displayedCharacters.map((character) => (
-          <div key={character.id}>
-            <img src={character.imgPath} alt={character.name} />
-            <p>{character.name}</p>
-          </div>
-        ))
+        <div className="character-list">
+          {displayedCharacters.map((character) => (
+            <div key={character.id} className="character-item">
+              <img
+                src={character.imgPath}
+                alt={character.name}
+                onError={(e) => {
+                  e.target.onerror = null; // 무한 루프 방지
+                  e.target.src = defaultImagePath;
+                }}
+              />
+              <p>{character.name}</p>
+            </div>
+          ))}
+        </div>
       ) : (
         <div>캐릭터가 없습니다.</div>
       )}
