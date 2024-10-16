@@ -493,12 +493,42 @@ const characters = [
     initial: "ㅅ",
     imgPath: "../../assets/images/league_of_legends/characters/Singed.png",
   },
+  {
+    id: "Thresh",
+    name: "쓰레쉬",
+    initial: "ㅆ",
+    imgPath: "../../assets/images/league_of_legends/characters/Thresh.png",
+  },
   //ㅇ
   {
     id: "Ahri",
     name: "아리",
     initial: "ㅇ",
     imgPath: "../../assets/images/league_of_legends/characters/Ahri.png",
+  },
+  {
+    id: "Amumu",
+    name: "아무무",
+    initial: "ㅇ",
+    imgPath: "../../assets/images/league_of_legends/characters/Amumu.png",
+  },
+  {
+    id: "AurelionSol",
+    name: "아우렐리온 솔",
+    initial: "ㅇ",
+    imgPath: "../../assets/images/league_of_legends/characters/AurelionSol.png",
+  },
+  {
+    id: "Ivern",
+    name: "아이번",
+    initial: "ㅇ",
+    imgPath: "../../assets/images/league_of_legends/characters/Ivern.png",
+  },
+  {
+    id: "Azir",
+    name: "아지르",
+    initial: "ㅇ",
+    imgPath: "../../assets/images/league_of_legends/characters/Azir.png",
   },
   {
     id: "Akali",
@@ -525,40 +555,22 @@ const characters = [
     imgPath: "../../assets/images/league_of_legends/characters/Aphelios.png",
   },
   {
-    id: "Amumu",
-    name: "아무무",
-    initial: "ㅇ",
-    imgPath: "../../assets/images/league_of_legends/characters/Amumu.png",
-  },
-  {
-    id: "AurelionSol",
-    name: "아우렐리온 솔",
-    initial: "ㅇ",
-    imgPath: "../../assets/images/league_of_legends/characters/AurelionSol.png",
-  },
-  {
-    id: "Ivern",
-    name: "아이번",
-    initial: "ㅇ",
-    imgPath: "../../assets/images/league_of_legends/characters/Ivern.png",
-  },
-  {
     id: "Alistar",
     name: "알리스타",
     initial: "ㅇ",
     imgPath: "../../assets/images/league_of_legends/characters/Alistar.png",
   },
   {
-    id: "Anivia",
-    name: "애니비아",
-    initial: "ㅇ",
-    imgPath: "../../assets/images/league_of_legends/characters/Anivia.png",
-  },
-  {
     id: "Annie",
     name: "애니",
     initial: "ㅇ",
     imgPath: "../../assets/images/league_of_legends/characters/Annie.png",
+  },
+  {
+    id: "Anivia",
+    name: "애니비아",
+    initial: "ㅇ",
+    imgPath: "../../assets/images/league_of_legends/characters/Anivia.png",
   },
   {
     id: "Ashe",
@@ -571,6 +583,30 @@ const characters = [
     name: "야스오",
     initial: "ㅇ",
     imgPath: "../../assets/images/league_of_legends/characters/Yasuo.png",
+  },
+  {
+    id: "Ekko",
+    name: "에코",
+    initial: "ㅇ",
+    imgPath: "../../assets/images/league_of_legends/characters/Ekko.png",
+  },
+  {
+    id: "Elise",
+    name: "엘리스",
+    initial: "ㅇ",
+    imgPath: "../../assets/images/league_of_legends/characters/Elise.png",
+  },
+  {
+    id: "Wukong",
+    name: "오공",
+    initial: "ㅇ",
+    imgPath: "../../assets/images/league_of_legends/characters/Wukong.png",
+  },
+  {
+    id: "Aurora",
+    name: "오로라",
+    initial: "ㅇ",
+    imgPath: "../../assets/images/league_of_legends/characters/Aurora.png",
   },
   {
     id: "Ornn",
@@ -591,34 +627,10 @@ const characters = [
     imgPath: "../../assets/images/league_of_legends/characters/Olaf.png",
   },
   {
-    id: "Warwick",
-    name: "워윅",
+    id: "Yone",
+    name: "요네",
     initial: "ㅇ",
-    imgPath: "../../assets/images/league_of_legends/characters/Warwick.png",
-  },
-  {
-    id: "Urgot",
-    name: "우르곳",
-    initial: "ㅇ",
-    imgPath: "../../assets/images/league_of_legends/characters/Urgot.png",
-  },
-  {
-    id: "Udyr",
-    name: "우디르",
-    initial: "ㅇ",
-    imgPath: "../../assets/images/league_of_legends/characters/Udyr.png",
-  },
-  {
-    id: "Wukong",
-    name: "오공",
-    initial: "ㅇ",
-    imgPath: "../../assets/images/league_of_legends/characters/Wukong.png",
-  },
-  {
-    id: "Yuumi",
-    name: "유미",
-    initial: "ㅇ",
-    imgPath: "../../assets/images/league_of_legends/characters/Yuumi.png",
+    imgPath: "../../assets/images/league_of_legends/characters/Yone.png",
   },
   {
     id: "Yorick",
@@ -627,12 +639,60 @@ const characters = [
     imgPath: "../../assets/images/league_of_legends/characters/Yorick.png",
   },
   {
-    id: "Yone",
-    name: "요네",
+    id: "Udyr",
+    name: "우디르",
     initial: "ㅇ",
-    imgPath: "../../assets/images/league_of_legends/characters/Yone.png",
+    imgPath: "../../assets/images/league_of_legends/characters/Udyr.png",
+  },
+  {
+    id: "Urgot",
+    name: "우르곳",
+    initial: "ㅇ",
+    imgPath: "../../assets/images/league_of_legends/characters/Urgot.png",
+  },
+  {
+    id: "Warwick",
+    name: "워윅",
+    initial: "ㅇ",
+    imgPath: "../../assets/images/league_of_legends/characters/Warwick.png",
+  },
+  {
+    id: "Yuumi",
+    name: "유미",
+    initial: "ㅇ",
+    imgPath: "../../assets/images/league_of_legends/characters/Yuumi.png",
+  },
+  {
+    id: "Irelia",
+    name: "이렐리아",
+    initial: "ㅇ",
+    imgPath: "../../assets/images/league_of_legends/characters/Irelia.png",
+  },
+  {
+    id: "Evelynn",
+    name: "이블린",
+    initial: "ㅇ",
+    imgPath: "../../assets/images/league_of_legends/characters/Evelynn.png",
+  },
+  {
+    id: "Ezreal",
+    name: "이즈리얼",
+    initial: "ㅇ",
+    imgPath: "../../assets/images/league_of_legends/characters/Ezreal.png",
+  },
+  {
+    id: "Illaoi",
+    name: "일라오이",
+    initial: "ㅇ",
+    imgPath: "../../assets/images/league_of_legends/characters/Illaoi.png",
   },
   //ㅈ
+  {
+    id: "JarvanIV",
+    name: "자르반 4세",
+    initial: "ㅈ",
+    imgPath: "../../assets/images/league_of_legends/characters/JarvanIV.png",
+  },
   {
     id: "Xayah",
     name: "자야",
@@ -652,16 +712,16 @@ const characters = [
     imgPath: "../../assets/images/league_of_legends/characters/Zac.png",
   },
   {
-    id: "JarvanIV",
-    name: "자르반 4세",
-    initial: "ㅈ",
-    imgPath: "../../assets/images/league_of_legends/characters/JarvanIV.png",
-  },
-  {
     id: "Janna",
     name: "잔나",
     initial: "ㅈ",
     imgPath: "../../assets/images/league_of_legends/characters/Janna.png",
+  },
+  {
+    id: "Jax",
+    name: "잭스",
+    initial: "ㅈ",
+    imgPath: "../../assets/images/league_of_legends/characters/Jax.png",
   },
   {
     id: "Zed",
@@ -670,16 +730,16 @@ const characters = [
     imgPath: "../../assets/images/league_of_legends/characters/Zed.png",
   },
   {
-    id: "Zeri",
-    name: "제리",
-    initial: "ㅈ",
-    imgPath: "../../assets/images/league_of_legends/characters/Zeri.png",
-  },
-  {
     id: "Xerath",
     name: "제라스",
     initial: "ㅈ",
     imgPath: "../../assets/images/league_of_legends/characters/Xerath.png",
+  },
+  {
+    id: "Zeri",
+    name: "제리",
+    initial: "ㅈ",
+    imgPath: "../../assets/images/league_of_legends/characters/Zeri.png",
   },
   {
     id: "Jayce",
@@ -688,10 +748,28 @@ const characters = [
     imgPath: "../../assets/images/league_of_legends/characters/Jayce.png",
   },
   {
+    id: "Zoe",
+    name: "조이",
+    initial: "ㅈ",
+    imgPath: "../../assets/images/league_of_legends/characters/Zoe.png",
+  },
+  {
+    id: "Ziggs",
+    name: "직스",
+    initial: "ㅈ",
+    imgPath: "../../assets/images/league_of_legends/characters/Ziggs.png",
+  },
+  {
     id: "Jhin",
     name: "진",
     initial: "ㅈ",
     imgPath: "../../assets/images/league_of_legends/characters/Jhin.png",
+  },
+  {
+    id: "Zilean",
+    name: "질리언",
+    initial: "ㅈ",
+    imgPath: "../../assets/images/league_of_legends/characters/Zilean.png",
   },
   {
     id: "Jinx",
@@ -708,6 +786,18 @@ const characters = [
   },
   //ㅋ
   {
+    id: "Karma",
+    name: "카르마",
+    initial: "ㅋ",
+    imgPath: "../../assets/images/league_of_legends/characters/Karma.png",
+  },
+  {
+    id: "Camille",
+    name: "카밀",
+    initial: "ㅋ",
+    imgPath: "../../assets/images/league_of_legends/characters/Camille.png",
+  },
+  {
     id: "Kassadin",
     name: "카사딘",
     initial: "ㅋ",
@@ -718,6 +808,48 @@ const characters = [
     name: "카서스",
     initial: "ㅋ",
     imgPath: "../../assets/images/league_of_legends/characters/Karthus.png",
+  },
+  {
+    id: "Cassiopeia",
+    name: "카시오페아",
+    initial: "ㅋ",
+    imgPath: "../../assets/images/league_of_legends/characters/Cassiopeia.png",
+  },
+  {
+    id: "Kai'Sa",
+    name: "카이사",
+    initial: "ㅋ",
+    imgPath: "../../assets/images/league_of_legends/characters/Kai'Sa.png",
+  },
+  {
+    id: "Kha'Zix",
+    name: "카직스",
+    initial: "ㅋ",
+    imgPath: "../../assets/images/league_of_legends/characters/Kha'Zix.png",
+  },
+  {
+    id: "Katarina",
+    name: "카타리나",
+    initial: "ㅋ",
+    imgPath: "../../assets/images/league_of_legends/characters/Katarina.png",
+  },
+  {
+    id: "Kalista",
+    name: "칼리스타",
+    initial: "ㅋ",
+    imgPath: "../../assets/images/league_of_legends/characters/Kalista.png",
+  },
+  {
+    id: "Kennen",
+    name: "케넨",
+    initial: "ㅋ",
+    imgPath: "../../assets/images/league_of_legends/characters/Kennen.png",
+  },
+  {
+    id: "Caitlyn",
+    name: "케이틀린",
+    initial: "ㅋ",
+    imgPath: "../../assets/images/league_of_legends/characters/Caitlyn.png",
   },
   {
     id: "Kayn",
@@ -732,10 +864,46 @@ const characters = [
     imgPath: "../../assets/images/league_of_legends/characters/Kayle.png",
   },
   {
-    id: "Kennen",
-    name: "케넨",
+    id: "Kog'Maw",
+    name: "코그모",
     initial: "ㅋ",
-    imgPath: "../../assets/images/league_of_legends/characters/Kennen.png",
+    imgPath: "../../assets/images/league_of_legends/characters/Kog'Maw.png",
+  },
+  {
+    id: "Corki",
+    name: "코르키",
+    initial: "ㅋ",
+    imgPath: "../../assets/images/league_of_legends/characters/Corki.png",
+  },
+  {
+    id: "Quinn",
+    name: "퀸",
+    initial: "ㅋ",
+    imgPath: "../../assets/images/league_of_legends/characters/Quinn.png",
+  },
+  {
+    id: "K'Sante",
+    name: "크산테",
+    initial: "ㅋ",
+    imgPath: "../../assets/images/league_of_legends/characters/K'Sante.png",
+  },
+  {
+    id: "Kled",
+    name: "클레드",
+    initial: "ㅋ",
+    imgPath: "../../assets/images/league_of_legends/characters/Kled.png",
+  },
+  {
+    id: "Qiyana",
+    name: "키아나",
+    initial: "ㅋ",
+    imgPath: "../../assets/images/league_of_legends/characters/Qiyana.png",
+  },
+  {
+    id: "Kindred",
+    name: "킨드레드",
+    initial: "ㅋ",
+    imgPath: "../../assets/images/league_of_legends/characters/Kindred.png",
   },
   //ㅌ
   {
