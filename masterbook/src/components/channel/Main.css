@@ -1,0 +1,30 @@
+/* src/components/channel/Channel.css */
+
+.channel-container {
+  padding: 20px;
+}
+
+.character-list {
+  display: flex;
+  flex-wrap: wrap; /* 화면 크기에 따라 줄 바꿈이 되도록 설정 */
+  gap: 20px; /* 아이템 간의 간격 조정 */
+}
+
+.character-item {
+  display: flex;
+  flex-direction: column; /* 이미지와 이름을 세로로 배치 */
+  align-items: center; /* 아이템 내에서 중앙 정렬 */
+  width: 100px; /* 아이템의 너비 설정 */
+}
+
+.character-item img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover; /* 이미지 비율 유지하며 잘라냄 */
+}
+
+.character-item p {
+  margin-top: 5px;
+  font-size: 14px;
+  text-align: center; /* 텍스트 중앙 정렬 */
+}
