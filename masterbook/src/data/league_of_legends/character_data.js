@@ -38,22 +38,28 @@ const characters = [
     imgPath: "../../assets/images/league_of_legends/characters/Gnar.png",
   },
   {
-    id: "Nasus",
-    name: "나서스",
-    initial: "ㄴ",
-    imgPath: "../../assets/images/league_of_legends/characters/Nasus.png",
-  },
-  {
     id: "Nami",
     name: "나미",
     initial: "ㄴ",
     imgPath: "../../assets/images/league_of_legends/characters/Nami.png",
   },
   {
+    id: "Nasus",
+    name: "나서스",
+    initial: "ㄴ",
+    imgPath: "../../assets/images/league_of_legends/characters/Nasus.png",
+  },
+  {
     id: "Naafiri",
     name: "나피리",
     initial: "ㄴ",
     imgPath: "../../assets/images/league_of_legends/characters/Naafiri.png",
+  },
+  {
+    id: "Nautilus",
+    name: "노틸러스",
+    initial: "ㄴ",
+    imgPath: "../../assets/images/league_of_legends/characters/Nautilus.png",
   },
   {
     id: "Nocturne",
@@ -79,6 +85,12 @@ const characters = [
     initial: "ㄴ",
     imgPath: "../../assets/images/league_of_legends/characters/Neeko.png",
   },
+  {
+    id: "Nilah",
+    name: "닐라",
+    initial: "ㄴ",
+    imgPath: "../../assets/images/league_of_legends/characters/Nilah.png",
+  },
   //ㄷ
   {
     id: "Darius",
@@ -100,6 +112,12 @@ const characters = [
   },
   //ㄹ
   {
+    id: "Ryze",
+    name: "라이즈",
+    initial: "ㄹ",
+    imgPath: "../../assets/images/league_of_legends/characters/Ryze.png",
+  },
+  {
     id: "Rakan",
     name: "라칸",
     initial: "ㄹ",
@@ -112,16 +130,16 @@ const characters = [
     imgPath: "../../assets/images/league_of_legends/characters/Rammus.png",
   },
   {
-    id: "Rumble",
-    name: "럼블",
-    initial: "ㄹ",
-    imgPath: "../../assets/images/league_of_legends/characters/Rumble.png",
-  },
-  {
     id: "Lux",
     name: "럭스",
     initial: "ㄹ",
     imgPath: "../../assets/images/league_of_legends/characters/Lux.png",
+  },
+  {
+    id: "Rumble",
+    name: "럼블",
+    initial: "ㄹ",
+    imgPath: "../../assets/images/league_of_legends/characters/Rumble.png",
   },
   {
     id: "Renata",
@@ -195,6 +213,12 @@ const characters = [
     initial: "ㄹ",
     imgPath: "../../assets/images/league_of_legends/characters/Lissandra.png",
   },
+  {
+    id: "Lillia",
+    name: "릴리아",
+    initial: "ㄹ",
+    imgPath: "../../assets/images/league_of_legends/characters/Lillia.png",
+  },
   // ㅁ
   {
     id: "Maokai",
@@ -221,16 +245,16 @@ const characters = [
     imgPath: "../../assets/images/league_of_legends/characters/Malphite.png",
   },
   {
-    id: "Morgana",
-    name: "모르가나",
-    initial: "ㅁ",
-    imgPath: "../../assets/images/league_of_legends/characters/Morgana.png",
-  },
-  {
     id: "Mordekaiser",
     name: "모데카이저",
     initial: "ㅁ",
     imgPath: "../../assets/images/league_of_legends/characters/Mordekaiser.png",
+  },
+  {
+    id: "Morgana",
+    name: "모르가나",
+    initial: "ㅁ",
+    imgPath: "../../assets/images/league_of_legends/characters/Morgana.png",
   },
   {
     id: "DrMundo",
@@ -244,6 +268,13 @@ const characters = [
     initial: "ㅁ",
     imgPath: "../../assets/images/league_of_legends/characters/MissFortune.png",
   },
+  {
+    id: "Milio",
+    name: "밀리오",
+    initial: "ㅁ",
+    imgPath: "../../assets/images/league_of_legends/characters/Milio.png",
+  },
+
   //ㅂ
   {
     id: "Bard",
@@ -252,16 +283,28 @@ const characters = [
     imgPath: "../../assets/images/league_of_legends/characters/Bard.png",
   },
   {
+    id: "Varus",
+    name: "바루스",
+    initial: "ㅂ",
+    imgPath: "../../assets/images/league_of_legends/characters/Varus.png",
+  },
+  {
     id: "Vi",
     name: "바이",
     initial: "ㅂ",
     imgPath: "../../assets/images/league_of_legends/characters/Vi.png",
   },
   {
-    id: "Varus",
-    name: "바루스",
+    id: "Veigar",
+    name: "베이가",
     initial: "ㅂ",
-    imgPath: "../../assets/images/league_of_legends/characters/Varus.png",
+    imgPath: "../../assets/images/league_of_legends/characters/Veigar.png",
+  },
+  {
+    id: "Vayne",
+    name: "베인",
+    initial: "ㅂ",
+    imgPath: "../../assets/images/league_of_legends/characters/Vayne.png",
   },
   {
     id: "Vex",
@@ -282,10 +325,10 @@ const characters = [
     imgPath: "../../assets/images/league_of_legends/characters/Velkoz.png",
   },
   {
-    id: "Brand",
-    name: "브랜드",
+    id: "Volibear",
+    name: "볼리베어",
     initial: "ㅂ",
-    imgPath: "../../assets/images/league_of_legends/characters/Brand.png",
+    imgPath: "../../assets/images/league_of_legends/characters/Volibear.png",
   },
   {
     id: "Braum",
@@ -300,6 +343,12 @@ const characters = [
     imgPath: "../../assets/images/league_of_legends/characters/Briar.png",
   },
   {
+    id: "Brand",
+    name: "브랜드",
+    initial: "ㅂ",
+    imgPath: "../../assets/images/league_of_legends/characters/Brand.png",
+  },
+  {
     id: "Vladimir",
     name: "블라디미르",
     initial: "ㅂ",
@@ -310,6 +359,18 @@ const characters = [
     name: "블리츠크랭크",
     initial: "ㅂ",
     imgPath: "../../assets/images/league_of_legends/characters/Blitzcrank.png",
+  },
+  {
+    id: "Viego",
+    name: "비에고",
+    initial: "ㅂ",
+    imgPath: "../../assets/images/league_of_legends/characters/Viego.png",
+  },
+  {
+    id: "Viktor",
+    name: "빅토르",
+    initial: "ㅂ",
+    imgPath: "../../assets/images/league_of_legends/characters/Viktor.png",
   },
   {
     id: "Poppy",
@@ -355,16 +416,16 @@ const characters = [
     imgPath: "../../assets/images/league_of_legends/characters/Seraphine.png",
   },
   {
-    id: "Sett",
-    name: "세트",
-    initial: "ㅅ",
-    imgPath: "../../assets/images/league_of_legends/characters/Sett.png",
-  },
-  {
     id: "Sejuani",
     name: "세주아니",
     initial: "ㅅ",
     imgPath: "../../assets/images/league_of_legends/characters/Sejuani.png",
+  },
+  {
+    id: "Sett",
+    name: "세트",
+    initial: "ㅅ",
+    imgPath: "../../assets/images/league_of_legends/characters/Sett.png",
   },
   {
     id: "Sona",
@@ -391,12 +452,6 @@ const characters = [
     imgPath: "../../assets/images/league_of_legends/characters/Shyvana.png",
   },
   {
-    id: "Skarner",
-    name: "스카너",
-    initial: "ㅅ",
-    imgPath: "../../assets/images/league_of_legends/characters/Skarner.png",
-  },
-  {
     id: "Smolder",
     name: "스몰더",
     initial: "ㅅ",
@@ -407,6 +462,12 @@ const characters = [
     name: "스웨인",
     initial: "ㅅ",
     imgPath: "../../assets/images/league_of_legends/characters/Swain.png",
+  },
+  {
+    id: "Skarner",
+    name: "스카너",
+    initial: "ㅅ",
+    imgPath: "../../assets/images/league_of_legends/characters/Skarner.png",
   },
   {
     id: "Sivir",
@@ -782,6 +843,12 @@ const characters = [
     name: "헤카림",
     initial: "ㅎ",
     imgPath: "../../assets/images/league_of_legends/characters/Hecarim.png",
+  },
+  {
+    id: "Huwei",
+    name: "흐웨이",
+    initial: "ㅎ",
+    imgPath: "../../assets/images/league_of_legends/characters/Huwei.png",
   },
 ];
 
