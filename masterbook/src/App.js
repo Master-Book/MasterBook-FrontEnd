@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Header from "./components/common/Header";
 import Home from "./components/home/Main";
 import Channel from "./components/channel/Main";
-import PostList from "./components/post/PostList";
+import PostList from "./components/post/postList/PostList";
 import PostCreate from "./components/post/postCreate/PostCreate";
 
 function App() {
