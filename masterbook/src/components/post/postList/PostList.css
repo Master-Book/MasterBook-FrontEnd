@@ -28,9 +28,15 @@ table {
 
 th,
 td {
-  padding: 10px;
-  border: 1px solid #ddd;
+  padding: 10px 10px; /* 테이블 셀 높이 줄이기 위해 padding 조정 */
+  border-bottom: 1px solid #ddd;
   text-align: center;
+}
+
+/* 제목 열의 너비를 조정 */
+th:nth-child(2),
+td:nth-child(2) {
+  width: 60%; /* 제목 칸의 너비를 40%로 설정 */
 }
 
 th {

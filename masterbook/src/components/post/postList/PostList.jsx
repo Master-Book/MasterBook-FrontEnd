@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 import "./PostList.css";
 
 function PostList() {
@@ -28,6 +29,7 @@ function PostList() {
           <tr>
             <th>글번호</th>
             <th>제목</th>
+            <th>작성자</th>
             <th>등록일</th>
             <th>조회수</th>
           </tr>
@@ -36,7 +38,10 @@ function PostList() {
           {posts.map((post) => (
             <tr key={post.id}>
               <td>{post.id}</td>
-              <td>{post.title}</td>
+              <td>
+                <Link to={`/post/${post.id}`}>{post.title}</Link>
+              </td>
+              <td>{post.author}</td>
               <td>{post.date}</td>
               <td>{post.views}</td>
             </tr>
