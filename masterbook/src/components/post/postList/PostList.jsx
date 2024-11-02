@@ -2,50 +2,54 @@
 
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom"; // Link 컴포넌트 임포트
+import "./PostList.css";
 
 function PostList() {
-  const [boardList, setBoardList] = useState([]);
-
-  const getBoardList = async () => {
-    try {
-      const resp = await axios.get("http://localhost:8080/postList"); // URL 수정 및 요청
-      setBoardList(resp.data); // 응답 데이터로 boardList 설정
-
-      const pngn = resp.pagination;
-      console.log(pngn);
-    } catch (error) {
-      console.error("Failed to fetch board list:", error);
-    }
-  };
+  const [posts, setPosts] = useState([]); // 게시글 목록 상태
 
   useEffect(() => {
-    getBoardList();
+    // 컴포넌트가 마운트될 때 API 호출
+    axios
+      // 일단 public의 json파일로 출력함
+      .get("/posts.json") // 게시글 list 백엔드 API 엔드포인트 : /api/posts
+      .then((response) => {
+        setPosts(response.data); // 응답 데이터로 setPosts 설정
+      })
+      .catch((error) => {
+        console.error("Error fetching posts:", error);
+      });
   }, []);
 
   return (
-    <div>
-      <h1>PostList</h1>
-      <table class="table">
-        <tr>
-          <td colspan="2">
-            <h2>게시판</h2>
-          </td>
-        </tr>
-        <tr class="header">
-          <td class="num">번호</td>
-          <td class="title">제목</td>
-          <td>작성자</td>
-          <td>작성날짜</td>
-        </tr>
+    <div id="PostList">
+      <h1>ㅇㅇ채널</h1>
+      <table>
+        <thead>
+          <tr>
+            <th>글번호</th>
+            <th>제목</th>
+            <th>등록일</th>
+            <th>조회수</th>
+          </tr>
+        </thead>
+        <tbody>
+          {posts.map((post) => (
+            <tr key={post.id}>
+              <td>{post.id}</td>
+              <td>{post.title}</td>
+              <td>{post.date}</td>
+              <td>{post.views}</td>
+            </tr>
+          ))}
+        </tbody>
       </table>
-      <ul>
-        {boardList.map((board) => (
-          <li key={board.idx}>
-            <Link to={`/postList/${board.idx}`}>{board.title}</Link>
-          </li>
+      <div className="pagination">
+        <button>Previous</button>
+        {[1, 2, 3, "...", 7].map((page, idx) => (
+          <button key={idx}>{page}</button>
         ))}
-      </ul>
+        <button>Next</button>
+      </div>
     </div>
   );
 }
