@@ -7,11 +7,7 @@ import { Link } from "react-router-dom";
 function Main() {
   return (
     <div className="outer-container">
-      <div className="avatar">
-        <i className="fa fa-user"></i>
-      </div>
     <div className="login-container">
-      
       <h2>Login</h2>
       <form>
         <div className="input-container">

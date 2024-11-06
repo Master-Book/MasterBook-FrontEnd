@@ -14,31 +14,18 @@
     align-items: center; /* 수직으로 가운데 정렬 */
     justify-content: center; /* 수평으로 가운데 정렬 */
     width: 300px;
-    padding: 30px;
+    padding: 40px 30px;
     background-color: rgba(190, 190, 190, 0.337);
     border-radius: 15px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     text-align: center;
 }
 
-.avatar {
-    width: 70px;
-    height: 70px;
-    position: absolute;
-    top: 400px;
-    margin: 0 auto;
-    margin-bottom: 20px;
-    border-radius: 50%;
-    background-color: #80b294;
-    color: #fff;
-    font-size: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
 h2 {
     color: #fff;
+    margin: 0; /* h2의 기본 여백 제거 */
+    position: relative;
+    top: -25px; /* h2를 위로 당기기 */
     margin-bottom: 20px;
 }
 
@@ -48,13 +35,6 @@ h2 {
     width: 100%;
     display: flex;
     justify-content: center;
-}
-
-.icon {
-    position: absolute;
-    top: 8px;
-    left: 10px;
-    color: #2a2a72;
 }
 
 .login_input[type="text"],
