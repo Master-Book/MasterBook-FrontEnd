@@ -1,15 +1,21 @@
 import React, { useState, useRef, useEffect } from "react";
 import "./PostCreate.css";
 import "@toast-ui/editor/dist/toastui-editor.css";
+import { useLocation } from "react-router-dom";
 import { Editor } from "@toast-ui/react-editor";
 
-function PostWrite({ gameName, characterName }) {
+function PostWrite() {
   const [category, setCategory] = useState("");
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [fileName, setFileName] = useState("");
   const [content, setContent] = useState(""); // 에디터의 내용을 저장하는 상태
 
+  const location = useLocation();
+  const { characterId, gameId } = location.state || {}; // 서버에 넘겨줄 Id들
   const editorRef = useRef();
+
+  console.log(characterId);
+  console.log(gameId);
 
   const handleDropdownToggle = () => {
     setIsDropdownOpen(!isDropdownOpen);
@@ -47,49 +53,29 @@ function PostWrite({ gameName, characterName }) {
       e.preventDefault(); // 내용이 비어 있으면 제출 방지
       alert("내용을 입력해주세요."); // 경고 메시지
     }
+    /*
+    TODO: 전송 버튼 누르면,
+    - gameId (ex. league_of_legends)
+    - characterId (ex. Garen)
+    - title (글 제목)
+    - authorId (userId이지만, 지금 로그인 안되므로 하드코딩해)
+    - content (글 내용)
+    위 내용 payload 변수에 저장하게 만들어
+
+    (그리고 나중에 서버 연동할 때 payload 보내주면 돼)
+    */
   };
 
   return (
     <div id="PostCreate">
       <div id="write_area">
         <form encType="multipart/form-data" action="/write_ok" method="post">
-          <div id="in_category" className="cont-select">
-            <button
-              type="button"
-              className={`btn-select ${isDropdownOpen ? "on" : ""}`}
-              onClick={handleDropdownToggle}
-            >
-              {category || "카테고리를 선택하세요"}
-            </button>
-            {isDropdownOpen && (
-              <ul className="list-category">
-                <li>
-                  <button
-                    type="button"
-                    onClick={() => handleCategorySelect("League of Legends")}
-                  >
-                    League of Legends
-                  </button>
-                </li>
-                <li>
-                  <button
-                    type="button"
-                    onClick={() => handleCategorySelect("Stardew Valley")}
-                  >
-                    Stardew Valley
-                  </button>
-                </li>
-                <li>
-                  <button
-                    type="button"
-                    onClick={() => handleCategorySelect("기타게임")}
-                  >
-                    기타게임
-                  </button>
-                </li>
-              </ul>
-            )}
-          </div>
+          <div id="in_category" className="cont-select"></div>
+          {/*
+            TODO: title 변수 저장해야 해. setTitle, title 만들어서 onChange일 때,
+            handleTitleChange 실행하게 하고 이 핸들에서 setTitle로 title 변수에 저장하게해
+            (아마 GPT한테 물어보면 해줄 듯)
+            */}
           <div id="in_title">
             <textarea
               name="title"
