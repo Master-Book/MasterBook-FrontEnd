@@ -1,6 +1,7 @@
 import React from "react";
+import "./InitialFilter.css"; // CSS 파일을 임포트합니다.
 
-function InitialFilter({ onSelectInitial }) {
+function InitialFilter({ onSelectInitial, selectedInitial }) {
   const initials = [
     "ㄱ",
     "ㄴ",
@@ -19,9 +20,15 @@ function InitialFilter({ onSelectInitial }) {
   ];
 
   return (
-    <div>
+    <div className="initial-filter-container">
       {initials.map((initial) => (
-        <button key={initial} onClick={() => onSelectInitial(initial)}>
+        <button
+          key={initial}
+          className={`initial-button ${
+            selectedInitial === initial ? "selected" : ""
+          }`}
+          onClick={() => onSelectInitial(initial)}
+        >
           {initial}
         </button>
       ))}

@@ -39,7 +39,10 @@ function Channel() {
 
   return (
     <div className="channel-container">
-      <InitialFilter onSelectInitial={handleSelectInitial} />
+      <InitialFilter
+        onSelectInitial={handleSelectInitial}
+        selectedInitial={selectedInitial}
+      />
       {displayedCharacters.length > 0 ? (
         <div className="character-list">
           {displayedCharacters.map((character) => (
