@@ -13,14 +13,14 @@ function Main() {
       {
         id: "league_of_legends",
         name: "League of Legends",
-        logo: "/images/logos/league_of_legends.png",
+        logo: "/images/league_of_legends/logo/logo.png",
         sponsor: true,
         popularity: 100,
       },
       {
         id: "stardew_valley",
         name: "Stardew Valley",
-        logo: "/images/logos/stardew_valley.png",
+        logo: "/images/stardew_valley/logo/logo.png",
         sponsor: false,
         popularity: 80,
       },
