@@ -1,19 +1,19 @@
-// src/components/channel/Main.jsx
-
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import InitialFilter from "./InitialFilter";
-import "./Main.css"; // 스타일을 적용하기 위해 CSS 파일을 임포트합니다.
+import "./Main.css";
 
 function Channel() {
   const { gameId } = useParams();
   const [characterData, setCharacterData] = useState([]);
   const [selectedInitial, setSelectedInitial] = useState(null);
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     // 상태 초기화
     setCharacterData([]);
     setSelectedInitial(null);
+    setSearchTerm("");
 
     import(`../../data/${gameId}/character_data.js`)
       .then((module) => {
@@ -28,11 +28,26 @@ function Channel() {
 
   const handleSelectInitial = (initial) => {
     setSelectedInitial(initial);
+    setSearchTerm("");
   };
 
-  const displayedCharacters = selectedInitial
-    ? characterData.filter((character) => character.initial === selectedInitial)
-    : characterData;
+  const handleSearch = (term) => {
+    setSearchTerm(term);
+    setSelectedInitial(null);
+  };
+
+  // 필터링 로직
+  let displayedCharacters = characterData;
+
+  if (searchTerm) {
+    displayedCharacters = characterData.filter((character) =>
+      character.name.includes(searchTerm)
+    );
+  } else if (selectedInitial) {
+    displayedCharacters = characterData.filter(
+      (character) => character.initial === selectedInitial
+    );
+  }
 
   // 기본 이미지 경로 설정
   const defaultImagePath = require("../../assets/images/default/characters/default_profile.jpg");
@@ -42,6 +57,7 @@ function Channel() {
       <InitialFilter
         onSelectInitial={handleSelectInitial}
         selectedInitial={selectedInitial}
+        onSearch={handleSearch}
       />
       {displayedCharacters.length > 0 ? (
         <div className="character-list">
@@ -51,7 +67,7 @@ function Channel() {
                 src={character.imgPath}
                 alt={character.name}
                 onError={(e) => {
-                  e.target.onerror = null; // 무한 루프 방지
+                  e.target.onerror = null;
                   e.target.src = defaultImagePath;
                 }}
               />

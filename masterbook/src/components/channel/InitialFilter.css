@@ -35,3 +35,21 @@
     margin: 2px;
   }
 }
+
+/* 검색 컨테이너 스타일 */
+.search-container {
+  margin-top: 10px;
+}
+
+/* 검색 입력 필드 스타일 */
+.search-input {
+  padding: 6px 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 200px;
+}
+
+/* 검색 입력 필드 포커스 시 스타일 */
+.search-input:focus {
+  outline: none;
