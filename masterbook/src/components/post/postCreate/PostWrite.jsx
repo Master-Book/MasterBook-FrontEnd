@@ -3,7 +3,7 @@ import "./PostCreate.css";
 import "@toast-ui/editor/dist/toastui-editor.css";
 import { Editor } from "@toast-ui/react-editor";
 
-function PostWrite() {
+function PostWrite({ gameName, characterName }) {
   const [category, setCategory] = useState("");
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [fileName, setFileName] = useState("");

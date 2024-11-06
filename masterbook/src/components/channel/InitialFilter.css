@@ -2,9 +2,15 @@
 
 .initial-filter-container {
   display: flex;
+  flex-direction: column; /* 세로 배치로 변경 */
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.initial-buttons {
+  display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  margin-bottom: 20px;
 }
 
 .initial-button {

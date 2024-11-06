@@ -3,10 +3,12 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./PostList.css";
 
-function PostList({ game_name, character_name }) {
+function PostList({ gameName, characterName }) {
   const [posts, setPosts] = useState([]); // 게시글 목록 상태
+  const navigate = useNavigate();
 
   useEffect(() => {
     // 컴포넌트가 마운트될 때 API 호출
@@ -21,9 +23,19 @@ function PostList({ game_name, character_name }) {
       });
   }, []);
 
+  const handleWritePost = () => {
+    // 글 작성 페이지로 이동
+    navigate("/postWrite");
+  };
+
   return (
     <div id="PostList">
-      <h1>'{character_name}' 공략글</h1>
+      <h1>'{characterName}' 공략글</h1>
+      <div className="write-button-container">
+        <button className="write-button" onClick={handleWritePost}>
+          글 작성
+        </button>
+      </div>
       <table>
         <thead>
           <tr>
