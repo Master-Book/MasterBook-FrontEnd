@@ -1,58 +1,59 @@
+/* 화면 전체를 차지하는 외부 컨테이너 */
+.outer-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #333; /* 배경 색상 추가 (선택사항) */
+}
+
 .login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* 수직으로 가운데 정렬 */
+    justify-content: center; /* 수평으로 가운데 정렬 */
     width: 300px;
-    padding: 30px;
+    height: 350px;
+    padding: 40px 30px;
     background-color: rgba(190, 190, 190, 0.337);
     border-radius: 15px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     text-align: center;
 }
 
-.avatar {
-    width: 70px;
-    height: 70px;
-    margin: 0 auto;
-    margin-bottom: 20px;
-    border-radius: 50%;
-    background-color: #2a2a72;
-    color: #fff;
-    font-size: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
 h2 {
     color: #fff;
+    margin: 0; /* h2의 기본 여백 제거 */
+    margin-top: 20px !important;
     margin-bottom: 20px;
 }
 
 .input-container {
     position: relative;
     margin: 20px 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
 
-.icon {
-    position: absolute;
-    top: 8px;
-    left: 10px;
-    color: #2a2a72;
-}
-
-input[type="text"],
-input[type="password"] {
-    width: 90%;
-    padding: 10px 10px 10px 35px;
+.login_input[type="text"],
+.login_input[type="password"] {
+    width: 100%;
+    padding: 10px 0px 10px 20px;
     border: none;
     border-radius: 5px;
     background-color: rgba(255, 255, 255, 0.2);
     color: #fff;
     font-size: 16px;
     outline: none;
+    justify-content: center;
 }
 
-input[type="text"]::placeholder,
-input[type="password"]::placeholder {
+.login_input[type="text"]::placeholder,
+.login_input[type="password"]::placeholder {
     color: #bbb;
+    
 }
 
 .remember-forgot {
@@ -70,17 +71,27 @@ text-decoration: none;
 }
 
 .login-button {
-width: 100%;
+width: 80%;
 padding: 10px;
 border: none;
 border-radius: 5px;
-background-color: #2a2a72;
+background-color: #80b294;
 color: #fff;
 font-size: 16px;
 cursor: pointer;
 transition: background-color 0.3s;
+text-decoration: none;
 }
 
 .login-button:hover {
-background-color: #1a1a57;
+background-color: #80b294;
+}
+
+.signup-link {
+    width: auto;
+    padding: 10px;
+}
+
+.signup-p {
+    margin: 20px;
 }
