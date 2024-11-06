@@ -5,7 +5,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import "./PostList.css";
 
-function PostList({ character_name }) {
+function PostList({ game_name, character_name }) {
   const [posts, setPosts] = useState([]); // 게시글 목록 상태
 
   useEffect(() => {
@@ -23,7 +23,7 @@ function PostList({ character_name }) {
 
   return (
     <div id="PostList">
-      <h1>{character_name}</h1>
+      <h1>'{character_name}' 공략글</h1>
       <table>
         <thead>
           <tr>
