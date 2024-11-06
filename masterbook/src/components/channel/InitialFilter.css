@@ -53,3 +53,5 @@
 /* 검색 입력 필드 포커스 시 스타일 */
 .search-input:focus {
   outline: none;
+  border-color: #333;
+}
