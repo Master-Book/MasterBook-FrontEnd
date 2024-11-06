@@ -1,7 +1,12 @@
 import React, { useState } from "react";
 import "./InitialFilter.css";
 
-function InitialFilter({ onSelectInitial, selectedInitial, onSearch }) {
+function InitialFilter({
+  onSelectInitial,
+  selectedInitial,
+  onSearch,
+  onWritePost,
+}) {
   const initials = [
     "전체",
     "ㄱ",
@@ -47,6 +52,8 @@ function InitialFilter({ onSelectInitial, selectedInitial, onSearch }) {
           </button>
         ))}
       </div>
+
+      {/* 검색어 입력 란을 필터 글자 아래로 이동 */}
       <div className="search-container">
         <input
           type="text"

@@ -9,6 +9,7 @@ import PostList from "./components/post/postList/PostList";
 //import PostCreate from "./components/post/postCreate/PostCreate";
 import PostWrite from "./components/post/postCreate/PostWrite";
 import Login from "./components/login/Main";
+import More from "./components/more/Main";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         {/*<Route path="/postCreate" element={<PostCreate />} />*/}
         <Route path="/postWrite" element={<PostWrite />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/more" element={<More />} />
       </Routes>
     </Router>
   );
