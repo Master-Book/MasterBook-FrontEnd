@@ -16,9 +16,11 @@ function Header() {
       <nav className="subtitle">
         <nav className="games">
           <ul>
+            <img src="images/league_of_legends/logo/logo.png" width="20"></img>
             <li>
               <Link to="/league_of_legends">League of Legends</Link>
             </li>
+            |<img src="images/stardew_valley/logo/logo.png" width="20"></img>
             <li>
               <Link to="/stardew_valley">Stardew Valley</Link>
             </li>

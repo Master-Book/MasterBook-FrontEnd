@@ -42,6 +42,7 @@ h2 {
 .game-item {
   text-decoration: none;
   color: #333;
+  height: 200px;
 }
 
 .game-card {
