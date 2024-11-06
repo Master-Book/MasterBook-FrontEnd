@@ -4,6 +4,13 @@
   padding: 20px;
 }
 
+.game-name {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
 .character-list {
   display: flex;
   flex-wrap: nowrap; /* 줄 바꿈을 없애고 한 줄로 만듦 */
@@ -16,6 +23,7 @@
   flex-direction: column;
   align-items: center;
   width: 80px; /* 아이템의 너비를 줄임 */
+  cursor: pointer; /* 마우스 커서가 포인터로 변경 */
 }
 
 .character-item img {
@@ -28,6 +36,13 @@
   margin-top: 3px;
   font-size: 12px; /* 글자 크기 축소 */
   text-align: center;
+}
+
+/* 선택된 캐릭터 스타일 */
+.character-item.selected {
+  border: 2px solid red;
+  border-radius: 5px;
+  /* background-color: #f0f0f0; */
 }
 
 /* 반응형 디자인: 작은 화면에서 크기 조정 */
@@ -62,4 +77,12 @@
 
 .character-list::-webkit-scrollbar-thumb:hover {
   background: #555;
+}
+
+/* 선택된 캐릭터 이름 표시 스타일 */
+.selected-character-name {
+  margin-top: 20px;
+  font-size: 16px;
+  text-align: center;
+  color: white;
 }
