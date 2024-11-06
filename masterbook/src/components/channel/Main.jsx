@@ -125,7 +125,12 @@ function Channel() {
         </div>
       )} */}
       {selectedCharacterName && (
-        <PostList gameName={gameName} characterName={selectedCharacterName} />
+        <PostList
+          gameId={gameId}
+          gameName={gameName}
+          characterId={selectedCharacterId}
+          characterName={selectedCharacterName}
+        />
       )}
     </div>
   );

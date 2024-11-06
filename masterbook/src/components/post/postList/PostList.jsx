@@ -6,7 +6,11 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import "./PostList.css";
 
-function PostList({ gameName, characterName }) {
+function PostList({ gameId, gameName, characterId, characterName }) {
+  // console.log(gameId);
+  // console.log(gameName);
+  // console.log(characterId);
+  // console.log(characterName);
   const [posts, setPosts] = useState([]); // 게시글 목록 상태
   const navigate = useNavigate();
 
@@ -24,8 +28,12 @@ function PostList({ gameName, characterName }) {
   }, []);
 
   const handleWritePost = () => {
+    const data = {
+      characterId: characterId,
+      gameId: gameId,
+    };
     // 글 작성 페이지로 이동
-    navigate("/postWrite");
+    navigate("/postWrite", { state: data });
   };
 
   return (
