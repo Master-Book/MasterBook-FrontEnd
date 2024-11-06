@@ -1,0 +1,57 @@
+/* InitialFilter.css */
+
+.initial-filter-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.initial-button {
+  background-color: #f0f0f0;
+  border: none;
+  color: #333;
+  padding: 6px 10px; /* 패딩 크기 줄임 */
+  margin: 3px; /* 마진 크기 줄임 */
+  font-size: 14px; /* 폰트 크기 줄임 */
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.initial-button:hover {
+  background-color: #ddd;
+}
+
+.initial-button.selected {
+  background-color: #333;
+  color: #fff;
+}
+
+@media (max-width: 600px) {
+  .initial-button {
+    padding: 4px 8px;
+    font-size: 12px;
+    margin: 2px;
+  }
+}
+
+/* 검색 컨테이너 스타일 */
+.search-container {
+  margin-top: 10px;
+}
+
+/* 검색 입력 필드 스타일 */
+.search-input {
+  padding: 6px 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 200px;
+}
+
+/* 검색 입력 필드 포커스 시 스타일 */
+.search-input:focus {
+  outline: none;
+  border-color: #333;
+}
