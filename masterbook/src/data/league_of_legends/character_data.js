@@ -1,6 +1,12 @@
 const characters = [
   // ㄱ
   {
+    id: "Garen",
+    name: "가렌",
+    initial: "ㄱ",
+    imgPath: "../../assets/images/league_of_legends/characters/Garen.png",
+  },
+  {
     id: "Galio",
     name: "갈리오",
     initial: "ㄱ",

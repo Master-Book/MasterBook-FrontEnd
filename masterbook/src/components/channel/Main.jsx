@@ -104,13 +104,14 @@ function Channel() {
               onClick={() => handleCharacterClick(character)}
             >
               <img
-                src={character.imgPath}
+                src={`/images/${gameId}/characters/${character.id}.png`}
                 alt={character.name}
                 onError={(e) => {
                   e.target.onerror = null;
                   e.target.src = defaultImagePath;
                 }}
               />
+              {/* {console.log(`images/${gameId}/characters/${character.id}`)} */}
               <p>{character.name}</p>
             </div>
           ))}
@@ -124,7 +125,7 @@ function Channel() {
         </div>
       )} */}
       {selectedCharacterName && (
-        <PostList character_name={selectedCharacterName} />
+        <PostList gameName={gameName} characterName={selectedCharacterName} />
       )}
     </div>
   );

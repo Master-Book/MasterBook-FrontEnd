@@ -24,7 +24,9 @@ function Header() {
             </li>
           </ul>
         </nav>
-        <div className="etc">기타 게임</div>
+        <Link to="/more" className="etc">
+          게임 더보기
+        </Link>
       </nav>
     </header>
   );
