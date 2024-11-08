@@ -6,8 +6,8 @@ import Header from "./components/common/Header";
 import Home from "./components/home/Main";
 import Channel from "./components/channel/Main";
 import PostList from "./components/post/postList/PostList";
-//import PostCreate from "./components/post/postCreate/PostCreate";
 import PostWrite from "./components/post/postCreate/PostWrite";
+import PostDetail from "./components/post/postDetail/PostDetail";
 import Login from "./components/login/Main";
 import Signup from "./components/login/Signup";
 import More from "./components/more/Main";
@@ -20,8 +20,8 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/:gameId" element={<Channel />} />
         <Route path="/postList" element={<PostList />} />
-        {/*<Route path="/postCreate" element={<PostCreate />} />*/}
         <Route path="/postWrite" element={<PostWrite />} />
+        <Route path="/:gameId/:characterId/:postId" element={<PostDetail />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/more" element={<More />} />

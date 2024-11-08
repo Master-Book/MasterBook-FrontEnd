@@ -11,9 +11,6 @@ function Main() {
       <li>
         <Link to="/postWrite">글작성</Link>
       </li>
-      <li>
-        <Link to="/postList">글목록</Link>
-      </li>
     </div>
   );
 }
