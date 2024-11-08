@@ -8,6 +8,11 @@
   color: #333;
 }
 
+.post-detail-gameName {
+  margin: 20px;
+  color: #ddd;
+}
+
 h1 {
   margin-top: 0;
 }
