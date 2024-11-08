@@ -4,7 +4,7 @@ import axios from "axios";
 import "./PostDetail.css";
 
 function PostDetail() {
-  const { id } = useParams(); // URL에서 ID 파라미터 가져오기
+  const { gameId, characterId, postId } = useParams(); // URL에서 gameId, characterId, postId 파라미터 가져오기
   const [post, setPost] = useState(null);
   const [comments, setComments] = useState([]); // 댓글 목록 상태
   const [newComment, setNewComment] = useState(""); // 새 댓글 입력 상태
@@ -12,8 +12,9 @@ function PostDetail() {
   const [isLiked, setIsLiked] = useState(false); // 좋아요 여부 상태
 
   useEffect(() => {
+    console.log("detail page 가져온 정보:", gameId, characterId, postId);
     axios
-      .get(`/api/posts/${id}`) // 백엔드의 게시글 상세 API 엔드포인트
+      .get(`/${gameId}/${characterId}/${postId}`) // 백엔드의 게시글 상세 API 엔드포인트
       .then((response) => {
         setPost(response.data.post);
         setComments(response.data.comments);
@@ -21,14 +22,14 @@ function PostDetail() {
         setIsLiked(response.data.isLiked); // 사용자가 좋아요를 눌렀는지 여부
       })
       .catch((error) => console.error("Error fetching post:", error));
-  }, [id]);
+  }, [gameId, characterId, postId]);
 
   // 댓글 추가 핸들러
   const handleAddComment = () => {
     if (!newComment.trim()) return;
 
     axios
-      .post(`/api/posts/${id}/comments`, { content: newComment })
+      .post(`/api/posts/${postId}/comments`, { content: newComment })
       .then((response) => {
         setComments([...comments, response.data]); // 댓글 목록에 새 댓글 추가
         setNewComment(""); // 입력란 초기화
@@ -39,7 +40,7 @@ function PostDetail() {
   // 좋아요 버튼 핸들러
   const handleLikeToggle = () => {
     axios
-      .post(`/api/posts/${id}/like`)
+      .post(`/api/posts/${postId}/like`)
       .then(() => {
         setIsLiked(!isLiked);
         setLikes((prevLikes) => (isLiked ? prevLikes - 1 : prevLikes + 1));
