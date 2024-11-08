@@ -1,8 +1,8 @@
 import React, { useState, useRef, useEffect } from "react";
-import "./PostCreate.css";
-import "@toast-ui/editor/dist/toastui-editor.css";
 import { useLocation } from "react-router-dom";
 import { Editor } from "@toast-ui/react-editor";
+import "@toast-ui/editor/dist/toastui-editor.css";
+import "./PostWrite.css";
 
 function PostWrite() {
   const [title, setTitle] = useState("");
@@ -51,17 +51,6 @@ function PostWrite() {
       e.preventDefault(); // 내용이 비어 있으면 제출 방지
       alert("내용을 입력해주세요."); // 경고 메시지
     }
-    /*
-    TODO: 전송 버튼 누르면,
-    - gameId (ex. league_of_legends)
-    - characterId (ex. Garen)
-    - title (글 제목)
-    - authorId (userId이지만, 지금 로그인 안되므로 하드코딩해)
-    - content (글 내용)
-    위 내용 payload 변수에 저장하게 만들어
-
-    (그리고 나중에 서버 연동할 때 payload 보내주면 돼)
-    */
 
     // 전송할 정보
     const payload = {
@@ -76,13 +65,11 @@ function PostWrite() {
   };
 
   return (
-    <div id="PostCreate">
+    <div id="PostWrite">
       <div id="write_area">
         {/* <form encType="multipart/form-data" action="/write_ok" method="post"> */}
-          {/* <div id="in_category" className="cont-select"></div> */}
             <textarea
-              // name="title"
-              id="utitle"
+              id="title"
               rows="1"
               cols="60"
               placeholder="제목"
