@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import "./PostList.css";
 
-function PostList({ gameId, gameName, characterId, characterName, post }) {
+function PostList({ gameId, characterId, characterName }) {
   const [posts, setPosts] = useState([]); // 게시글 목록 상태
   const navigate = useNavigate();
 

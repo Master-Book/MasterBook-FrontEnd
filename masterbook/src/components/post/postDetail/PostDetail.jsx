@@ -14,13 +14,26 @@ function PostDetail() {
   useEffect(() => {
     console.log("detail page 가져온 정보:", gameId, characterId, postId);
     axios
-      .get(`/${gameId}/${characterId}/${postId}`) // 백엔드의 게시글 상세 API 엔드포인트
+      // 일단 public의 json파일로 출력함
+      .get("/posts.json") // 게시글 list 백엔드 API 엔드포인트 : /api/posts
       .then((response) => {
-        setPost(response.data.post);
-        setComments(response.data.comments);
-        setLikes(response.data.likes);
-        setIsLiked(response.data.isLiked); // 사용자가 좋아요를 눌렀는지 여부
+        console.log("전체 데이터:", response.data);
+        // 게임 ID와 캐릭터 ID를 기반으로 필터링
+        const filteredPost = response.data.find(
+          (post) =>
+            post.gameId === gameId &&
+            post.characterId === characterId &&
+            post.id === parseInt(postId)
+        );
+        setPost(filteredPost || null); // 없을 경우 null로 설정
       })
+      // .get(`/${gameId}/${characterId}/${postId}`) // 백엔드의 게시글 상세 API 엔드포인트
+      // .then((response) => {
+      //   setPost(response.data.post);
+      //   setComments(response.data.comments);
+      //   setLikes(response.data.likes);
+      //   setIsLiked(response.data.isLiked); // 사용자가 좋아요를 눌렀는지 여부
+      // })
       .catch((error) => console.error("Error fetching post:", error));
   }, [gameId, characterId, postId]);
 
@@ -50,22 +63,30 @@ function PostDetail() {
 
   if (!post) return <p>Loading...</p>; // 데이터가 없을 때 로딩 표시
 
+  console.log(post.content);
+
   return (
     <div className="post-detail-container">
-      <h1>{post.title}</h1>
-      <p>
-        <strong>작성자:</strong> {post.author}
-      </p>
-      <p>
-        <strong>작성일:</strong> {post.date}
-      </p>
-      <p>
-        <strong>조회수:</strong> {post.views}
-      </p>
-      <hr />
-      <div className="post-content">
-        <p>{post.content}</p>
-      </div>
+      {post && (
+        <>
+          <div className="post-content-title">
+            <h1>{post.title}</h1>
+            <p>
+              <strong>작성자:</strong> {post.author}
+            </p>
+            <p>
+              <strong>작성일:</strong> {post.date}
+            </p>
+            <p>
+              <strong>조회수:</strong> {post.views}
+            </p>
+          </div>
+          <hr />
+          <div className="post-content">
+            <p>{post.content}</p>
+          </div>
+        </>
+      )}
 
       {/* 좋아요 기능 */}
       <div className="like-section">
