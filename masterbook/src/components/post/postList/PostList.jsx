@@ -33,7 +33,7 @@ function PostList({ gameId, gameName, characterId, characterName }) {
       gameId: gameId,
     };
     // 글 작성 페이지로 이동
-    navigate("/postWrite", { state: data });
+    navigate(`/${gameId}/${characterId}/postWrite`);
   };
 
   return (
