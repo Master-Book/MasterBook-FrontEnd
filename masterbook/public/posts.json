@@ -1,36 +1,61 @@
 [
   {
+    "gameId": "league_of_legends",
+    "characterId": "Garen",
     "id": 1,
-    "title": "첫번째 게시글입니다.",
+    "title": "입벌려. 가렌 꿀팁 들어간다.",
     "author": "무말콩",
+    "content": "그냥 돌면서 들어갔다가 돌면서 나오면 됨 이지피지 레몬 스퀴지~",
     "date": "2024-11-01",
     "views": 6
   },
   {
+    "gameId": "stardew_valley",
+    "characterId": "Gus",
     "id": 2,
-    "title": "두번째 게시글입니다.",
+    "title": "거스 아저씨 출몰 지역",
     "author": "행복한 돌잔치",
+    "content": "펠리컨 마을에 살고 스타드롭 주점에서 일하는 마을 주민입니다. 그는 그 건물을 소유하고 있습니다.",
     "date": "2024-11-01",
     "views": 5
   },
   {
+    "gameId": "league_of_legends",
+    "characterId": "Galio",
     "id": 3,
-    "title": "세번째 게시글입니다.",
+    "title": "갈리오 도발 잘 거는 법",
     "author": "우리할머니가니보다정글잘함",
+    "content": "Q로 둔화걸고 W하면 됩니다. 이때 플쓰면 좋아요",
     "date": "2024-11-01",
     "views": 1
   },
   {
+    "gameId": "stardew_valley",
+    "characterId": "Dwarf",
     "id": 4,
-    "title": "네번째 게시글입니다.",
+    "title": "드워프한테 마법 지팡이 받는 법",
     "author": "왕만두하나",
+    "content": "지하도 뚫으시면 드워프 만날 수 있습니다. 오른쪽 위쪽에 있구요 거기에서 포털 타면 집으로 바로 이동 가능합니다. 다들 즐겜하세요",
     "date": "2024-11-01",
     "views": 2
   },
   {
+    "gameId": "league_of_legends",
+    "characterId": "Gwen",
     "id": 5,
-    "title": "다섯번째 게시글입니다.",
+    "title": "그웬 콤보 알려드려요",
     "author": "파송송계란탁",
+    "content": "e챱q챱챱 e챱챱 w 막고 다시 e챱 q챱챱",
+    "date": "2024-11-01",
+    "views": 4
+  },
+  {
+    "gameId": "league_of_legends",
+    "characterId": "Ivern",
+    "id": 6,
+    "title": "아이번으로 정글 도는 루트 추천",
+    "author": "어이엇어",
+    "content": "1.시작할때 상대 탑,바텀 확인하고 리쉬 여부 판단    2. 자신이 뭔가 하려고할때 갑니다핑, 도움핑 무조건 찍으면서 하기 3.초,중반 플레쉬가 없을때 과감한 메이킹은 피하는게 좋다",
     "date": "2024-11-01",
     "views": 4
   }

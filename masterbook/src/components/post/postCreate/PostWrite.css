@@ -1,0 +1,47 @@
+#PostWrite {
+  margin: 10px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* 제목 입력란 */
+#title {
+  width: 100%;
+  margin: 5px 0;
+  padding: 10px 0;
+  font-size: 24px;
+  font-weight: 400;
+  color: #333;
+  border: none;
+  border-bottom: 1px solid #ddd;
+  outline: none;
+  resize: none; /* 크기 조절 비활성화 */
+}
+
+#title::placeholder {
+  color: #bbb;
+}
+
+/* 글작성 버튼 */
+.btn-submit {
+  width: auto;
+  padding: 8px;
+  font-size: 14px;
+  background-color: #fff;
+  border: 1px solid #c4c4c4;
+  border-radius: 15px;
+  cursor: pointer;
+  text-align: left;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.btn-submit.on {
+  border: 1px solid #51e091;
+  outline: 3px solid #f8e4ff;
+}
+
+

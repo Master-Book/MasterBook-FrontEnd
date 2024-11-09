@@ -2,25 +2,72 @@
 
 import React from "react";
 import "./login.css";
-import { Link } from "react-router-dom";
 
 function Signup() {
   return (
     <div className="outer-container">
-    <div className="login-container">
-      <h2>Signup</h2>
-      <form>
-        <div className="input-container">
-          <i className="fa fa-envelope icon"></i>
-          <input className="login_input" type="text" placeholder="Email ID" required />
-        </div>
-        <div className="input-container">
-          <i className="fa fa-lock icon"></i>
-          <input className="login_input" type="password" placeholder="Password" required />
-        </div>
-        <button type="submit" className="login-button">Sign Up</button>
-      </form>
-    </div>
+      <div className="sign-container">
+        <h2>Sign up</h2>
+        <form>
+          <div className="form-container">
+            <div className="input-left-container">
+              <div className="input-container">
+                <input
+                  className="login_input"
+                  type="text"
+                  placeholder="ID"
+                  required
+                />
+              </div>
+              <div className="input-container">
+                <input
+                  className="login_input"
+                  type="password"
+                  placeholder="Password"
+                  required
+                />
+              </div>
+              <div className="input-container">
+                <input
+                  className="login_input"
+                  type="password"
+                  placeholder="Password Check"
+                  required
+                />
+              </div>
+            </div>
+            <div className="input-left-container">
+              <div className="input-container">
+                <input
+                  className="login_input"
+                  type="text"
+                  placeholder="Email"
+                  required
+                />
+              </div>
+              <div className="input-container">
+                <input
+                  className="login_input"
+                  type="text"
+                  placeholder="인증번호"
+                  required
+                />
+              </div>
+              <div className="input-container">
+                <input
+                  className="login_input"
+                  type="text"
+                  placeholder="Name"
+                  required
+                />
+              </div>
+            </div>
+          </div>
+          <button type="submit" className="login-button">
+            가입하기
+          </button>
+        </form>
+      </div>
     </div>
   );
 }
