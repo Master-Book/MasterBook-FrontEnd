@@ -35,16 +35,16 @@ function PostList({ gameId, gameName, characterId, characterName }) {
   }, [gameId, characterId]);
 
   const handleWritePost = (post) => {
-    console.log('postid:', post.id);
+    // console.log('postid:', post.id);
     console.log('characterId:', characterId);
     console.log('gameId:', gameId);
     const data = {
       characterId: characterId,
       gameId: gameId,
-      postId: post.id,
+      // postId: post.id,
     };
     // 글 작성 페이지로 이동
-    navigate(`/postWrite`);
+    navigate(`/postWrite/${gameId}/${characterId}`);
   };
 
   console.log('gameName (POstList):', gameName);
