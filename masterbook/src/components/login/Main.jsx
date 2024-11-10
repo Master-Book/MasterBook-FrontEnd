@@ -24,7 +24,13 @@ function Main() {
         inputPassword: password,
       }),
     })
-      .then((res) => res.json())
+      .then((res) => {
+        if (!res.ok) {
+          // 응답이 200-299가 아닌 경우 상태 코드와 함께 에러를 발생시킴
+          throw new Error(`HTTP error! Status code: ${res.status}`);
+        }
+        return res.json(); // 응답이 OK인 경우 JSON으로 파싱
+      })
       .then((json) => {
         if (json.Authorization) {
           alert("로그인 성공하셨습니다.");

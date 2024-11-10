@@ -41,7 +41,7 @@ function PostList({ gameId, gameName, characterId, characterName }) {
       postId: post.id,
     };
     // 글 작성 페이지로 이동
-    navigate(`/${gameId}/${characterId}/postWrite`);
+    navigate(`/postWrite`);
   };
 
   console.log("gameName (POstList):", gameName);
