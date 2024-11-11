@@ -1,10 +1,10 @@
 // src/components/post/postList/PostList.js
 
-import React, { useEffect, useState } from "react";
-import axios from "axios";
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
-import "./PostList.css";
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import './PostList.css';
 
 function PostList({ gameId, gameName, characterId, characterName }) {
   const [posts, setPosts] = useState([]); // 게시글 목록 상태
@@ -12,7 +12,7 @@ function PostList({ gameId, gameName, characterId, characterName }) {
 
   useEffect(() => {
     console.log(
-      "postList 가져온 정보:",
+      'postList 가져온 정보:',
       gameId,
       gameName,
       characterId,
@@ -21,7 +21,7 @@ function PostList({ gameId, gameName, characterId, characterName }) {
     // 컴포넌트가 마운트될 때 API 호출
     axios
       // 일단 public의 json파일로 출력함
-      .get("/posts.json") // 게시글 list 백엔드 API 엔드포인트 : /api/posts
+      .get('/posts.json') // 게시글 list 백엔드 API 엔드포인트 : /api/posts
       .then((response) => {
         // 게임 ID와 캐릭터 ID를 기반으로 필터링
         const filteredPosts = response.data.filter(
@@ -30,21 +30,24 @@ function PostList({ gameId, gameName, characterId, characterName }) {
         setPosts(filteredPosts);
       })
       .catch((error) => {
-        console.error("Error fetching posts:", error);
+        console.error('Error fetching posts:', error);
       });
   }, [gameId, characterId]);
 
   const handleWritePost = (post) => {
+    // console.log('postid:', post.id);
+    console.log('characterId:', characterId);
+    console.log('gameId:', gameId);
     const data = {
       characterId: characterId,
       gameId: gameId,
-      postId: post.id,
+      // postId: post.id,
     };
     // 글 작성 페이지로 이동
-    navigate(`/postWrite`);
+    navigate(`/postWrite/${gameId}/${characterId}`);
   };
 
-  console.log("gameName (POstList):", gameName);
+  console.log('gameName (POstList):', gameName);
 
   return (
     <div>
@@ -90,7 +93,7 @@ function PostList({ gameId, gameName, characterId, characterName }) {
         )}
         <div className="pagination">
           <button>Previous</button>
-          {[1, 2, 3, "...", 7].map((page, idx) => (
+          {[1, 2, 3, '...', 7].map((page, idx) => (
             <button key={idx}>{page}</button>
           ))}
           <button>Next</button>

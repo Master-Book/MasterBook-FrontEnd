@@ -29,6 +29,12 @@
   height: 80px;
 }
 
+.logo {
+  width: 32px;
+  object-fit: contain;
+  margin-right: 10px;
+}
+
 .title a {
   color: #fff;
   text-decoration: none;
