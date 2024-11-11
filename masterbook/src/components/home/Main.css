@@ -1,0 +1,111 @@
+/* src/components/home/Main.css */
+
+.main-container {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.post-card-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.post-card {
+  background-color: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  width: calc(33.333% - 20px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.post-card-header {
+  font-size: 14px;
+  color: #888;
+  margin-bottom: 10px;
+}
+
+.game-id,
+.character-id {
+  font-weight: bold;
+}
+
+.post-title {
+  font-size: 18px;
+  margin: 0 0 10px;
+  color: #333;
+}
+
+.post-author,
+.post-date {
+  font-size: 12px;
+  color: #aaa;
+  margin: 0;
+}
+
+.post-content {
+  font-size: 14px;
+  color: #555;
+  margin: 10px 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* 최대 2줄까지 표시 */
+  -webkit-box-orient: vertical;
+}
+
+.read-more-button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.read-more-button:hover {
+  background-color: #0056b3;
+}
+
+.read-more-button .read-more-link {
+  color: #fff;
+  text-decoration: none;
+}
+
+.read-more-button .read-more-link:hover {
+  text-decoration: underline;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 900px) {
+  .post-card {
+    width: calc(50% - 20px);
+  }
+}
+
+@media (max-width: 600px) {
+  .post-card {
+    width: 100%;
+  }
+}
+
+/* post-card-header 스타일 수정 */
+.post-card-header {
+  display: flex; /* 플렉스 박스로 변경 */
+  align-items: center; /* 수직 가운데 정렬 */
+  justify-content: space-between; /* 양 끝으로 정렬 */
+  font-size: 14px;
+  color: #888;
+  margin-bottom: 10px;
+}
+
+/* 게임 로고 이미지 스타일 */
+.game-logo {
+  width: 32px; /* 로고 이미지의 너비 */
+  height: 32px; /* 로고 이미지의 높이 */
+  object-fit: contain; /* 이미지 비율 유지 */
+  margin-left: 10px; /* 텍스트와 이미지 사이 간격 */
+}

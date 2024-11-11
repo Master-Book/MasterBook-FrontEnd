@@ -1,8 +1,8 @@
 // src/components/common/Header.js
 
-import React from "react";
-import { Link } from "react-router-dom";
-import "./Header.css";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import './Header.css';
 
 function Header() {
   return (
@@ -11,7 +11,14 @@ function Header() {
         <Link to="/login">로그인/회원가입</Link>
       </div>
       <nav className="title">
-        <Link to="/">Master Book</Link>
+        <Link to="/">
+          <img
+            src={`/images/master_book/logo_white.png`}
+            alt={`logo`}
+            className="logo"
+          />
+          Master Book
+        </Link>
       </nav>
       <nav className="subtitle">
         <nav className="games">
