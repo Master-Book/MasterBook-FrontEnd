@@ -62,6 +62,17 @@ function PostWrite() {
     };
   
     console.log("Payload:", payload);
+
+    fetch("http://localhost:3000/post/write",{
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        userEmail: email,
+        inputPassword: password,
+      }),
+    })
   };
 
   return (
