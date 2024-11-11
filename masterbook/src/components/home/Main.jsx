@@ -1,9 +1,9 @@
 // src/components/home/Main.js
 
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import axios from 'axios';
-import './Main.css'; // 스타일링을 위한 CSS 파일
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import axios from "axios";
+import "./Main.css"; // 스타일링을 위한 CSS 파일
 
 function Main() {
   const [posts, setPosts] = useState([]);
@@ -11,7 +11,7 @@ function Main() {
   useEffect(() => {
     // 더미 데이터(posts.json)에서 게시글 불러오기
     axios
-      .get('/posts.json')
+      .get("/posts.json")
       .then((response) => {
         // // 게시글을 날짜 순으로 정렬 (최신순)
         // const sortedPosts = response.data.sort(
@@ -26,7 +26,7 @@ function Main() {
         setPosts(latestPosts);
       })
       .catch((error) => {
-        console.error('Error fetching posts:', error);
+        console.error("Error fetching posts:", error);
       });
   }, []);
 

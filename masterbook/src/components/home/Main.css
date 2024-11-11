@@ -22,11 +22,11 @@
   box-sizing: border-box;
 }
 
-.post-card-header {
+/* .post-card-header {
   font-size: 14px;
   color: #888;
   margin-bottom: 10px;
-}
+} */
 
 .game-id,
 .character-id {
@@ -97,6 +97,15 @@
   display: flex; /* 플렉스 박스로 변경 */
   align-items: center; /* 수직 가운데 정렬 */
   justify-content: space-between; /* 양 끝으로 정렬 */
+  font-size: 14px;
+  color: #888;
+  margin-bottom: 10px;
+}
+
+.post-card-header-icon {
+  display: flex;
+  align-items: center;
+  justify-content: end;
   font-size: 14px;
   color: #888;
   margin-bottom: 10px;
