@@ -1,26 +1,26 @@
 // src/components/more/Main.jsx
 
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import "./Main.css";
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import './Main.css';
 
 function Main() {
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm] = useState('');
   const [allGames, setAllGames] = useState([]);
 
   useEffect(() => {
     const gamesData = [
       {
-        id: "league_of_legends",
-        name: "League of Legends",
-        logo: "/images/league_of_legends/logo/logo.png",
+        id: 'league_of_legends',
+        name: 'League of Legends',
+        logo: '/images/league_of_legends/logo/logo.png',
         sponsor: true,
         popularity: 100,
       },
       {
-        id: "stardew_valley",
-        name: "Stardew Valley",
-        logo: "/images/stardew_valley/logo/logo.png",
+        id: 'stardew_valley',
+        name: 'Stardew Valley',
+        logo: '/images/stardew_valley/logo/logo.png',
         sponsor: false,
         popularity: 80,
       },
@@ -70,21 +70,21 @@ function Main() {
 
       {/* 스폰서 섹션 */}
       <section>
-        <h2>스폰서</h2>
+        <h3>스폰서</h3>
         {renderGameList(sponsorGames)}
       </section>
       <hr />
 
       {/* 인기 순위 섹션 */}
       <section>
-        <h2>인기 순위</h2>
+        <h3>인기 순위</h3>
         {renderGameList(popularGames)}
       </section>
       <hr />
 
       {/* 사전 순 섹션 */}
       <section>
-        <h2>사전 순</h2>
+        <h3>사전 순</h3>
         {renderGameList(alphabeticalGames)}
       </section>
     </div>

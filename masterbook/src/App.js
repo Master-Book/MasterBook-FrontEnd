@@ -2,6 +2,8 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import '@toast-ui/editor/dist/toastui-editor.css';
 
+import Layout from './components/common/Layout';
+
 import Header from './components/common/Header';
 import Home from './components/home/Main';
 import Channel from './components/channel/Main';
@@ -16,6 +18,7 @@ function App() {
   return (
     <Router>
       <Header />
+      {/* <Layout> */}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/:gameId" element={<Channel />} />
@@ -26,6 +29,7 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/more" element={<More />} />
       </Routes>
+      {/* </Layout> */}
     </Router>
   );
 }

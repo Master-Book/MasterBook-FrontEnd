@@ -1,0 +1,42 @@
+/* src/components/common/Layout.css */
+
+.layout-container {
+  display: flex;
+  max-width: 1700px; /* 최대 너비 설정 */
+  margin: 0 auto; /* 가운데 정렬 */
+}
+
+.sidebar {
+  width: 200px; /* 광고 사이드바 너비 */
+  padding: 10px;
+  background-color: black;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.content {
+  flex-grow: 1;
+  padding: 20px;
+}
+
+.ad {
+  margin-bottom: 10px;
+  background-color: #191919; /* 광고 배경 색상 */
+  padding: 20px;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+  .layout-container {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .content {
+    width: 100%;
+  }
+}
