@@ -1,13 +1,14 @@
 // src/components/login/Main.js
-const SERVER_IP = process.env.REACT_APP_SERVER_IP;
-
 import { React, useState } from "react";
 import "./login.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+
+const SERVER_IP = process.env.REACT_APP_SERVER_IP;
 
 function Main() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -33,14 +34,17 @@ function Main() {
         return res.json(); // 응답이 OK인 경우 JSON으로 파싱
       })
       .then((json) => {
-        if (json.Authorization) {
+        // `Authorization`과 `accessToken`을 모두 처리
+        if (json.Authorization && json.accessToken) {
           alert("로그인 성공하셨습니다.");
           localStorage.setItem("token", json.Authorization); // Authorization 헤더에 대한 JWT 토큰 저장
-          window.location.href = "/";
+          localStorage.setItem("accessToken", json.accessToken); // accessToken을 따로 저장
+          navigate("/");
         } else {
           alert("로그인에 실패했습니다. 다시 시도해주세요.");
         }
       })
+
       .catch((error) => {
         console.error("Error:", error);
         alert(`오류가 발생했습니다. 상태 코드: ${error.message}`);

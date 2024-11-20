@@ -1,24 +1,24 @@
-import React, { useEffect, useState } from 'react';
-import { useParams, useLocation } from 'react-router-dom';
-import axios from 'axios';
-import './PostDetail.css';
+import React, { useEffect, useState } from "react";
+import { useParams, useLocation } from "react-router-dom";
+import axios from "axios";
+import "./PostDetail.css";
 
 function PostDetail() {
   const { gameId, characterId, postId } = useParams(); // URL에서 gameId, characterId, postId 파라미터 가져오기
   const [post, setPost] = useState(null);
   const [comments, setComments] = useState([]); // 댓글 목록 상태
-  const [newComment, setNewComment] = useState(''); // 새 댓글 입력 상태
+  const [newComment, setNewComment] = useState(""); // 새 댓글 입력 상태
   const [likes, setLikes] = useState(0); // 좋아요 수 상태
   const [isLiked, setIsLiked] = useState(false); // 좋아요 여부 상태
   const location = useLocation();
   const { gameName, characterName } = location.state || {}; // state에서 gameName 추출
-  console.log('받은 게임 이름:', gameName);
+  console.log("받은 게임 이름:", gameName);
 
   useEffect(() => {
-    console.log('detail page 가져온 정보:', gameId, characterId, postId);
+    console.log("detail page 가져온 정보:", gameId, characterId, postId);
     axios
       // 일단 public의 json파일로 출력함
-      .get('/posts.json') // 게시글 list 백엔드 API 엔드포인트 : /api/posts
+      .get("/posts.json") // 게시글 list 백엔드 API 엔드포인트 : /api/posts
       .then((response) => {
         // 게임 ID와 캐릭터 ID를 기반으로 필터링
         const filteredPost = response.data.find(
@@ -29,7 +29,7 @@ function PostDetail() {
         );
         setPost(filteredPost || null); // 없을 경우 null로 설정
       })
-      .catch((error) => console.error('Error fetching post:', error));
+      .catch((error) => console.error("Error fetching post:", error));
   }, [gameId, characterId, postId]);
 
   // 댓글 추가 핸들러
@@ -40,9 +40,9 @@ function PostDetail() {
       .post(`/api/posts/${postId}/comments`, { content: newComment })
       .then((response) => {
         setComments([...comments, response.data]); // 댓글 목록에 새 댓글 추가
-        setNewComment(''); // 입력란 초기화
+        setNewComment(""); // 입력란 초기화
       })
-      .catch((error) => console.error('Error adding comment:', error));
+      .catch((error) => console.error("Error adding comment:", error));
   };
 
   // 좋아요 버튼 핸들러
@@ -53,7 +53,7 @@ function PostDetail() {
         setIsLiked(!isLiked);
         setLikes((prevLikes) => (isLiked ? prevLikes - 1 : prevLikes + 1));
       })
-      .catch((error) => console.error('Error toggling like:', error));
+      .catch((error) => console.error("Error toggling like:", error));
   };
 
   if (!post) return <p>Loading...</p>; // 데이터가 없을 때 로딩 표시
@@ -89,7 +89,7 @@ function PostDetail() {
         {/* 좋아요 기능 */}
         <div className="like-section">
           <button onClick={handleLikeToggle}>
-            {isLiked ? '좋아요 취소' : '좋아요'} ({likes})
+            {isLiked ? "좋아요 취소" : "좋아요"} ({likes})
           </button>
         </div>
 
