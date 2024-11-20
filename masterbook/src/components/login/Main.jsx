@@ -1,23 +1,24 @@
 // src/components/login/Main.js
+const SERVER_IP = process.env.REACT_APP_SERVER_IP;
 
-import { React, useState } from 'react';
-import './login.css';
-import { Link } from 'react-router-dom';
+import { React, useState } from "react";
+import "./login.css";
+import { Link } from "react-router-dom";
 
 function Main() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    console.log('email:', email);
-    console.log('password:', password);
+    console.log("email:", email);
+    console.log("password:", password);
 
-    fetch('http://localhost:3000/login', {
-      method: 'POST',
+    fetch(`${SERVER_IP}/login`, {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
         userEmail: email,
@@ -33,15 +34,15 @@ function Main() {
       })
       .then((json) => {
         if (json.Authorization) {
-          alert('로그인 성공하셨습니다.');
-          localStorage.setItem('token', json.Authorization); // Authorization 헤더에 대한 JWT 토큰 저장
-          window.location.href = '/';
+          alert("로그인 성공하셨습니다.");
+          localStorage.setItem("token", json.Authorization); // Authorization 헤더에 대한 JWT 토큰 저장
+          window.location.href = "/";
         } else {
-          alert('로그인에 실패했습니다. 다시 시도해주세요.');
+          alert("로그인에 실패했습니다. 다시 시도해주세요.");
         }
       })
       .catch((error) => {
-        console.error('Error:', error);
+        console.error("Error:", error);
         alert(`오류가 발생했습니다. 상태 코드: ${error.message}`);
       });
   };
