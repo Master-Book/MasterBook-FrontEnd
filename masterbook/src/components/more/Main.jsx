@@ -9,25 +9,21 @@ function Main() {
   const [allGames, setAllGames] = useState([]);
 
   useEffect(() => {
-    const gamesData = [
-      {
-        id: 'league_of_legends',
-        name: 'League of Legends',
-        logo: '/images/league_of_legends/logo/logo.png',
-        sponsor: true,
-        popularity: 100,
-      },
-      {
-        id: 'stardew_valley',
-        name: 'Stardew Valley',
-        logo: '/images/stardew_valley/logo/logo.png',
-        sponsor: false,
-        popularity: 80,
-      },
-      // 추가 게임들...
-    ];
+    // games.json 데이터를 불러오기
+    const fetchGamesData = async () => {
+      try {
+        const response = await fetch('/games.json'); // games.json 파일의 실제 경로로 변경
+        if (!response.ok) {
+          throw new Error('Failed to fetch games data');
+        }
+        const data = await response.json();
+        setAllGames(data);
+      } catch (error) {
+        console.error('Error fetching games data:', error);
+      }
+    };
 
-    setAllGames(gamesData);
+    fetchGamesData();
   }, []);
 
   const filteredGames = allGames.filter((game) =>
@@ -47,7 +43,11 @@ function Main() {
       {games.map((game) => (
         <Link to={`/${game.id}`} className="game-item" key={game.id}>
           <div className="game-card">
-            <img src={game.logo} alt={game.name} />
+            <img
+              src={game.logo}
+              alt={game.name}
+              onError={(e) => (e.target.src = '/images/default-logo.png')}
+            />
             <p>{game.name}</p>
           </div>
         </Link>

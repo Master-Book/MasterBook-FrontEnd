@@ -17,27 +17,33 @@ function Channel() {
   const characterListRef = useRef(null); // Ref 추가
 
   useEffect(() => {
-    setCharacterData([]);
-    setSelectedInitial('전체'); // 상태 초기화 시에도 "전체"로 설정
-    setSearchTerm('');
-    setSelectedCharacterId(null);
-    setSelectedCharacterName('');
+    const loadCharacterData = async () => {
+      setCharacterData([]);
+      setSelectedInitial('전체');
+      setSearchTerm('');
+      setSelectedCharacterId(null);
+      setSelectedCharacterName('');
 
-    const gameNames = {
-      league_of_legends: 'League of Legends',
-      stardew_valley: 'Stardew Valley',
-    };
+      const gameNames = {
+        league_of_legends: 'League of Legends',
+        stardew_valley: 'Stardew Valley',
+        the_survivalists: 'The Survivalists',
+      };
 
-    setGameName(gameNames[gameId] || 'Unknown Game');
+      setGameName(gameNames[gameId] || 'Unknown Game');
 
-    import(`../../data/${gameId}/character_data.js`)
-      .then((module) => {
+      try {
+        const module = await import(`../../data/${gameId}/character_data.js`);
         setCharacterData(module.default);
-      })
-      .catch((error) => {
+        console.log('gameId:', gameId);
+        console.log('로드된 캐릭터 데이터:', module.default); // 데이터 로드 후 로그 출력
+      } catch (error) {
         console.error('캐릭터 데이터를 로드하는 중 오류 발생:', error);
         setCharacterData([]);
-      });
+      }
+    };
+
+    loadCharacterData();
   }, [gameId]);
 
   const handleSelectInitial = (initial) => {

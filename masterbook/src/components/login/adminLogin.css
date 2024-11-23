@@ -1,0 +1,29 @@
+.admin-login-container {
+  width: 300px;
+  margin: 100px auto;
+  text-align: center;
+}
+
+.admin-login-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.admin-login-form div {
+  margin-bottom: 15px;
+}
+
+.admin-login-form label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.admin-login-form input {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+}
+
+.admin-login-form button {
+  padding: 10px;
+}

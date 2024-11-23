@@ -71,7 +71,7 @@
 
 .etc {
   color: #fff;
-  font-size: 1rem;
+  font-size: 0.85rem;
 }
 
 .games {
@@ -89,6 +89,7 @@
 .games ul li {
   display: flex;
   align-items: center;
+  font-size: 0.85rem;
 }
 
 .games ul li a {

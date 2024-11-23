@@ -14,6 +14,10 @@ import Login from './components/login/Main';
 import Signup from './components/login/Signup';
 import More from './components/more/Main';
 
+// Admin
+import AdminLogin from './components/login/adminLogin';
+import AdminDashboard from './components/Admin/adminDashboard';
+
 function App() {
   return (
     <Router>
@@ -28,6 +32,10 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/more" element={<More />} />
+        {/* 어드민 로그인 페이지 */}
+        <Route path="/admin/login" element={<AdminLogin />} />
+        {/* 어드민 대시보드 */}
+        <Route path="/admin/*" element={<AdminDashboard />} />
       </Routes>
       {/* </Layout> */}
     </Router>

@@ -1,0 +1,23 @@
+[
+  {
+    "id": "league_of_legends",
+    "name": "League of Legends",
+    "logo": "/images/league_of_legends/logo/logo.png",
+    "sponsor": false,
+    "popularity": 100
+  },
+  {
+    "id": "stardew_valley",
+    "name": "Stardew Valley",
+    "logo": "/images/stardew_valley/logo/logo.png",
+    "sponsor": false,
+    "popularity": 80
+  },
+  {
+    "id": "the_survivalists",
+    "name": "The Survivalists",
+    "logo": "/images/the_survivalists/logo/logo.png",
+    "sponsor": true,
+    "popularity": 15
+  }
+]
