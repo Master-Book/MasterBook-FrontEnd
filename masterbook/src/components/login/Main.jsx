@@ -15,8 +15,9 @@ function Main() {
 
     console.log('email:', email);
     console.log('password:', password);
+    console.log(`API:${SERVER_IP}/login`);
 
-    fetch(`/login`, {
+    fetch(`${SERVER_IP}/login`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
