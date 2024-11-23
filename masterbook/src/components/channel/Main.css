@@ -1,7 +1,7 @@
-/* src/components/channel/Main.css */
-
 .channel-container {
   padding: 20px;
+  margin: 0 auto;
+  max-width: 1200px;
 }
 
 .game-name {
@@ -13,40 +13,107 @@
 
 .character-list {
   display: flex;
-  flex-wrap: nowrap; /* 줄 바꿈을 없애고 한 줄로 만듦 */
-  gap: 10px; /* 아이템 간의 간격 조정 */
-  overflow-x: auto; /* 가로 스크롤을 가능하게 함 */
+  flex-wrap: nowrap;
+  gap: 10px;
+  overflow-x: auto;
+  padding-bottom: 10px; /* 스크롤바와 콘텐츠 간의 간격 추가 */
+  -webkit-overflow-scrolling: touch; /* 부드러운 스크롤링 (모바일) */
+  white-space: nowrap; /* 요소가 한 줄로 표시되도록 설정 */
+}
+
+.character-list:hover {
+  overflow-x: auto; /* 호버 시에도 가로 스크롤 유지 */
+}
+
+/* 가로 스크롤 시 수직 스크롤 방지 */
+.character-list {
+  scroll-behavior: smooth; /* 부드러운 스크롤링 */
+  overflow-y: hidden; /* 수직 스크롤 숨기기 */
+}
+
+/* 스크롤바 스타일링 (웹킷 기반 브라우저) */
+.character-list::-webkit-scrollbar {
+  height: 8px; /* 스크롤바 높이 */
+}
+
+.character-list::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.character-list::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+  transition: background 0.3s ease;
+}
+
+.character-list::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
 
 .character-item {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 80px; /* 아이템의 너비를 줄임 */
-  cursor: pointer; /* 마우스 커서가 포인터로 변경 */
+  width: 80px;
+  cursor: pointer;
 }
 
 .character-item img {
-  width: 60px; /* 이미지 크기 축소 */
+  width: 60px;
   height: 60px;
   object-fit: cover;
 }
 
 .character-item p {
   margin-top: 3px;
-  font-size: 12px; /* 글자 크기 축소 */
+  font-size: 12px;
   text-align: center;
 }
 
 /* 선택된 캐릭터 스타일 */
 .character-item.selected {
-  border: 2px solid red;
+  border: 2px solid white;
+  background-color: white;
+  color: black;
   border-radius: 5px;
-  /* background-color: #f0f0f0; */
 }
 
-/* 반응형 디자인: 작은 화면에서 크기 조정 */
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+  .channel-container {
+    padding: 15px;
+    max-width: 100%;
+  }
+
+  .game-name {
+    font-size: 20px;
+  }
+
+  .character-item {
+    width: 70px;
+  }
+
+  .character-item img {
+    width: 55px;
+    height: 55px;
+  }
+
+  .character-item p {
+    font-size: 11px;
+  }
+}
+
 @media (max-width: 600px) {
+  .channel-container {
+    padding: 10px;
+    max-width: 100%;
+  }
+
+  .game-name {
+    font-size: 18px;
+  }
+
   .character-item {
     width: 60px;
   }
@@ -59,30 +126,4 @@
   .character-item p {
     font-size: 10px;
   }
-}
-
-/* 웹킷 브라우저용 스크롤바 스타일 */
-.character-list::-webkit-scrollbar {
-  height: 6px;
-}
-
-.character-list::-webkit-scrollbar-track {
-  background: #f1f1f1;
-}
-
-.character-list::-webkit-scrollbar-thumb {
-  background: #888;
-  border-radius: 3px;
-}
-
-.character-list::-webkit-scrollbar-thumb:hover {
-  background: #555;
-}
-
-/* 선택된 캐릭터 이름 표시 스타일 */
-.selected-character-name {
-  margin-top: 20px;
-  font-size: 16px;
-  text-align: center;
-  color: white;
 }

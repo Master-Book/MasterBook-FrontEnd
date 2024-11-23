@@ -7,28 +7,39 @@ import './Header.css';
 function Header() {
   return (
     <header className="header">
-      <div className="login">
-        <Link to="/login">로그인/회원가입</Link>
+      <div className="header-content">
+        <nav className="title">
+          <Link to="/">
+            <img
+              src={`/images/master_book/logo_white.png`}
+              alt={`logo`}
+              className="logo"
+            />
+            Master Book
+          </Link>
+        </nav>
+        <div className="login">
+          <Link to="/login">로그인/회원가입</Link>
+        </div>
       </div>
-      <nav className="title">
-        <Link to="/">
-          <img
-            src={`/images/master_book/logo_white.png`}
-            alt={`logo`}
-            className="logo"
-          />
-          Master Book
-        </Link>
-      </nav>
       <nav className="subtitle">
         <nav className="games">
           <ul>
-            <img src="images/league_of_legends/logo/logo.png" width="20"></img>
             <li>
+              <img
+                src="images/league_of_legends/logo/logo.png"
+                width="20"
+                alt="LoL logo"
+              />
               <Link to="/league_of_legends">League of Legends</Link>
             </li>
-            |<img src="images/stardew_valley/logo/logo.png" width="20"></img>
+            |
             <li>
+              <img
+                src="images/stardew_valley/logo/logo.png"
+                width="20"
+                alt="Stardew Valley logo"
+              />
               <Link to="/stardew_valley">Stardew Valley</Link>
             </li>
           </ul>

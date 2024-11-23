@@ -4,7 +4,7 @@
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background-color: #333;
+  /* background-color: #333; */
 }
 
 .login-container {
@@ -66,8 +66,8 @@ h2 {
   margin-right: 0; /* 오른쪽 컨테이너는 간격 제거 */
 }
 
-.login_input[type="text"],
-.login_input[type="password"] {
+.login_input[type='text'],
+.login_input[type='password'] {
   width: 100%;
   padding: 10px 0px 10px 20px;
   border: none;
@@ -80,8 +80,8 @@ h2 {
   justify-content: center;
 }
 
-.login_input[type="text"]::placeholder,
-.login_input[type="password"]::placeholder {
+.login_input[type='text']::placeholder,
+.login_input[type='password']::placeholder {
   color: #333;
 }
 

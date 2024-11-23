@@ -1,6 +1,4 @@
-// src/components/channel/Main.jsx
-
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import InitialFilter from './InitialFilter';
 import './Main.css';
@@ -10,46 +8,47 @@ import PostList from '../post/postList/PostList';
 function Channel() {
   const { gameId } = useParams();
   const [characterData, setCharacterData] = useState([]);
-  const [selectedInitial, setSelectedInitial] = useState(null);
+  const [selectedInitial, setSelectedInitial] = useState('전체'); // 기본값을 "전체"로 설정
   const [searchTerm, setSearchTerm] = useState('');
 
-  // 선택된 캐릭터와 게임 이름을 저장하는 상태 변수 추가
   const [selectedCharacterId, setSelectedCharacterId] = useState(null);
   const [selectedCharacterName, setSelectedCharacterName] = useState('');
   const [gameName, setGameName] = useState('');
+  const characterListRef = useRef(null); // Ref 추가
 
   useEffect(() => {
-    // 상태 초기화
-    setCharacterData([]);
-    setSelectedInitial(null);
-    setSearchTerm('');
-    setSelectedCharacterId(null);
-    setSelectedCharacterName('');
+    const loadCharacterData = async () => {
+      setCharacterData([]);
+      setSelectedInitial('전체');
+      setSearchTerm('');
+      setSelectedCharacterId(null);
+      setSelectedCharacterName('');
 
-    // 게임 이름 매핑
-    const gameNames = {
-      league_of_legends: 'League of Legends',
-      stardew_valley: 'Stardew Valley',
-      // 다른 게임들도 추가 가능
+      const gameNames = {
+        league_of_legends: 'League of Legends',
+        stardew_valley: 'Stardew Valley',
+        the_survivalists: 'The Survivalists',
+      };
+
+      setGameName(gameNames[gameId] || 'Unknown Game');
+
+      try {
+        const module = await import(`../../data/${gameId}/character_data.js`);
+        setCharacterData(module.default);
+        console.log('gameId:', gameId);
+        console.log('로드된 캐릭터 데이터:', module.default); // 데이터 로드 후 로그 출력
+      } catch (error) {
+        console.error('캐릭터 데이터를 로드하는 중 오류 발생:', error);
+        setCharacterData([]);
+      }
     };
 
-    setGameName(gameNames[gameId] || 'Unknown Game');
-
-    import(`../../data/${gameId}/character_data.js`)
-      .then((module) => {
-        setCharacterData(module.default);
-      })
-      .catch((error) => {
-        console.error('캐릭터 데이터를 로드하는 중 오류 발생:', error);
-        // 에러 발생 시 characterData를 빈 배열로 설정
-        setCharacterData([]);
-      });
+    loadCharacterData();
   }, [gameId]);
 
   const handleSelectInitial = (initial) => {
     setSelectedInitial(initial);
     setSearchTerm('');
-    // 이니셜이 변경되면 선택된 캐릭터 초기화
     setSelectedCharacterId(null);
     setSelectedCharacterName('');
   };
@@ -57,15 +56,31 @@ function Channel() {
   const handleSearch = (term) => {
     setSearchTerm(term);
     setSelectedInitial(null);
-    // 검색어가 변경되면 선택된 캐릭터 초기화
     setSelectedCharacterId(null);
     setSelectedCharacterName('');
   };
 
-  // 캐릭터 선택 핸들러
   const handleCharacterClick = (character) => {
     setSelectedCharacterId(character.id);
     setSelectedCharacterName(character.name);
+  };
+
+  const handleWheel = (event) => {
+    if (characterListRef.current) {
+      const { scrollWidth, clientWidth, scrollLeft } = characterListRef.current;
+      const isScrollable = scrollWidth > clientWidth; // 스크롤이 필요한지 확인
+
+      if (isScrollable) {
+        event.preventDefault(); // 기본 세로 스크롤 동작 차단
+        // 스크롤이 끝에 다다른 경우 세로 스크롤이 허용되도록 조건 추가
+        if (
+          (event.deltaY > 0 && scrollLeft < scrollWidth - clientWidth) || // 오른쪽으로 스크롤할 수 있을 때
+          (event.deltaY < 0 && scrollLeft > 0) // 왼쪽으로 스크롤할 수 있을 때
+        ) {
+          characterListRef.current.scrollLeft += event.deltaY;
+        }
+      }
+    }
   };
 
   // 필터링 로직
@@ -75,13 +90,12 @@ function Channel() {
     displayedCharacters = characterData.filter((character) =>
       character.name.includes(searchTerm)
     );
-  } else if (selectedInitial) {
+  } else if (selectedInitial && selectedInitial !== '전체') {
     displayedCharacters = characterData.filter(
       (character) => character.initial === selectedInitial
     );
   }
 
-  // 기본 이미지 경로 설정
   const defaultImagePath = require('../../assets/images/default/characters/default_profile.jpg');
 
   return (
@@ -94,7 +108,11 @@ function Channel() {
         onSearch={handleSearch}
       />
       {displayedCharacters.length > 0 ? (
-        <div className="character-list">
+        <div
+          className="character-list"
+          ref={characterListRef}
+          onWheel={handleWheel} // 마우스 휠 이벤트 추가
+        >
           {displayedCharacters.map((character) => (
             <div
               key={character.id}
@@ -111,7 +129,6 @@ function Channel() {
                   e.target.src = defaultImagePath;
                 }}
               />
-              {/* {console.log(`images/${gameId}/characters/${character.id}`)} */}
               <p>{character.name}</p>
             </div>
           ))}
@@ -119,11 +136,6 @@ function Channel() {
       ) : (
         <div>캐릭터가 없습니다.</div>
       )}
-      {/* {selectedCharacterName && (
-        <div className="selected-character-name">
-          '{selectedCharacterName}' 공략글
-        </div>
-      )} */}
       {selectedCharacterName && (
         <PostList
           gameId={gameId}
