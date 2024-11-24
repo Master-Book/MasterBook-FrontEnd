@@ -1,31 +1,35 @@
-import React, { useState, useRef, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { Editor } from "@toast-ui/react-editor";
-import "@toast-ui/editor/dist/toastui-editor.css";
-import "./PostWrite.css";
+import React, { useState, useRef, useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+import { Editor } from '@toast-ui/react-editor';
+import '@toast-ui/editor/dist/toastui-editor.css';
+import './PostWrite.css';
+
+const SERVER_IP = process.env.REACT_APP_SERVER_IP;
 
 function PostWrite() {
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState(""); // 에디터의 내용을 저장하는 상태
+  const [title, setTitle] = useState('');
+  const [content, setContent] = useState(''); // 에디터의 내용을 저장하는 상태
 
   const { gameId, characterId } = useParams();
+  const navigate = useNavigate();
+
   const editorRef = useRef();
 
   useEffect(() => {
-    console.log("characterId:", characterId);
-    console.log("gameId:", gameId);
+    console.log('characterId:', characterId);
+    console.log('gameId:', gameId);
   }, [characterId, gameId]);
 
   // toast UI 빈화면 출력을 위해
   useEffect(() => {
     const editorInstance = editorRef.current.getInstance();
-    editorInstance.setMarkdown(""); // 에디터 초기 텍스트를 빈 문자열로 설정
+    editorInstance.setMarkdown(''); // 에디터 초기 텍스트를 빈 문자열로 설정
   }, []);
 
   const handleFocus = () => {
     const editorInstance = editorRef.current.getInstance();
-    if (editorInstance.getMarkdown() === "") {
-      editorInstance.setMarkdown(""); // 포커스 시 빈 문자열로 유지
+    if (editorInstance.getMarkdown() === '') {
+      editorInstance.setMarkdown(''); // 포커스 시 빈 문자열로 유지
     }
   };
 
@@ -47,35 +51,35 @@ function PostWrite() {
   const handleSubmit = (e) => {
     if (!content.trim()) {
       e.preventDefault(); // 내용이 비어 있으면 제출 방지
-      alert("내용을 입력해주세요."); // 경고 메시지
+      alert('내용을 입력해주세요.'); // 경고 메시지
     }
 
     // 전송할 정보
     const payload = {
-      gameId: gameId || "defaultGameId", // Fallback in case gameId is undefined
-      characterId: characterId || "defaultCharacterId", // Fallback in case characterId is undefined
+      gameId: gameId || 'defaultGameId', // Fallback in case gameId is undefined
+      characterId: characterId || 'defaultCharacterId', // Fallback in case characterId is undefined
       title: title.trim(),
       authorId: 1,
       content: content.trim(),
     };
 
-    console.log("Payload:", payload);
+    console.log('Payload:', payload);
 
     fetch(`${SERVER_IP}/writePost`, {
-      method: "POST",
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("token")}`, // JWT 토큰 포함
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${localStorage.getItem('token')}`, // JWT 토큰 포함
       },
       body: JSON.stringify(payload),
     })
       .then((res) => res.json())
       .then((json) => {
         if (json.success) {
-          alert("글 작성 완료");
-          navigate("/");
+          alert('글 작성 완료');
+          navigate('/');
         } else {
-          alert("글 작성 실패");
+          alert('글 작성 실패');
         }
       });
   };
