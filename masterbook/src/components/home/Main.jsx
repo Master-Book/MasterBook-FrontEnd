@@ -66,7 +66,7 @@ function Main() {
       <GameList title="인기 게임" games={popularGames} />
 
       {/* 최신 글 */}
-      <p>최신 글</p>
+      <h3>최신 글</h3>
       <PostCardList posts={posts} />
 
       {/* 글 작성 링크 */}
