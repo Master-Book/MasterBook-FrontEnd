@@ -19,6 +19,9 @@ function Header() {
           </Link>
         </nav>
         <div className="login">
+          {/* 문의하기 링크 추가 */}
+          <Link to="/contact">문의하기</Link>
+          <span className="separator">|</span>
           <Link to="/login">로그인/회원가입</Link>
         </div>
       </div>

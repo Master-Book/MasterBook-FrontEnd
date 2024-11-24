@@ -1,0 +1,49 @@
+/* src/components/home/GameList.css */
+
+.game-list {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  margin-bottom: 20px;
+  gap: 15px;
+}
+
+.game-item {
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 80px;
+}
+
+.game-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #f0f0f0;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.game-icon img {
+  width: 50%;
+  object-fit: contain;
+}
+
+.main-game-name {
+  margin-top: 8px;
+  font-size: 14px;
+  color: white;
+  text-align: center;
+}
+
+/* 스크롤바 숨기기 */
+.game-list::-webkit-scrollbar {
+  display: none;
+}
+.game-list {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

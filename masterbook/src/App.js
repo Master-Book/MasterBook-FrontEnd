@@ -13,6 +13,7 @@ import PostDetail from './components/post/postDetail/PostDetail';
 import Login from './components/login/Main';
 import Signup from './components/login/Signup';
 import More from './components/more/Main';
+import Contact from './components/contact/contactMain';
 
 // Admin
 import AdminLogin from './components/login/adminLogin';
@@ -32,6 +33,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/more" element={<More />} />
+        <Route path="/contact" element={<Contact />} />
         {/* 어드민 로그인 페이지 */}
         <Route path="/admin/login" element={<AdminLogin />} />
         {/* 어드민 대시보드 */}

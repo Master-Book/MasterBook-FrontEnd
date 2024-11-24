@@ -1,0 +1,7 @@
+/* src/components/home/PostCardList.css */
+
+.post-card-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
