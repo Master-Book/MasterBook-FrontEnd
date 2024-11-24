@@ -5,21 +5,24 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import './Main.css'; // 스타일링을 위한 CSS 파일
 
+const SERVER_IP = process.env.REACT_APP_SERVER_IP;
+
 function Main() {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    // 더미 데이터(posts.json)에서 게시글 불러오기
+    // 인증 토큰 없이 API 호출
     axios
-      .get('/posts.json')
+      .get(`${SERVER_IP}/post`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
+      })
       .then((response) => {
-        // // 게시글을 날짜 순으로 정렬 (최신순)
-        // const sortedPosts = response.data.sort(
-        //   (a, b) => new Date(b.date) - new Date(a.date)
-        // );
+        const postsData = response.data;
 
-        // 게시글을 포스트 ID 높은 순으로 정렬 -> 나중에 날짜 순으로 변경 해야 함.
-        const sortedPosts = response.data.sort((a, b) => b.id - a.id);
+        // postId를 기준으로 내림차순 정렬 (최신순)
+        const sortedPosts = postsData.sort((a, b) => b.postId - a.postId);
 
         // 최신 게시글 6개만 선택
         const latestPosts = sortedPosts.slice(0, 6);
@@ -37,7 +40,7 @@ function Main() {
       <p>최신 글</p>
       <div className="post-card-list">
         {posts.map((post) => (
-          <div key={post.id} className="post-card">
+          <div key={post.postId} className="post-card">
             <div className="post-card-header">
               <span className="game-id">{post.gameId}</span>|
               <span className="character-id">{post.characterId}</span>
@@ -50,11 +53,13 @@ function Main() {
             </div>
             <h2 className="post-title">{post.title}</h2>
             <p className="post-author">작성자: {post.author}</p>
-            <p className="post-date">작성일: {post.date}</p>
+            <p className="post-date">
+              작성일: {new Date(post.createdAt).toLocaleDateString()}
+            </p>
             <div className="post-content">{post.content}</div>
             <button className="read-more-button">
               <Link
-                to={`/${post.gameId}/${post.characterId}/${post.id}`}
+                to={`/${post.gameId}/${post.characterId}/${post.postId}`}
                 className="read-more-link"
               >
                 더 보기
