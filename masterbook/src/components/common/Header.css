@@ -23,17 +23,24 @@
 .login {
   display: flex;
   justify-content: flex-end;
+  align-items: center;
 }
 
 .login a {
   color: white;
   text-decoration: none;
   font-size: 0.8rem;
-  margin: 5px;
+  margin: 0 5px;
 }
 
 .login a:hover {
   text-decoration: underline;
+}
+
+/* 링크 사이의 구분자 스타일 */
+.login .separator {
+  color: white;
+  margin: 0 5px;
 }
 
 .title {

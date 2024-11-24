@@ -62,7 +62,7 @@ function PostList({ gameId, gameName, characterId, characterName }) {
         <div className="search-container">
           <input
             type="text"
-            placeholder="제목 또는 작성자로 검색"
+            placeholder="제목 또는 작성자로 게시글 검색"
             onChange={(e) => handleSearch(e.target.value)}
           />
           <FaSearch className="search-icon" />
