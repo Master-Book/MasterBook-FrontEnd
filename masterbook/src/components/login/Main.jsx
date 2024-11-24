@@ -1,26 +1,26 @@
 // src/components/login/Main.js
-import { React, useState } from 'react';
-import './login.css';
-import { Link, useNavigate } from 'react-router-dom';
+import { React, useState } from "react";
+import "./login.css";
+import { Link, useNavigate } from "react-router-dom";
 
 const SERVER_IP = process.env.REACT_APP_SERVER_IP;
 
 function Main() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    console.log('email:', email);
-    console.log('password:', password);
+    console.log("email:", email);
+    console.log("password:", password);
     console.log(`API:${SERVER_IP}/login`);
 
     fetch(`${SERVER_IP}/login`, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
         userEmail: email,
@@ -37,17 +37,17 @@ function Main() {
       .then((json) => {
         // `Authorization`과 `accessToken`을 모두 처리
         if (json.Authorization && json.accessToken) {
-          alert('로그인 성공하셨습니다.');
-          localStorage.setItem('token', json.Authorization); // Authorization 헤더에 대한 JWT 토큰 저장
-          localStorage.setItem('accessToken', json.accessToken); // accessToken을 따로 저장
-          navigate('/');
+          alert("로그인 성공하셨습니다.");
+          localStorage.setItem("token", json.Authorization); // Authorization 헤더에 대한 JWT 토큰 저장
+          localStorage.setItem("accessToken", json.accessToken); // accessToken을 따로 저장
+          navigate("/");
         } else {
-          alert('로그인에 실패했습니다. 다시 시도해주세요.');
+          alert("로그인에 실패했습니다. 다시 시도해주세요.");
         }
       })
 
       .catch((error) => {
-        console.error('Error:', error);
+        console.error("Error:", error);
         alert(`오류가 발생했습니다. 상태 코드: ${error.message}`);
       });
   };
