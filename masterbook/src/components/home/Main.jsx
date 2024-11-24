@@ -3,15 +3,18 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import './Main.css'; // 스타일링을 위한 CSS 파일
+import GameList from './GameList';
+import PostCardList from './PostCardList';
+import './Main.css';
 
 const SERVER_IP = process.env.REACT_APP_SERVER_IP;
 
 function Main() {
   const [posts, setPosts] = useState([]);
+  const [allGames, setAllGames] = useState([]);
 
   useEffect(() => {
-    // 인증 토큰 없이 API 호출
+    // 게시글 데이터 가져오기
     axios
       .get(`${SERVER_IP}/post`, {
         headers: {
@@ -20,55 +23,53 @@ function Main() {
       })
       .then((response) => {
         const postsData = response.data;
-
-        // postId를 기준으로 내림차순 정렬 (최신순)
         const sortedPosts = postsData.sort((a, b) => b.postId - a.postId);
-
-        // 최신 게시글 6개만 선택
         const latestPosts = sortedPosts.slice(0, 6);
         setPosts(latestPosts);
       })
       .catch((error) => {
         console.error('Error fetching posts:', error);
       });
+
+    // 게임 데이터 가져오기
+    const fetchGamesData = async () => {
+      try {
+        const response = await fetch('/games.json');
+        if (!response.ok) {
+          throw new Error('Failed to fetch games data');
+        }
+        const data = await response.json();
+        setAllGames(data);
+      } catch (error) {
+        console.error('Error fetching games data:', error);
+      }
+    };
+
+    fetchGamesData();
   }, []);
+
+  // 스폰서 게임과 인기 게임 추출
+  const sponsorGames = allGames.filter((game) => game.sponsor).slice(0, 5);
+  const popularGames = allGames
+    .slice()
+    .sort((a, b) => b.popularity - a.popularity)
+    .slice(0, 5);
 
   return (
     <div className="main-container">
-      {/* <h1>Masterbook에 오신 것을 환영합니다!</h1> */}
-      {/* <p>원하는 게임을 선택하여 공략 정보를 확인하세요.</p> */}
+      {/* 스폰서 게임 */}
+      {sponsorGames.length > 0 && (
+        <GameList title="스폰서 게임" games={sponsorGames} />
+      )}
+
+      {/* 인기 게임 */}
+      <GameList title="인기 게임" games={popularGames} />
+
+      {/* 최신 글 */}
       <p>최신 글</p>
-      <div className="post-card-list">
-        {posts.map((post) => (
-          <div key={post.postId} className="post-card">
-            <div className="post-card-header">
-              <span className="game-id">{post.gameId}</span>|
-              <span className="character-id">{post.characterId}</span>
-              {/* 게임 로고 이미지 추가 */}
-              <img
-                src={`/images/${post.gameId}/logo/logo.png`}
-                alt={`${post.gameId} Logo`}
-                className="game-logo"
-              />
-            </div>
-            <h2 className="post-title">{post.title}</h2>
-            <p className="post-author">작성자: {post.author}</p>
-            <p className="post-date">
-              작성일: {new Date(post.createdAt).toLocaleDateString()}
-            </p>
-            <div className="post-content">{post.content}</div>
-            <button className="read-more-button">
-              <Link
-                to={`/${post.gameId}/${post.characterId}/${post.postId}`}
-                className="read-more-link"
-              >
-                더 보기
-              </Link>
-            </button>
-          </div>
-        ))}
-      </div>
-      {/* 글 작성 페이지로 이동하는 링크 */}
+      <PostCardList posts={posts} />
+
+      {/* 글 작성 링크 */}
       <li>
         <Link to="/postWrite">글 작성</Link>
       </li>
