@@ -4,10 +4,12 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import './PostList.css';
-import { FaBook } from 'react-icons/fa';
+import { FaBook, FaSearch } from 'react-icons/fa';
+import { debounce } from 'lodash';
 
 function PostList({ gameId, gameName, characterId, characterName }) {
-  const [posts, setPosts] = useState([]); // 게시글 목록 상태
+  const [posts, setPosts] = useState([]); // 전체 게시글 목록
+  const [searchTerm, setSearchTerm] = useState(''); // 검색어 상태
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -31,6 +33,20 @@ function PostList({ gameId, gameName, characterId, characterName }) {
     navigate(`/postWrite/${gameId}/${characterId}`);
   };
 
+  // 디바운스된 검색어 업데이트 함수
+  const handleSearch = debounce((value) => {
+    setSearchTerm(value);
+  }, 300);
+
+  // 검색어에 따라 게시글 필터링
+  const filteredPosts = posts.filter((post) => {
+    const lowerCaseSearchTerm = searchTerm.toLowerCase();
+    return (
+      post.title.toLowerCase().includes(lowerCaseSearchTerm) ||
+      post.author.toLowerCase().includes(lowerCaseSearchTerm)
+    );
+  });
+
   return (
     <div id="PostList">
       {/* 헤딩 컨테이너 */}
@@ -39,12 +55,24 @@ function PostList({ gameId, gameName, characterId, characterName }) {
         <FaBook className="heading-icon" />
         <h1>{characterName} 공략글</h1>
       </div>
-      <div className="write-button-container">
+
+      {/* 검색 및 글 작성 버튼 컨테이너 */}
+      <div className="actions-container">
+        {/* 검색 입력 필드 */}
+        <div className="search-container">
+          <input
+            type="text"
+            placeholder="제목 또는 작성자로 검색"
+            onChange={(e) => handleSearch(e.target.value)}
+          />
+          <FaSearch className="search-icon" />
+        </div>
         <button className="write-button" onClick={handleWritePost}>
           글 작성
         </button>
       </div>
-      {posts.length > 0 ? (
+
+      {filteredPosts.length > 0 ? (
         <div className="table-container">
           <table className="post-table">
             <thead>
@@ -57,14 +85,14 @@ function PostList({ gameId, gameName, characterId, characterName }) {
               </tr>
             </thead>
             <tbody>
-              {posts.map((post) => (
+              {filteredPosts.map((post) => (
                 <tr key={post.id}>
                   <td>{post.id}</td>
                   <td className="post-title-cell">
                     <Link
                       to={`/${gameId}/${characterId}/${post.id}`}
                       state={{ gameName, characterName }}
-                      title={post.title} /* 툴팁으로 전체 제목 표시 */
+                      title={post.title}
                     >
                       {post.title}
                     </Link>
@@ -78,7 +106,7 @@ function PostList({ gameId, gameName, characterId, characterName }) {
           </table>
         </div>
       ) : (
-        <div className="no-posts">해당 캐릭터의 게시글이 없습니다.</div>
+        <div className="no-posts">검색 결과가 없습니다.</div>
       )}
       <div className="pagination">
         <button>Previous</button>
