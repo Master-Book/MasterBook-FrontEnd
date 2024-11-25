@@ -7,11 +7,12 @@ import './PostWrite.css';
 const SERVER_IP = process.env.REACT_APP_SERVER_IP;
 
 function PostWrite() {
-  const [title, setTitle] = useState('');
-  const [content, setContent] = useState(''); // 에디터의 내용을 저장하는 상태
-
-  const { gameId, characterId } = useParams();
   const navigate = useNavigate();
+
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState(""); // 에디터의 내용을 저장하는 상태
+  const { gameId, characterId } = useParams();
+  const [authorId, setAuthorId] = useState(null);
 
   const editorRef = useRef();
 
@@ -54,13 +55,13 @@ function PostWrite() {
       alert('내용을 입력해주세요.'); // 경고 메시지
     }
 
-    // 전송할 정보
+        // 전송할 정보
     const payload = {
-      gameId: gameId || 'defaultGameId', // Fallback in case gameId is undefined
-      characterId: characterId || 'defaultCharacterId', // Fallback in case characterId is undefined
       title: title.trim(),
-      authorId: 1,
+      authorId: authorId,
       content: content.trim(),
+      gameId: gameId || "defaultGameId", // Fallback in case gameId is undefined
+      characterId: characterId || "defaultCharacterId", // Fallback in case characterId is undefined
     };
 
     console.log('Payload:', payload);
@@ -68,19 +69,32 @@ function PostWrite() {
     fetch(`${SERVER_IP}/writePost`, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${localStorage.getItem('token')}`, // JWT 토큰 포함
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("accessToken")}`, //토큰 가져오기
+
       },
       body: JSON.stringify(payload),
     })
-      .then((res) => res.json())
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error(`HTTP error! Status code: ${res.status}`);
+        }
+        console.log("서버로부터 받은 사용자 정보:", res.data);
+        setAuthorId(res.data.id); // 서버에서 받은 ID 설정
+        return res.json();
+      })
       .then((json) => {
         if (json.success) {
-          alert('글 작성 완료');
-          navigate('/');
+          alert("글 작성 완료");
+          navigate(`/${gameId}/${characterId}`);
+
         } else {
           alert('글 작성 실패');
         }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        alert("오류가 발생했습니다.");
       });
   };
 
