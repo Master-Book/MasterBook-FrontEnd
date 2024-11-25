@@ -3,12 +3,11 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import {
-  FaThumbsUp,
-  FaRegThumbsUp,
-  FaCommentDots,
-  FaCheckCircle,
-} from 'react-icons/fa';
+import PostHeader from './PostHeader';
+import PostContent from './PostContent';
+import ValiditySection from './ValiditySection';
+import PostActions from './PostActions';
+import CommentsSection from './CommentsSection';
 import './PostDetail.css';
 
 function PostDetail() {
@@ -88,71 +87,40 @@ function PostDetail() {
   return (
     <div id="PostDetail">
       {/* 게시글 헤더 */}
-      <div className="post-detail-header">
-        <h1>
-          {post.title}{' '}
-          {isValid && (
-            <FaCheckCircle className="valid-icon" title="유효한 공략입니다" />
-          )}
-        </h1>
-        <div className="post-info">
-          <span>작성자: {post.author}</span>
-          <span>작성일: {new Date(post.date).toLocaleDateString()}</span>
-          <span>조회수: {post.views}</span>
-        </div>
-      </div>
+      <PostHeader
+        title={post.title}
+        author={post.author}
+        date={post.date}
+        views={post.views}
+        isValid={isValid}
+      />
 
       {/* 게시글 내용 */}
-      <div className="post-detail-content">
-        <p>{post.content}</p>
-      </div>
+      <PostContent content={post.content} />
 
       {/* 유효성 검사 섹션 */}
-      <div className="validity-section">
-        <p>이 공략이 현재 버전에 유효한가요?</p>
-        <button className="valid-button" onClick={handleValidClick}>
-          유효함 ({validCount})
-        </button>
-        <button className="invalid-button" onClick={handleInvalidClick}>
-          유효하지 않음 ({invalidCount})
-        </button>
-      </div>
+      <ValiditySection
+        validCount={validCount}
+        invalidCount={invalidCount}
+        onValidClick={handleValidClick}
+        onInvalidClick={handleInvalidClick}
+      />
 
       {/* 좋아요 및 댓글 수 */}
-      <div className="post-actions">
-        <button className="like-button" onClick={handleLikeToggle}>
-          {isLiked ? <FaThumbsUp /> : <FaRegThumbsUp />} 좋아요 {likes}
-        </button>
-        <span className="comment-count">
-          <FaCommentDots /> 댓글 {comments.length}
-        </span>
-      </div>
+      <PostActions
+        isLiked={isLiked}
+        likes={likes}
+        commentsCount={comments.length}
+        onLikeToggle={handleLikeToggle}
+      />
 
       {/* 댓글 섹션 */}
-      <div className="comments-section">
-        <h3>댓글</h3>
-        <ul className="comment-list">
-          {comments.map((comment) => (
-            <li key={comment.id} className="comment-item">
-              <div className="comment-author">{comment.author}</div>
-              <div className="comment-content">{comment.content}</div>
-              <div className="comment-date">
-                {new Date(comment.date).toLocaleString()}
-              </div>
-            </li>
-          ))}
-        </ul>
-
-        {/* 댓글 입력 폼 */}
-        <div className="comment-form">
-          <textarea
-            placeholder="댓글을 입력하세요..."
-            value={newComment}
-            onChange={(e) => setNewComment(e.target.value)}
-          />
-          <button onClick={handleAddComment}>댓글 달기</button>
-        </div>
-      </div>
+      <CommentsSection
+        comments={comments}
+        newComment={newComment}
+        setNewComment={setNewComment}
+        onAddComment={handleAddComment}
+      />
 
       {/* 뒤로가기 버튼 */}
       <div className="back-button-container">

@@ -1,45 +1,17 @@
-import React, { useState } from "react";
+// src/components/post/postDetail/CommentForm.js
 
-function CommentForm() {
-  const [input, setInput] = useState("");
-  const [commenList, setCommentList] = useState(data);
+import React from 'react';
+import './CommentForm.css';
 
-  const handleAddComment = () => {
-    if (input !== "") {
-      const lastCmtIndex = commenLists.length - 1;
-      const addedCmtId = commentLists[lastCmtIndex].id + 1;
-      const newComment = {
-        id: addedCmtId,
-        username: "bb",
-        content: input,
-      };
-      setCommentLists([...commentLists, newComment]);
-      setInput("");
-    }
-  };
-
+function CommentForm({ newComment, setNewComment, onAddComment }) {
   return (
-    <div className="comments-section">
-      <h3>댓글</h3>
-      <ul>
-        {comments.map((comment) => (
-          <li key={comment.id}>
-            <p>
-              <strong>{comment.author}</strong>: {comment.content}
-            </p>
-          </li>
-        ))}
-      </ul>
-      <input
-        type="text"
+    <div className="comment-form">
+      <textarea
         placeholder="댓글을 입력하세요..."
-        value={input}
-        onChange={(e) => setInput(e.target.value)}
-        onKeyDown={(e) => (e.key === "Enter" ? addComment() : null)}
+        value={newComment}
+        onChange={(e) => setNewComment(e.target.value)}
       />
-      <button onClick={handleAddComment} disabled="">
-        댓글 달기
-      </button>
+      <button onClick={onAddComment}>댓글 달기</button>
     </div>
   );
 }
