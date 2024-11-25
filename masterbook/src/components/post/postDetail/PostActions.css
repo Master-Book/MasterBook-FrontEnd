@@ -1,0 +1,41 @@
+/* src/components/post/postDetail/PostActions.css */
+
+.post-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+.like-button {
+  background-color: #262626;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.like-button:hover {
+  background-color: #191919;
+}
+
+.comment-count {
+  font-size: 16px;
+  color: #aaa;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 576px) {
+  .like-button,
+  .comment-count {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  .post-actions {
+    flex-direction: column;
+  }
+}
