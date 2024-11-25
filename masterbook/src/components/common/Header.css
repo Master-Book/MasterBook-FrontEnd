@@ -138,3 +138,17 @@
     padding: 10px 0;
   }
 }
+
+.logout-button {
+  background: none;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+  text-decoration: none;
+  padding: 0;
+}
+
+.logout-button:hover {
+  text-decoration: underline;
+}
