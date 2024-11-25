@@ -1,10 +1,13 @@
 import React, { useState, useRef, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { Editor } from "@toast-ui/react-editor";
 import "@toast-ui/editor/dist/toastui-editor.css";
 import "./PostWrite.css";
 
 function PostWrite() {
+  const SERVER_IP = process.env.REACT_APP_SERVER_IP;
+  const navigate = useNavigate();
+
   const [title, setTitle] = useState("");
   const [content, setContent] = useState(""); // 에디터의 내용을 저장하는 상태
 
@@ -69,7 +72,12 @@ function PostWrite() {
       },
       body: JSON.stringify(payload),
     })
-      .then((res) => res.json())
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error(`HTTP error! Status code: ${res.status}`);
+        }
+        return res.json();
+      })
       .then((json) => {
         if (json.success) {
           alert("글 작성 완료");

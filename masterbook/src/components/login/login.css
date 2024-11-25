@@ -21,20 +21,6 @@
   text-align: center;
 }
 
-.sign-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 600px;
-  height: 350px;
-  padding: 40px 30px;
-  background-color: rgba(255, 255, 255, 0.8);
-  border-radius: 15px;
-  box-shadow: 0 5px 15px rgba(231, 231, 231, 0.2);
-  text-align: center;
-}
-
 h2 {
   color: #121212 !important;
   margin: 0; /* h2의 기본 여백 제거 */
@@ -66,8 +52,8 @@ h2 {
   margin-right: 0; /* 오른쪽 컨테이너는 간격 제거 */
 }
 
-.login_input[type='text'],
-.login_input[type='password'] {
+.login_input[type="text"],
+.login_input[type="password"] {
   width: 100%;
   padding: 10px 0px 10px 20px;
   border: none;
@@ -80,8 +66,8 @@ h2 {
   justify-content: center;
 }
 
-.login_input[type='text']::placeholder,
-.login_input[type='password']::placeholder {
+.login_input[type="text"]::placeholder,
+.login_input[type="password"]::placeholder {
   color: #333;
 }
 
@@ -113,4 +99,12 @@ h2 {
 .signup-p {
   margin: 20px;
   color: #333;
+}
+
+/* 에러 메시지 스타일 */
+.error-text {
+  color: #db5e43; /* 빨간색 */
+  font-size: 14px;
+  font-weight: bold;
+  margin-top: 10px;
 }
