@@ -10,6 +10,8 @@ import PostActions from './PostActions';
 import CommentsSection from './CommentsSection';
 import './PostDetail.css';
 
+import { toast } from 'react-toastify';
+
 function PostDetail() {
   const { gameId, characterId, postId } = useParams();
   const [post, setPost] = useState(null);
@@ -72,11 +74,13 @@ function PostDetail() {
   // 유효함 버튼 핸들러
   const handleValidClick = () => {
     setValidCount((prevCount) => prevCount + 1);
+    toast.success('유효함에 투표했습니다.');
   };
 
   // 유효하지 않음 버튼 핸들러
   const handleInvalidClick = () => {
     setInvalidCount((prevCount) => prevCount + 1);
+    toast.error('유효하지 않음에 투표했습니다.');
   };
 
   if (!post) return <p>Loading...</p>; // 데이터가 없을 때 로딩 표시
