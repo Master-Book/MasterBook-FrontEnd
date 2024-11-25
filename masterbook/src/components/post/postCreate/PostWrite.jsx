@@ -10,8 +10,8 @@ function PostWrite() {
 
   const [title, setTitle] = useState("");
   const [content, setContent] = useState(""); // 에디터의 내용을 저장하는 상태
-
   const { gameId, characterId } = useParams();
+  const [authorId, setAuthorId] = useState(null);
   const editorRef = useRef();
 
   useEffect(() => {
@@ -55,11 +55,11 @@ function PostWrite() {
 
     // 전송할 정보
     const payload = {
+      title: title.trim(),
+      authorId: authorId,
+      content: content.trim(),
       gameId: gameId || "defaultGameId", // Fallback in case gameId is undefined
       characterId: characterId || "defaultCharacterId", // Fallback in case characterId is undefined
-      title: title.trim(),
-      authorId: 1,
-      content: content.trim(),
     };
 
     console.log("Payload:", payload);
@@ -68,7 +68,7 @@ function PostWrite() {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("token")}`, // JWT 토큰 포함
+        Authorization: `Bearer ${localStorage.getItem("accessToken")}`, //토큰 가져오기
       },
       body: JSON.stringify(payload),
     })
@@ -76,15 +76,21 @@ function PostWrite() {
         if (!res.ok) {
           throw new Error(`HTTP error! Status code: ${res.status}`);
         }
+        console.log("서버로부터 받은 사용자 정보:", res.data);
+        setAuthorId(res.data.id); // 서버에서 받은 ID 설정
         return res.json();
       })
       .then((json) => {
         if (json.success) {
           alert("글 작성 완료");
-          navigate("/");
+          navigate(`/${gameId}/${characterId}`);
         } else {
           alert("글 작성 실패");
         }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        alert("오류가 발생했습니다.");
       });
   };
 

@@ -36,10 +36,10 @@ function Main() {
       })
       .then((json) => {
         // `Authorization`과 `accessToken`을 모두 처리
-        if (json.Authorization && json.accessToken) {
+        if (json.Authorization) {
           alert("로그인 성공하셨습니다.");
           localStorage.setItem("token", json.Authorization); // Authorization 헤더에 대한 JWT 토큰 저장
-          localStorage.setItem("accessToken", json.accessToken); // accessToken을 따로 저장
+          //localStorage.setItem("accessToken", json.accessToken); // accessToken을 따로 저장
           navigate("/");
         } else {
           alert("로그인에 실패했습니다. 다시 시도해주세요.");
