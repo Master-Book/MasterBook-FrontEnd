@@ -2,26 +2,21 @@
 
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './PostList.css';
+import { FaBook, FaSearch } from 'react-icons/fa';
+import { debounce } from 'lodash';
 
 function PostList({ gameId, gameName, characterId, characterName }) {
-  const [posts, setPosts] = useState([]); // 게시글 목록 상태
+  const [posts, setPosts] = useState([]); // 전체 게시글 목록
+  const [searchTerm, setSearchTerm] = useState(''); // 검색어 상태
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log(
-      'postList 가져온 정보:',
-      gameId,
-      gameName,
-      characterId,
-      characterName
-    );
     // 컴포넌트가 마운트될 때 API 호출
     axios
-      // 일단 public의 json파일로 출력함
-      .get('/posts.json') // 게시글 list 백엔드 API 엔드포인트 : /api/posts
+      // 실제 API 엔드포인트로 변경해야 합니다.
+      .get('/posts.json')
       .then((response) => {
         // 게임 ID와 캐릭터 ID를 기반으로 필터링
         const filteredPosts = response.data.filter(
@@ -34,32 +29,52 @@ function PostList({ gameId, gameName, characterId, characterName }) {
       });
   }, [gameId, characterId]);
 
-  const handleWritePost = (post) => {
-    // console.log('postid:', post.id);
-    console.log('characterId:', characterId);
-    console.log('gameId:', gameId);
-    const data = {
-      characterId: characterId,
-      gameId: gameId,
-      // postId: post.id,
-    };
-    // 글 작성 페이지로 이동
+  const handleWritePost = () => {
     navigate(`/postWrite/${gameId}/${characterId}`);
   };
 
-  console.log('gameName (POstList):', gameName);
+  // 디바운스된 검색어 업데이트 함수
+  const handleSearch = debounce((value) => {
+    setSearchTerm(value);
+  }, 300);
+
+  // 검색어에 따라 게시글 필터링
+  const filteredPosts = posts.filter((post) => {
+    const lowerCaseSearchTerm = searchTerm.toLowerCase();
+    return (
+      post.title.toLowerCase().includes(lowerCaseSearchTerm) ||
+      post.author.toLowerCase().includes(lowerCaseSearchTerm)
+    );
+  });
 
   return (
-    <div>
-      <div id="PostList">
-        <h1>'{characterName}' 공략글</h1>
-        <div className="write-button-container">
-          <button className="write-button" onClick={handleWritePost}>
-            글 작성
-          </button>
+    <div id="PostList">
+      {/* 헤딩 컨테이너 */}
+      <div className="heading-container">
+        {/* 아이콘 추가 */}
+        <FaBook className="heading-icon" />
+        <h1>{characterName} 공략글</h1>
+      </div>
+
+      {/* 검색 및 글 작성 버튼 컨테이너 */}
+      <div className="actions-container">
+        {/* 검색 입력 필드 */}
+        <div className="search-container">
+          <input
+            type="text"
+            placeholder="제목 또는 작성자로 게시글 검색"
+            onChange={(e) => handleSearch(e.target.value)}
+          />
+          <FaSearch className="search-icon" />
         </div>
-        {posts.length > 0 ? (
-          <table>
+        <button className="write-button" onClick={handleWritePost}>
+          글 작성
+        </button>
+      </div>
+
+      {filteredPosts.length > 0 ? (
+        <div className="table-container">
+          <table className="post-table">
             <thead>
               <tr>
                 <th>글번호</th>
@@ -70,34 +85,35 @@ function PostList({ gameId, gameName, characterId, characterName }) {
               </tr>
             </thead>
             <tbody>
-              {posts.map((post) => (
+              {filteredPosts.map((post) => (
                 <tr key={post.id}>
                   <td>{post.id}</td>
-                  <td>
+                  <td className="post-title-cell">
                     <Link
                       to={`/${gameId}/${characterId}/${post.id}`}
-                      state={{ gameName, characterName }} // state를 전달하는 부분
+                      state={{ gameName, characterName }}
+                      title={post.title}
                     >
                       {post.title}
                     </Link>
                   </td>
-                  <td>{post.author}</td>
+                  <td title={post.author}>{post.author}</td>
                   <td>{post.date}</td>
                   <td>{post.views}</td>
                 </tr>
               ))}
             </tbody>
           </table>
-        ) : (
-          <div>해당 캐릭터의 게시글이 없습니다.</div>
-        )}
-        <div className="pagination">
-          <button>Previous</button>
-          {[1, 2, 3, '...', 7].map((page, idx) => (
-            <button key={idx}>{page}</button>
-          ))}
-          <button>Next</button>
         </div>
+      ) : (
+        <div className="no-posts">검색 결과가 없습니다.</div>
+      )}
+      <div className="pagination">
+        <button>Previous</button>
+        {[1, 2, 3, '...', 7].map((page, idx) => (
+          <button key={idx}>{page}</button>
+        ))}
+        <button>Next</button>
       </div>
     </div>
   );

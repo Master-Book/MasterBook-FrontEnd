@@ -1,50 +1,170 @@
+/* src/components/post/postList/PostList.css */
+
+/* 전체 컨테이너 스타일 */
 #PostList {
-  margin: 20px;
-  padding: 10px 20px;
-  background-color: #fff;
-  color: black;
-  border-radius: 20px;
-  box-shadow: 5px 5px 20px;
+  margin: 20px auto;
+  padding: 20px;
+  max-width: 1200px;
+  background-color: #333;
+  color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.post-list-container {
-  max-width: 900px;
-  margin: 0 auto;
-  background-color: #fff;
+/* 헤딩 컨테이너 스타일 */
+.heading-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #191919;
   padding: 20px;
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
 }
 
-h1 {
-  text-align: center;
-  color: black;
+.heading-container h1 {
+  color: white;
   font-size: 24px;
+  margin: 0;
 }
 
-table {
+.heading-icon {
+  color: white; /* 아이콘 색상 */
+  font-size: 24px;
+  margin-right: 10px;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 576px) {
+  .heading-container {
+    flex-direction: column;
+    padding: 15px;
+  }
+
+  .heading-icon {
+    margin-bottom: 10px;
+    margin-right: 0;
+  }
+
+  .heading-container h1 {
+    font-size: 28px;
+    text-align: center;
+  }
+}
+
+/* 글 작성 버튼 컨테이너 스타일 */
+.write-button-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 10px;
+}
+
+/* 글 작성 버튼 스타일 */
+.write-button {
+  background-color: #262626;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.write-button:hover {
+  background-color: #191919;
+}
+
+/* 테이블 컨테이너 스타일 */
+.table-container {
+  overflow-x: auto;
+}
+
+/* 테이블 스타일 */
+.post-table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 15px;
+  table-layout: fixed; /* 테이블 열의 너비를 고정 */
 }
 
-th,
-td {
-  padding: 10px 10px; /* 테이블 셀 높이 줄이기 위해 padding 조정 */
-  border-bottom: 1px solid #ddd;
+.post-table th,
+.post-table td {
+  padding: 8px 15px;
+  border-bottom: 1px solid #262626;
   text-align: center;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: white;
 }
 
-/* 제목 열의 너비를 조정 */
-th:nth-child(2),
-td:nth-child(2) {
-  width: 60%; /* 제목 칸의 너비를 40%로 설정 */
+.post-table th {
+  background-color: #191919;
+  font-weight: bold;
 }
 
-th {
-  background-color: #f9f9f9;
+.post-table tr:hover {
+  background-color: #262626;
 }
 
+/* 각 열의 너비 설정 */
+.post-table th:nth-child(1),
+.post-table td:nth-child(1) {
+  width: 10%;
+}
+
+.post-table th:nth-child(2),
+.post-table td:nth-child(2) {
+  width: 50%;
+  text-align: left;
+}
+
+.post-table th:nth-child(3),
+.post-table td:nth-child(3) {
+  width: 15%;
+}
+
+.post-table th:nth-child(4),
+.post-table td:nth-child(4) {
+  width: 15%;
+}
+
+.post-table th:nth-child(5),
+.post-table td:nth-child(5) {
+  width: 10%;
+}
+
+/* 제목 열의 텍스트 오버플로우 처리 */
+.post-title-cell a {
+  color: white;
+  text-decoration: none;
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+/* 작성자 열의 텍스트 오버플로우 처리 */
+.post-table td:nth-child(3) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* 링크 스타일 */
+.post-title-cell a:hover {
+  text-decoration: underline;
+}
+
+/* 게시글이 없을 때 메시지 스타일 */
+.no-posts {
+  text-align: center;
+  padding: 20px;
+  font-size: 16px;
+  color: #ddd;
+}
+
+/* 페이지네이션 스타일 */
 .pagination {
   display: flex;
   justify-content: center;
@@ -53,44 +173,124 @@ th {
 }
 
 .pagination button {
-  padding: 6px 12px;
-  border: none;
-  background-color: #007bff;
-  color: #fff;
+  padding: 8px 14px;
+  border: 1px solid #ced4da;
+  background-color: #fff;
+  color: #495057;
   cursor: pointer;
   border-radius: 4px;
+  transition: all 0.3s;
 }
 
 .pagination button:hover {
-  background-color: #0056b3;
+  background-color: #e9ecef;
 }
 
-/* 글 작성 버튼 컨테이너 스타일 */
-.write-button-container {
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 10px;
-}
-
-/* 글 작성 버튼 스타일 */
-.write-button {
-  background-color: #007bff;
+/* 현재 페이지 버튼 스타일 */
+.pagination .active {
+  background-color: #262626;
   color: #fff;
-  border: none;
-  padding: 8px 16px;
-  font-size: 14px;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s;
+  border-color: #262626;
 }
 
-.write-button:hover {
-  background-color: #0056b3;
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+  .write-button {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+
+  .post-table th,
+  .post-table td {
+    padding: 10px 8px;
+  }
+
+  h1 {
+    font-size: 24px;
+  }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 576px) {
+  /* 글번호와 조회수 열 숨기기 */
+  .post-table th:nth-child(1),
+  .post-table td:nth-child(1),
+  .post-table th:nth-child(5),
+  .post-table td:nth-child(5) {
+    display: none;
+  }
+
+  /* 남은 열의 너비 재조정 */
+  .post-table th:nth-child(2),
+  .post-table td:nth-child(2) {
+    width: 60%;
+  }
+
+  .post-table th:nth-child(3),
+  .post-table td:nth-child(3),
+  .post-table th:nth-child(4),
+  .post-table td:nth-child(4) {
+    width: 20%;
+  }
+
   .write-button {
     padding: 6px 12px;
     font-size: 12px;
+  }
+
+  .pagination button {
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+}
+
+/* 검색 및 글 작성 버튼 컨테이너 */
+.actions-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+/* 검색 컨테이너 스타일 */
+.search-container {
+  position: relative;
+  width: 300px;
+}
+
+.search-container input {
+  width: 100%;
+  padding: 8px 12px 8px 35px;
+  border: 1px solid #555;
+  border-radius: 5px;
+  background-color: #191919;
+  color: #fff;
+}
+
+.search-container input::placeholder {
+  color: #aaa;
+}
+
+.search-icon {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+  color: #aaa;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 576px) {
+  .actions-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .search-container {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .write-button {
+    width: 100%;
   }
 }
