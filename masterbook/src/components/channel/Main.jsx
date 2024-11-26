@@ -1,44 +1,46 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { useParams } from 'react-router-dom';
-import InitialFilter from './InitialFilter';
-import './Main.css';
+import React, { useState, useEffect, useRef } from "react";
+import { useParams } from "react-router-dom";
+import InitialFilter from "./InitialFilter";
+import "./Main.css";
 
-import PostList from '../post/postList/PostList';
+import PostList from "../post/postList/PostList";
 
 function Channel() {
   const { gameId } = useParams();
   const [characterData, setCharacterData] = useState([]);
-  const [selectedInitial, setSelectedInitial] = useState('전체'); // 기본값을 "전체"로 설정
-  const [searchTerm, setSearchTerm] = useState('');
+  const [selectedInitial, setSelectedInitial] = useState("전체"); // 기본값을 "전체"로 설정
+  const [searchTerm, setSearchTerm] = useState("");
 
   const [selectedCharacterId, setSelectedCharacterId] = useState(null);
-  const [selectedCharacterName, setSelectedCharacterName] = useState('');
-  const [gameName, setGameName] = useState('');
+  const [selectedCharacterName, setSelectedCharacterName] = useState("");
+  const [gameName, setGameName] = useState("");
   const characterListRef = useRef(null); // Ref 추가
 
   useEffect(() => {
     const loadCharacterData = async () => {
       setCharacterData([]);
-      setSelectedInitial('전체');
-      setSearchTerm('');
+      setSelectedInitial("전체");
+      setSearchTerm("");
       setSelectedCharacterId(null);
-      setSelectedCharacterName('');
+      setSelectedCharacterName("");
 
       const gameNames = {
-        league_of_legends: 'League of Legends',
-        stardew_valley: 'Stardew Valley',
-        the_survivalists: 'The Survivalists',
+        league_of_legends: "League of Legends",
+        stardew_valley: "Stardew Valley",
+        the_survivalists: "The Survivalists",
+        it_takes_two: "It Takes Two",
+        inside: "Inside",
       };
 
-      setGameName(gameNames[gameId] || 'Unknown Game');
+      setGameName(gameNames[gameId] || "Unknown Game");
 
       try {
         const module = await import(`../../data/${gameId}/character_data.js`);
         setCharacterData(module.default);
-        console.log('gameId:', gameId);
-        console.log('로드된 캐릭터 데이터:', module.default); // 데이터 로드 후 로그 출력
+        console.log("gameId:", gameId);
+        console.log("로드된 캐릭터 데이터:", module.default); // 데이터 로드 후 로그 출력
       } catch (error) {
-        console.error('캐릭터 데이터를 로드하는 중 오류 발생:', error);
+        console.error("캐릭터 데이터를 로드하는 중 오류 발생:", error);
         setCharacterData([]);
       }
     };
@@ -48,16 +50,16 @@ function Channel() {
 
   const handleSelectInitial = (initial) => {
     setSelectedInitial(initial);
-    setSearchTerm('');
+    setSearchTerm("");
     setSelectedCharacterId(null);
-    setSelectedCharacterName('');
+    setSelectedCharacterName("");
   };
 
   const handleSearch = (term) => {
     setSearchTerm(term);
     setSelectedInitial(null);
     setSelectedCharacterId(null);
-    setSelectedCharacterName('');
+    setSelectedCharacterName("");
   };
 
   const handleCharacterClick = (character) => {
@@ -90,13 +92,13 @@ function Channel() {
     displayedCharacters = characterData.filter((character) =>
       character.name.includes(searchTerm)
     );
-  } else if (selectedInitial && selectedInitial !== '전체') {
+  } else if (selectedInitial && selectedInitial !== "전체") {
     displayedCharacters = characterData.filter(
       (character) => character.initial === selectedInitial
     );
   }
 
-  const defaultImagePath = require('../../assets/images/default/characters/default_profile.jpg');
+  const defaultImagePath = require("../../assets/images/default/characters/default_profile.jpg");
 
   return (
     <div className="channel-container">
@@ -117,7 +119,7 @@ function Channel() {
             <div
               key={character.id}
               className={`character-item ${
-                selectedCharacterId === character.id ? 'selected' : ''
+                selectedCharacterId === character.id ? "selected" : ""
               }`}
               onClick={() => handleCharacterClick(character)}
             >
