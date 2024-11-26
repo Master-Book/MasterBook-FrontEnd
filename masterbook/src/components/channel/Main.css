@@ -57,6 +57,7 @@
   align-items: center;
   width: 80px;
   cursor: pointer;
+  text-align: center; /* 텍스트를 중앙 정렬 */
 }
 
 .character-item img {
@@ -69,6 +70,8 @@
   margin-top: 3px;
   font-size: 12px;
   text-align: center;
+  word-wrap: break-word; /* 긴 단어를 줄 바꿈 */
+  white-space: normal; /* 텍스트를 여러 줄로 표시 */
 }
 
 /* 선택된 캐릭터 스타일 */

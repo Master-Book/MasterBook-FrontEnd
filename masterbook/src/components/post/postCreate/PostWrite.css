@@ -1,47 +1,105 @@
+/* src/components/post/postWrite/PostWrite.css */
+
 #PostWrite {
-  margin: 10px;
-  background-color: #fff;
+  max-width: 800px;
+  margin: 40px auto;
   padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #333;
+  color: #fff;
+  border-radius: 12px;
 }
 
-/* 제목 입력란 */
+#write_area {
+  display: flex;
+  flex-direction: column;
+}
+
+.write-title {
+  text-align: start;
+  margin-bottom: 30px;
+  color: white !important;
+}
+
 #title {
   width: 100%;
-  margin: 5px 0;
-  padding: 10px 0;
-  font-size: 24px;
-  font-weight: 400;
-  color: #333;
+  margin-bottom: 20px;
+  padding: 12px;
+  font-size: 18px;
   border: none;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 2px solid #555;
+  background-color: #191919;
+  color: #fff;
   outline: none;
-  resize: none; /* 크기 조절 비활성화 */
 }
 
 #title::placeholder {
-  color: #bbb;
+  color: #aaa;
 }
 
-/* 글작성 버튼 */
-.btn-submit {
-  width: auto;
-  padding: 8px;
-  font-size: 14px;
-  background-color: #fff;
-  border: 1px solid #c4c4c4;
-  border-radius: 15px;
+#title:focus {
+  border-bottom-color: #4381e6;
+}
+
+.tox .tox-toolbar,
+.tox .tox-toolbar__primary {
+  background-color: #262626;
+}
+
+.tox .tox-editor-header {
+  background-color: #262626;
+}
+
+.tox .tox-statusbar {
+  background-color: #262626;
+}
+
+.button-group {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+  gap: 10px;
+}
+
+.btn-submit,
+.btn-cancel {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
   cursor: pointer;
-  text-align: left;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
+  font-size: 16px;
 }
 
-.btn-submit.on {
-  border: 1px solid #51e091;
-  outline: 3px solid #f8e4ff;
+.btn-submit {
+  background-color: #4381e6;
+  color: #fff;
 }
 
+.btn-submit:hover {
+  background-color: #0056b3;
+}
 
+.btn-cancel {
+  background-color: #555;
+  color: #fff;
+}
+
+.btn-cancel:hover {
+  background-color: #333;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 576px) {
+  #PostWrite {
+    padding: 10px;
+  }
+
+  .btn-submit,
+  .btn-cancel {
+    width: 100%;
+  }
+
+  .button-group {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
