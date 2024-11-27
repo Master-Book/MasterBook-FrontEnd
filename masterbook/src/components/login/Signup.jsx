@@ -4,6 +4,8 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './login.css';
 
+import { toast } from 'react-toastify';
+
 const SERVER_IP = process.env.REACT_APP_SERVER_IP;
 
 function Signup() {
@@ -41,8 +43,9 @@ function Signup() {
       },
       body: JSON.stringify({
         userEmail: email,
-        userName: userName,
-        inputPassword: password,
+        nickname: userName,
+        userPassword: password,
+        role: 0,
       }),
     })
       .then((res) => {
@@ -53,20 +56,13 @@ function Signup() {
         return res.json(); // 응답이 OK인 경우 JSON으로 파싱
       })
       .then((json) => {
-        // `Authorization`과 `accessToken`을 모두 처리
-        if (json.Authorization && json.accessToken) {
-          alert('회원가입 성공하셨습니다.');
-          localStorage.setItem('token', json.Authorization); // Authorization 헤더에 대한 JWT 토큰 저장
-          localStorage.setItem('accessToken', json.accessToken); // accessToken을 따로 저장
-          navigate('/');
-        } else {
-          alert('회원가입에 실패했습니다. 다시 시도해주세요.');
-        }
+        toast.success('회원가입에 성공하였습니다.');
+        navigate('/');
       })
 
       .catch((error) => {
         console.error('Error:', error);
-        alert(`오류가 발생했습니다. 상태 코드: ${error.message}`);
+        toast.error(`오류가 발생했습니다. 상태 코드: ${error.message}`);
       });
   };
 
