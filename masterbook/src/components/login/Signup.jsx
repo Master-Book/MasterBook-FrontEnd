@@ -1,18 +1,18 @@
 // src/components/login/Signup.js
 
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import "./login.css";
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import './login.css';
 
 const SERVER_IP = process.env.REACT_APP_SERVER_IP;
 
 function Signup() {
   const navigate = useNavigate();
-  const [email, setEmail] = useState("");
-  const [userName, setUserName] = useState("");
-  const [password, setPassword] = useState("");
-  const [passwordConfirm, setPasswordConfirm] = useState("");
-  const [error, setError] = useState("");
+  const [email, setEmail] = useState('');
+  const [userName, setUserName] = useState('');
+  const [password, setPassword] = useState('');
+  const [passwordConfirm, setPasswordConfirm] = useState('');
+  const [error, setError] = useState('');
 
   const handlePasswordConfirmChange = (e) => {
     const newPasswordConfirm = e.target.value;
@@ -20,24 +20,24 @@ function Signup() {
 
     // 비밀번호 확인이 일치하는지 체크
     if (password && newPasswordConfirm !== password) {
-      setError("비밀번호가 일치하지 않습니다.");
+      setError('비밀번호가 일치하지 않습니다.');
     } else {
-      setError(""); // 에러 초기화
+      setError(''); // 에러 초기화
     }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    console.log("email:", email);
-    console.log("userName:", userName);
-    console.log("password:", password);
+    console.log('email:', email);
+    console.log('userName:', userName);
+    console.log('password:', password);
     console.log(`API:${SERVER_IP}/login`);
 
     fetch(`${SERVER_IP}/signup`, {
-      method: "POST",
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({
         userEmail: email,
@@ -55,17 +55,17 @@ function Signup() {
       .then((json) => {
         // `Authorization`과 `accessToken`을 모두 처리
         if (json.Authorization && json.accessToken) {
-          alert("회원가입 성공하셨습니다.");
-          localStorage.setItem("token", json.Authorization); // Authorization 헤더에 대한 JWT 토큰 저장
-          localStorage.setItem("accessToken", json.accessToken); // accessToken을 따로 저장
-          navigate("/");
+          alert('회원가입 성공하셨습니다.');
+          localStorage.setItem('token', json.Authorization); // Authorization 헤더에 대한 JWT 토큰 저장
+          localStorage.setItem('accessToken', json.accessToken); // accessToken을 따로 저장
+          navigate('/');
         } else {
-          alert("회원가입에 실패했습니다. 다시 시도해주세요.");
+          alert('회원가입에 실패했습니다. 다시 시도해주세요.');
         }
       })
 
       .catch((error) => {
-        console.error("Error:", error);
+        console.error('Error:', error);
         alert(`오류가 발생했습니다. 상태 코드: ${error.message}`);
       });
   };
@@ -120,7 +120,7 @@ function Signup() {
           <button
             type="submit"
             className={`login-button ${
-              password && password === passwordConfirm ? "active" : ""
+              password && password === passwordConfirm ? 'active' : ''
             }`}
             onSubmit={() => password && passwordConfirm === password}
           >

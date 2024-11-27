@@ -22,8 +22,8 @@
 
 .comment-form button {
   align-self: flex-end;
-  background-color: #4381e6;
-  color: #fff;
+  background-color: #aaa;
+  color: black;
   border: none;
   padding: 8px 16px;
   border-radius: 18px;
@@ -31,7 +31,7 @@
 }
 
 .comment-form button:hover {
-  background-color: #0056b3;
+  background-color: #555;
 }
 
 /* 반응형 디자인 */

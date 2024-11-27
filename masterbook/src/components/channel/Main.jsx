@@ -1,46 +1,48 @@
-import React, { useState, useEffect, useRef } from "react";
-import { useParams } from "react-router-dom";
-import InitialFilter from "./InitialFilter";
-import "./Main.css";
+// src/components/home/Channel.js
 
-import PostList from "../post/postList/PostList";
+import React, { useState, useEffect, useRef } from 'react';
+import { useParams, Link } from 'react-router-dom'; // Link 추가
+import InitialFilter from './InitialFilter';
+import './Main.css';
+
+import PostList from '../post/postList/PostList';
 
 function Channel() {
   const { gameId } = useParams();
   const [characterData, setCharacterData] = useState([]);
-  const [selectedInitial, setSelectedInitial] = useState("전체"); // 기본값을 "전체"로 설정
-  const [searchTerm, setSearchTerm] = useState("");
+  const [selectedInitial, setSelectedInitial] = useState('전체');
+  const [searchTerm, setSearchTerm] = useState('');
 
   const [selectedCharacterId, setSelectedCharacterId] = useState(null);
-  const [selectedCharacterName, setSelectedCharacterName] = useState("");
-  const [gameName, setGameName] = useState("");
-  const characterListRef = useRef(null); // Ref 추가
+  const [selectedCharacterName, setSelectedCharacterName] = useState('');
+  const [gameName, setGameName] = useState('');
+  const characterListRef = useRef(null);
 
   useEffect(() => {
     const loadCharacterData = async () => {
       setCharacterData([]);
-      setSelectedInitial("전체");
-      setSearchTerm("");
+      setSelectedInitial('전체');
+      setSearchTerm('');
       setSelectedCharacterId(null);
-      setSelectedCharacterName("");
+      setSelectedCharacterName('');
 
       const gameNames = {
-        league_of_legends: "League of Legends",
-        stardew_valley: "Stardew Valley",
-        the_survivalists: "The Survivalists",
-        it_takes_two: "It Takes Two",
-        inside: "Inside",
+        league_of_legends: 'League of Legends',
+        stardew_valley: 'Stardew Valley',
+        the_survivalists: 'The Survivalists',
+        it_takes_two: 'It Takes Two',
+        inside: 'Inside',
       };
 
-      setGameName(gameNames[gameId] || "Unknown Game");
+      setGameName(gameNames[gameId] || 'Unknown Game');
 
       try {
         const module = await import(`../../data/${gameId}/character_data.js`);
         setCharacterData(module.default);
-        console.log("gameId:", gameId);
-        console.log("로드된 캐릭터 데이터:", module.default); // 데이터 로드 후 로그 출력
+        console.log('gameId:', gameId);
+        console.log('로드된 캐릭터 데이터:', module.default);
       } catch (error) {
-        console.error("캐릭터 데이터를 로드하는 중 오류 발생:", error);
+        console.error('캐릭터 데이터를 로드하는 중 오류 발생:', error);
         setCharacterData([]);
       }
     };
@@ -50,16 +52,16 @@ function Channel() {
 
   const handleSelectInitial = (initial) => {
     setSelectedInitial(initial);
-    setSearchTerm("");
+    setSearchTerm('');
     setSelectedCharacterId(null);
-    setSelectedCharacterName("");
+    setSelectedCharacterName('');
   };
 
   const handleSearch = (term) => {
     setSearchTerm(term);
     setSelectedInitial(null);
     setSelectedCharacterId(null);
-    setSelectedCharacterName("");
+    setSelectedCharacterName('');
   };
 
   const handleCharacterClick = (character) => {
@@ -70,14 +72,13 @@ function Channel() {
   const handleWheel = (event) => {
     if (characterListRef.current) {
       const { scrollWidth, clientWidth, scrollLeft } = characterListRef.current;
-      const isScrollable = scrollWidth > clientWidth; // 스크롤이 필요한지 확인
+      const isScrollable = scrollWidth > clientWidth;
 
       if (isScrollable) {
-        event.preventDefault(); // 기본 세로 스크롤 동작 차단
-        // 스크롤이 끝에 다다른 경우 세로 스크롤이 허용되도록 조건 추가
+        event.preventDefault();
         if (
-          (event.deltaY > 0 && scrollLeft < scrollWidth - clientWidth) || // 오른쪽으로 스크롤할 수 있을 때
-          (event.deltaY < 0 && scrollLeft > 0) // 왼쪽으로 스크롤할 수 있을 때
+          (event.deltaY > 0 && scrollLeft < scrollWidth - clientWidth) ||
+          (event.deltaY < 0 && scrollLeft > 0)
         ) {
           characterListRef.current.scrollLeft += event.deltaY;
         }
@@ -92,13 +93,13 @@ function Channel() {
     displayedCharacters = characterData.filter((character) =>
       character.name.includes(searchTerm)
     );
-  } else if (selectedInitial && selectedInitial !== "전체") {
+  } else if (selectedInitial && selectedInitial !== '전체') {
     displayedCharacters = characterData.filter(
       (character) => character.initial === selectedInitial
     );
   }
 
-  const defaultImagePath = require("../../assets/images/default/characters/default_profile.jpg");
+  const defaultImagePath = require('../../assets/images/default/characters/default_profile.jpg');
 
   return (
     <div className="channel-container">
@@ -113,13 +114,13 @@ function Channel() {
         <div
           className="character-list"
           ref={characterListRef}
-          onWheel={handleWheel} // 마우스 휠 이벤트 추가
+          onWheel={handleWheel}
         >
           {displayedCharacters.map((character) => (
             <div
               key={character.id}
               className={`character-item ${
-                selectedCharacterId === character.id ? "selected" : ""
+                selectedCharacterId === character.id ? 'selected' : ''
               }`}
               onClick={() => handleCharacterClick(character)}
             >
@@ -136,7 +137,12 @@ function Channel() {
           ))}
         </div>
       ) : (
-        <div>캐릭터가 없습니다.</div>
+        <div className="no-characters">
+          <p>해당하는 캐릭터가 없습니다.</p>
+          <Link to="/contact" className="contact-link">
+            캐릭터 추가를 요청하시려면 여기를 클릭하세요.
+          </Link>
+        </div>
       )}
       {selectedCharacterName && (
         <PostList
