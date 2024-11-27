@@ -5,7 +5,7 @@
   flex-wrap: nowrap;
   overflow-x: auto;
   margin-bottom: 20px;
-  gap: 15px;
+  gap: 10px;
 }
 
 .game-item {
@@ -28,7 +28,7 @@
 }
 
 .game-icon img {
-  width: 50%;
+  width: 40px;
   object-fit: contain;
 }
 
@@ -37,6 +37,8 @@
   font-size: 14px;
   color: white;
   text-align: center;
+  word-wrap: break-word; /* 긴 단어를 줄 바꿈 */
+  white-space: normal; /* 텍스트를 여러 줄로 표시 */
 }
 
 /* 스크롤바 숨기기 */

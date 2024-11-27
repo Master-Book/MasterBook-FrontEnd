@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import "./InitialFilter.css";
+import React, { useState } from 'react';
+import './InitialFilter.css';
 
 function InitialFilter({
   onSelectInitial,
@@ -8,28 +8,28 @@ function InitialFilter({
   onWritePost,
 }) {
   const initials = [
-    "전체",
-    "ㄱ",
-    "ㄴ",
-    "ㄷ",
-    "ㄹ",
-    "ㅁ",
-    "ㅂ",
-    "ㅅ",
-    "ㅇ",
-    "ㅈ",
-    "ㅊ",
-    "ㅋ",
-    "ㅌ",
-    "ㅍ",
-    "ㅎ",
+    '전체',
+    'ㄱ',
+    'ㄴ',
+    'ㄷ',
+    'ㄹ',
+    'ㅁ',
+    'ㅂ',
+    'ㅅ',
+    'ㅇ',
+    'ㅈ',
+    'ㅊ',
+    'ㅋ',
+    'ㅌ',
+    'ㅍ',
+    'ㅎ',
   ];
 
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm] = useState('');
 
   const handleInitialClick = (initial) => {
-    setSearchTerm(""); // 검색어 초기화
-    onSelectInitial(initial === "전체" ? "전체" : initial);
+    setSearchTerm(''); // 검색어 초기화
+    onSelectInitial(initial === '전체' ? '전체' : initial);
   };
 
   const handleSearchChange = (e) => {
@@ -44,7 +44,7 @@ function InitialFilter({
           <button
             key={initial}
             className={`initial-button ${
-              selectedInitial === initial ? "selected" : ""
+              selectedInitial === initial ? 'selected' : ''
             }`}
             onClick={() => handleInitialClick(initial)}
           >
@@ -57,7 +57,7 @@ function InitialFilter({
       <div className="search-container">
         <input
           type="text"
-          placeholder="캐릭터를 검색하세요."
+          placeholder="검색어를 입력하세요."
           value={searchTerm}
           onChange={handleSearchChange}
           className="search-input"
