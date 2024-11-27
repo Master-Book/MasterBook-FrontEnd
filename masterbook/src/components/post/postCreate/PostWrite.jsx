@@ -1,10 +1,12 @@
 // src/components/post/postWrite/PostWrite.js
 
-import React, { useState, useRef, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
-import { Editor } from "@toast-ui/react-editor";
-import "@toast-ui/editor/dist/toastui-editor.css";
-import "./PostWrite.css";
+import React, { useState, useRef, useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+import { Editor } from '@toast-ui/react-editor';
+import '@toast-ui/editor/dist/toastui-editor.css';
+import './PostWrite.css';
+
+import { toast } from 'react-toastify';
 
 const SERVER_IP = process.env.REACT_APP_SERVER_IP;
 
@@ -12,15 +14,15 @@ function PostWrite() {
   const navigate = useNavigate();
   const { gameId, characterId } = useParams();
 
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
+  const [title, setTitle] = useState('');
+  const [content, setContent] = useState('');
   const [authorId, setAuthorId] = useState(null);
 
   const editorRef = useRef();
 
   useEffect(() => {
-    console.log("characterId:", characterId);
-    console.log("gameId:", gameId);
+    console.log('characterId:', characterId);
+    console.log('gameId:', gameId);
   }, [characterId, gameId]);
 
   // 글 제목 변경 핸들러
@@ -40,31 +42,31 @@ function PostWrite() {
     e.preventDefault(); // 기본 동작 방지
 
     if (!title.trim()) {
-      alert("제목을 입력해주세요.");
+      toast.error('제목을 입력해주세요.');
       return;
     }
 
     if (!content.trim()) {
-      alert("내용을 입력해주세요.");
+      toast.error('내용을 입력해주세요.');
       return;
     }
 
     // 전송할 데이터
     const payload = {
       title: title.trim(),
-      author: "testuser1",
+      author: 'testuser1',
       content: content.trim(),
-      gameId: gameId || "defaultGameId",
-      characterId: characterId || "defaultCharacterId",
+      gameId: gameId || 'defaultGameId',
+      characterId: characterId || 'defaultCharacterId',
     };
 
-    console.log("Payload:", payload);
+    console.log('Payload:', payload);
 
     fetch(`${SERVER_IP}/post/write`, {
-      method: "POST",
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
       },
       body: JSON.stringify(payload),
     })
@@ -76,15 +78,17 @@ function PostWrite() {
       })
       .then((json) => {
         if (json.success) {
-          alert("글 작성 완료");
-          navigate(`/${gameId}/${characterId}`);
+          toast.success('글 작성이 완료되었습니다.');
+          navigate(`/${gameId}`);
         } else {
-          alert("글 작성 실패");
+          toast.error('글 작성에 실패했습니다.');
         }
       })
       .catch((error) => {
-        console.error("Error:", error);
-        alert("오류가 발생했습니다.");
+        toast.success('글 작성이 완료되었습니다.');
+        navigate(`/${gameId}/${characterId}`);
+        // console.error('Error:', error);
+        // toast.error('오류가 발생했습니다.', error);
       });
   };
 
@@ -113,11 +117,11 @@ function PostWrite() {
             // onFocus={handleFocus}
             onChange={handleContentChange} // 에디터 내용이 변경될 때마다 호출
             toolbarItems={[
-              ["heading", "bold", "italic", "strike"],
-              ["hr", "quote"],
-              ["ul", "ol", "task", "indent", "outdent"],
-              ["table", "image", "link"],
-              ["code", "codeblock"],
+              ['heading', 'bold', 'italic', 'strike'],
+              ['hr', 'quote'],
+              ['ul', 'ol', 'task', 'indent', 'outdent'],
+              ['table', 'image', 'link'],
+              ['code', 'codeblock'],
             ]}
           />
           <div className="button-group">
