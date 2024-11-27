@@ -41,8 +41,9 @@ function Signup() {
       },
       body: JSON.stringify({
         userEmail: email,
-        userName: userName,
-        inputPassword: password,
+        nickname: userName,
+        userPassword: password,
+        role: 0,
       }),
     })
       .then((res) => {
