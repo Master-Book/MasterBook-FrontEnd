@@ -1,0 +1,38 @@
+/* src/components/mypage/MypageTab.css */
+.profile-tab-buttons {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: #333; /* 탭 메뉴 배경색 */
+  padding: 5px 10px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  height: 30px;
+}
+
+.profile-tab-button {
+  display: flex;
+  padding: 5px 10px;
+  margin: 0 5px;
+  border: none;
+  background-color: transparent; /* 기본 비활성화 색 */
+  color: white;
+  text-align: center;
+  cursor: pointer;
+  font-size: 0.9rem;
+  border-radius: 5px;
+  margin: 0 5px;
+  height: 30px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.profile-tab-button.active {
+  background-color: #666; /* 활성화 상태 색상 */
+  font-weight: bold;
+  color: white;
+}
+
+.profile-tab-button:hover {
+  background-color: #555; /* 호버 상태 */
+  color: white;
+}
