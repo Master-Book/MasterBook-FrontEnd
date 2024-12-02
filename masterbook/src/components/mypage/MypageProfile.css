@@ -3,7 +3,7 @@
 .profile-header {
   display: flex;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
 
 .profile-image {
@@ -21,7 +21,7 @@
 }
 
 .profile-info {
-  margin-left: 20px;
+  margin-left: 40px;
 }
 
 .profile-name {
@@ -36,8 +36,8 @@
 }
 
 .edit-profile-button {
-  margin-top: 10px;
-  padding: 8px 16px;
+  margin-top: 12px;
+  padding: 6px 10px;
   background-color: #535353;
   color: white;
   border: none;
