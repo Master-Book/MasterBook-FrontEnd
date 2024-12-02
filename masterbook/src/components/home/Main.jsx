@@ -1,11 +1,11 @@
 // src/components/home/Main.js
 
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import axios from 'axios';
-import GameList from './GameList';
-import PostCardList from './PostCardList';
-import './Main.css';
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import axios from "axios";
+import GameList from "./GameList";
+import PostCardList from "./PostCardList";
+import "./Main.css";
 
 const SERVER_IP = process.env.REACT_APP_SERVER_IP;
 
@@ -18,7 +18,7 @@ function Main() {
     axios
       .get(`${SERVER_IP}/post`, {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`,
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       })
       .then((response) => {
@@ -28,20 +28,20 @@ function Main() {
         setPosts(latestPosts);
       })
       .catch((error) => {
-        console.error('Error fetching posts:', error);
+        console.error("Error fetching posts:", error);
       });
 
     // 게임 데이터 가져오기
     const fetchGamesData = async () => {
       try {
-        const response = await fetch('/games.json');
+        const response = await fetch("/games.json");
         if (!response.ok) {
-          throw new Error('Failed to fetch games data');
+          throw new Error("Failed to fetch games data");
         }
         const data = await response.json();
         setAllGames(data);
       } catch (error) {
-        console.error('Error fetching games data:', error);
+        console.error("Error fetching games data:", error);
       }
     };
 
@@ -69,9 +69,9 @@ function Main() {
       <h3>최신 글</h3>
       <PostCardList posts={posts} />
 
-      {/* 글 작성 링크 */}
+      {/* 마이페이지 링크 */}
       <li>
-        <Link to="/postWrite">글 작성</Link>
+        <Link to="/mypage">마이페이지</Link>
       </li>
     </div>
   );

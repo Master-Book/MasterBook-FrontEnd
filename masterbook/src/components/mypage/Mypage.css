@@ -1,0 +1,133 @@
+/* src/components/mypage/Mypage.css */
+
+/* 전체 페이지 스타일 */
+.profile-page {
+  background-color: #1e1e1e;
+  color: white;
+  padding: 20px;
+  margin: 20px auto;
+  width: 80%;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* 프로필 상단 스타일 */
+.profile-header {
+  display: flex;
+  align-items: center;
+  margin: 20px 20px 20px 40px;
+}
+
+.profile-image {
+  width: 100px;
+  height: 100px;
+  border-radius: 20px;
+  background-color: gray;
+}
+
+.profile-image img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: gray;
+}
+
+.profile-info {
+  margin-left: 20px;
+}
+
+.profile-name {
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+.profile-stats {
+  font-size: 0.9rem;
+  color: #aaa;
+}
+
+.edit-profile-button {
+  margin-top: 10px;
+  padding: 5px 10px;
+  background-color: #535353;
+  color: white;
+  border: 1px solid #555;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.edit-profile-button:hover {
+  background-color: #444;
+}
+
+/* 탭 메뉴 스타일 */
+.profile-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  width: 80%;
+  background-color: #333; /* 배경 색상 */
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.profile-tab-buttons {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 5px;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.profile-tab-button {
+  display: flex;
+  padding: 10px;
+  margin: 0 5px;
+  border: none;
+  border-radius: 5px;
+  background-color: #444; /* 비활성화 상태 색상 */
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.profile-tab-button.active {
+  background-color: #666; /* 활성화 상태 색상 */
+  font-weight: bold;
+  color: white;
+}
+
+.post-list-container {
+  width: 100%;
+  background-color: #222; /* 게시글 목록 배경색 */
+  border-radius: 5px;
+  padding: 10px;
+}
+
+/* 게시글 리스트 스타일 */
+.post-list ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.post-list li {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid #555;
+}
+
+.post-title {
+  flex: 1;
+}
+
+.post-date {
+  font-size: 0.9rem;
+  color: #aaa;
+  margin-left: 20px;
+}
