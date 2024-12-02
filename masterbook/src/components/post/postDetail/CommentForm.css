@@ -9,15 +9,15 @@
   resize: vertical;
   min-height: 80px;
   padding: 10px;
-  border-radius: 8px;
+  border-radius: 15px;
   border: none;
-  background-color: #191919;
-  color: #fff;
+  background-color: #d9d9d9;
+  color: #191919;
   margin-bottom: 10px;
 }
 
 .comment-form textarea::placeholder {
-  color: #aaa;
+  color: #191919;
 }
 
 .comment-form button {
@@ -26,12 +26,12 @@
   color: black;
   border: none;
   padding: 8px 16px;
-  border-radius: 18px;
+  border-radius: 12px;
   cursor: pointer;
 }
 
 .comment-form button:hover {
-  background-color: #555;
+  background-color: #808080;
 }
 
 /* 반응형 디자인 */
