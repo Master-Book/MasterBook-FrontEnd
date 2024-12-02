@@ -109,7 +109,7 @@
 }
 
 /* 반응형 미디어 쿼리 */
-@media (max-width: 768px) {
+@media (max-width: 1250px) {
   .header-content {
     flex-direction: column;
     align-items: center;
@@ -117,14 +117,59 @@
   }
 
   .subtitle {
+    /*flex-direction: column;*/
+    align-items: center;
+    padding: 20px 20px;
+    width: 90%;
+    border-top-left-radius: 18px;
+    border-top-right-radius: 18px;
+  }
+
+  .games ul {
+    /*flex-direction: column;*/
+    gap: 15px;
+  }
+
+  .games ul li {
+    justify-content: center;
+  }
+
+  .etc {
+    margin-top: 10px;
+    font-size: 0.9rem;
+  }
+
+  .login {
+    position: static;
+    align-self: flex-end;
+    padding: 10px 0;
+  }
+}
+
+/* 반응형 미디어 쿼리 */
+@media (max-width: 430px) {
+  .header-content {
     flex-direction: column;
     align-items: center;
-    padding: 10px 0;
+    padding: 10px;
+  }
+
+  .subtitle {
+    /*flex-direction: column;*/
+    align-items: center;
+    padding: 20px 20px;
+    width: 90%;
+    border-top-left-radius: 18px;
+    border-top-right-radius: 18px;
   }
 
   .games ul {
     flex-direction: column;
-    gap: 10px;
+    gap: 15px;
+  }
+
+  .games ul li {
+    justify-content: center;
   }
 
   .etc {

@@ -5,3 +5,68 @@
   max-width: 1200px;
   margin: 0 auto;
 }
+
+h3 {
+  margin-top: 30px;
+  font-size: 1.5rem;
+}
+
+/* GameList 스타일 */
+.game-list-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: space-between;
+}
+
+.game-item {
+  flex: 1 1 calc(20% - 20px); /* 5개의 아이템을 한 줄에 배치 */
+  min-width: 150px;
+  max-width: 200px;
+  text-align: center;
+}
+
+/* PostCardList 스타일 */
+.post-card-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: space-between;
+}
+
+.post-card {
+  flex: 1 1 calc(33.33% - 20px); /* 3개의 아이템을 한 줄에 배치 */
+  min-width: 200px;
+  max-width: 350px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 15px;
+}
+
+/* 미디어 쿼리: 화면 너비가 768px 이하일 때 */
+@media (max-width: 768px) {
+  .game-item,
+  .post-card {
+    flex: 1 1 calc(50% - 20px); /* 한 줄에 2개의 아이템 배치 */
+  }
+
+  h3 {
+    font-size: 1.25rem;
+  }
+}
+
+/* 미디어 쿼리: 화면 너비가 480px 이하일 때 */
+@media (max-width: 480px) {
+  .game-item,
+  .post-card {
+    flex: 1 1 100%; /* 한 줄에 1개의 아이템 배치 */
+  }
+
+  .main-container {
+    padding: 10px;
+  }
+
+  h3 {
+    font-size: 1rem;
+  }
+}
