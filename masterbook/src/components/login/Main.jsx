@@ -53,39 +53,47 @@ function Main() {
   };
 
   return (
-    <div className="outer-container">
-      <div className="login-container">
-        <h2>Login</h2>
-        <form onSubmit={handleSubmit}>
-          <div className="input-container">
-            <input
-              className="login_input"
-              type="text"
-              placeholder="Email ID"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
+    <div className="background-container">
+      <div className="content-container">
+        <div className="left-content">
+          <h1>Master Book</h1>
+          <p>게임 전략 커뮤니티를 위한 완벽한 선택!</p>
+          <ul>
+            <li>쉽게 전략을 찾고 공유하세요.</li>
+            <li>다양한 캐릭터별 팁을 확인하세요.</li>
+          </ul>
+        </div>
+        <div className="login-container">
+          <h2>로그인</h2>
+          <form onSubmit={handleSubmit}>
+            <div className="input-container">
+              <input
+                type="text"
+                placeholder="이메일"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+            </div>
+            <div className="input-container">
+              <input
+                type="password"
+                placeholder="비밀번호"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+            </div>
+            <button type="submit" className="login-button">
+              로그인
+            </button>
+          </form>
+          <div className="signup-link">
+            <p>계정이 없으신가요?</p>
+            <Link to="/signup" className="signup-button">
+              회원가입
+            </Link>
           </div>
-          <div className="input-container">
-            <input
-              className="login_input"
-              type="password"
-              placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-          </div>
-          <button type="submit" className="login-button">
-            Login
-          </button>
-        </form>
-        <div className="signup-link">
-          <p className="signup-p">계정이 없으신가요?</p>
-          <Link to="/signup" className="login-button">
-            회원가입
-          </Link>
         </div>
       </div>
     </div>

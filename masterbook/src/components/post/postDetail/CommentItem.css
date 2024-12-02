@@ -1,9 +1,10 @@
 /* src/components/post/postDetail/CommentItem.css */
 
 .comment-item {
+  list-style-type: none;
   background-color: #262626;
   padding: 15px;
-  border-radius: 8px;
+  border-radius: 15px;
   margin-bottom: 10px;
 }
 
