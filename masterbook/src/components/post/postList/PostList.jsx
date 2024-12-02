@@ -1,22 +1,24 @@
 // src/components/post/postList/PostList.js
 
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import { Link, useNavigate } from 'react-router-dom';
-import './PostList.css';
-import { FaBook, FaSearch } from 'react-icons/fa';
-import { debounce } from 'lodash';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { Link, useNavigate } from "react-router-dom";
+import "./PostList.css";
+import { FaBook, FaSearch } from "react-icons/fa";
+import { debounce } from "lodash";
 
 function PostList({ gameId, gameName, characterId, characterName }) {
   const [posts, setPosts] = useState([]); // 전체 게시글 목록
-  const [searchTerm, setSearchTerm] = useState(''); // 검색어 상태
+  const [searchTerm, setSearchTerm] = useState(""); // 검색어 상태
+  const [currentPage, setCurrentPage] = useState(1); // 현재 페이지 상태
+  const [postsPerPage] = useState(10); // 한 페이지에 표시할 게시글 수
   const navigate = useNavigate();
 
   useEffect(() => {
     // 컴포넌트가 마운트될 때 API 호출
     axios
       // 실제 API 엔드포인트로 변경해야 합니다.
-      .get('/posts.json')
+      .get("/posts.json")
       .then((response) => {
         // 게임 ID와 캐릭터 ID를 기반으로 필터링
         const filteredPosts = response.data.filter(
@@ -25,7 +27,7 @@ function PostList({ gameId, gameName, characterId, characterName }) {
         setPosts(filteredPosts);
       })
       .catch((error) => {
-        console.error('Error fetching posts:', error);
+        console.error("Error fetching posts:", error);
       });
   }, [gameId, characterId]);
 
@@ -46,6 +48,16 @@ function PostList({ gameId, gameName, characterId, characterName }) {
       post.author.toLowerCase().includes(lowerCaseSearchTerm)
     );
   });
+
+  // 페이지네이션 관련 계산
+  const totalPages = Math.ceil(filteredPosts.length / postsPerPage);
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentPosts = filteredPosts.slice(indexOfFirstPost, indexOfLastPost);
+
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
 
   return (
     <div id="PostList">
@@ -108,12 +120,18 @@ function PostList({ gameId, gameName, characterId, characterName }) {
       ) : (
         <div className="no-posts">검색 결과가 없습니다.</div>
       )}
+
+      {/* 페이지네이션 */}
       <div className="pagination">
-        <button>Previous</button>
-        {[1, 2, 3, '...', 7].map((page, idx) => (
-          <button key={idx}>{page}</button>
+        {Array.from({ length: totalPages }, (_, idx) => idx + 1).map((page) => (
+          <button
+            key={page}
+            onClick={() => handlePageChange(page)}
+            className={currentPage === page ? "active" : ""}
+          >
+            {page}
+          </button>
         ))}
-        <button>Next</button>
       </div>
     </div>
   );

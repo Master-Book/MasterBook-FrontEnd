@@ -1,21 +1,21 @@
 // src/components/post/postDetail/PostDetail.js
 
-import React, { useEffect, useState } from 'react';
-import { useParams, useLocation, useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import React, { useEffect, useState } from "react";
+import { useParams, useLocation, useNavigate } from "react-router-dom";
+import axios from "axios";
 import {
   FaThumbsUp,
   FaRegThumbsUp,
   FaCommentDots,
   FaCheckCircle,
-} from 'react-icons/fa';
-import './PostDetail.css';
+} from "react-icons/fa";
+import "./PostDetail.css";
 
 function PostDetail() {
   const { gameId, characterId, postId } = useParams();
   const [post, setPost] = useState(null);
   const [comments, setComments] = useState([]); // 댓글 목록 상태
-  const [newComment, setNewComment] = useState(''); // 새 댓글 입력 상태
+  const [newComment, setNewComment] = useState(""); // 새 댓글 입력 상태
   const [likes, setLikes] = useState(0); // 좋아요 수 상태
   const [isLiked, setIsLiked] = useState(false); // 좋아요 여부 상태
   const [validCount, setValidCount] = useState(0); // 유효함 클릭 수
@@ -27,7 +27,7 @@ function PostDetail() {
   useEffect(() => {
     // 게시글 데이터 가져오기
     axios
-      .get('/posts.json') // 로컬 JSON 파일에서 데이터 가져오기
+      .get("/posts.json") // 로컬 JSON 파일에서 데이터 가져오기
       .then((response) => {
         // 해당 게시글 찾기
         const postData = response.data.find(
@@ -45,7 +45,7 @@ function PostDetail() {
           setInvalidCount(postData.invalidCount || 0);
         }
       })
-      .catch((error) => console.error('Error fetching post:', error));
+      .catch((error) => console.error("Error fetching post:", error));
   }, [gameId, characterId, postId]);
 
   // 댓글 추가 핸들러
@@ -55,12 +55,12 @@ function PostDetail() {
     // 로컬 데이터에 댓글 추가
     const newCommentData = {
       id: comments.length + 1,
-      author: '익명', // 실제로는 로그인한 사용자 이름
+      author: "익명", // 실제로는 로그인한 사용자 이름
       content: newComment,
       date: new Date().toISOString(),
     };
     setComments([...comments, newCommentData]);
-    setNewComment('');
+    setNewComment("");
   };
 
   // 좋아요 버튼 핸들러
@@ -90,7 +90,7 @@ function PostDetail() {
       {/* 게시글 헤더 */}
       <div className="post-detail-header">
         <h1>
-          {post.title}{' '}
+          {post.title}{" "}
           {isValid && (
             <FaCheckCircle className="valid-icon" title="유효한 공략입니다" />
           )}
@@ -150,7 +150,9 @@ function PostDetail() {
             value={newComment}
             onChange={(e) => setNewComment(e.target.value)}
           />
-          <button onClick={handleAddComment}>댓글 달기</button>
+          <button onClick={handleAddComment} className="comment-btn">
+            댓글 달기
+          </button>
         </div>
       </div>
 
