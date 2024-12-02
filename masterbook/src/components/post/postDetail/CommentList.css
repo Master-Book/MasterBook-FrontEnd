@@ -1,0 +1,7 @@
+/* src/components/post/postDetail/CommentList.css */
+
+.comment-list {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 20px;
+}

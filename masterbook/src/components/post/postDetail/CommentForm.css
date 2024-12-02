@@ -1,0 +1,42 @@
+/* src/components/post/postDetail/CommentForm.css */
+
+.comment-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.comment-form textarea {
+  resize: vertical;
+  min-height: 80px;
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  background-color: #191919;
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+.comment-form textarea::placeholder {
+  color: #aaa;
+}
+
+.comment-form button {
+  align-self: flex-end;
+  background-color: #aaa;
+  color: black;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 18px;
+  cursor: pointer;
+}
+
+.comment-form button:hover {
+  background-color: #555;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 576px) {
+  .comment-form button {
+    width: 100%;
+  }
+}

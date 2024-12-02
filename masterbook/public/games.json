@@ -19,5 +19,19 @@
     "logo": "/images/the_survivalists/logo/logo.png",
     "sponsor": true,
     "popularity": 15
+  },
+  {
+    "id": "it_takes_two",
+    "name": "It Takes Two",
+    "logo": "/images/it_takes_two/logo/logo.png",
+    "sponsor": true,
+    "popularity": 75
+  },
+  {
+    "id": "inside",
+    "name": "Inside",
+    "logo": "/images/inside/logo/logo.png",
+    "sponsor": true,
+    "popularity": 75
   }
 ]

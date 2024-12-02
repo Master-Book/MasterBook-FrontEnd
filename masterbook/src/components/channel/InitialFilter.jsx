@@ -57,7 +57,7 @@ function InitialFilter({
       <div className="search-container">
         <input
           type="text"
-          placeholder="캐릭터를 검색하세요."
+          placeholder="검색어를 입력하세요."
           value={searchTerm}
           onChange={handleSearchChange}
           className="search-input"

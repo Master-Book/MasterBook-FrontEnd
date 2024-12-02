@@ -1,0 +1,25 @@
+/* src/components/post/postDetail/CommentItem.css */
+
+.comment-item {
+  background-color: #262626;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.comment-author {
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #fff;
+}
+
+.comment-content {
+  color: #ddd;
+  margin-bottom: 5px;
+}
+
+.comment-date {
+  font-size: 12px;
+  color: #888;
+  text-align: right;
+}

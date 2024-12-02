@@ -14,18 +14,21 @@ function Main() {
   const [allGames, setAllGames] = useState([]);
 
   useEffect(() => {
-    // 게시글 데이터 가져오기
+    // 최신 글 데이터 가져오기
     axios
-      .get(`${SERVER_IP}/post`, {
+      .get(`${SERVER_IP}/main/latest`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       })
       .then((response) => {
         const postsData = response.data;
-        const sortedPosts = postsData.sort((a, b) => b.postId - a.postId);
-        const latestPosts = sortedPosts.slice(0, 6);
-        setPosts(latestPosts);
+        if (Array.isArray(postsData)) {
+          // 최신 게시글 데이터를 상태에 설정
+          setPosts(postsData);
+        } else {
+          console.error('Error: postsData is not an array', postsData);
+        }
       })
       .catch((error) => {
         console.error("Error fetching posts:", error);
