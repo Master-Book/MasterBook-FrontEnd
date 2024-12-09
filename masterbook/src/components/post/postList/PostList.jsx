@@ -8,6 +8,8 @@ import { debounce } from 'lodash';
 
 function PostList({ gameId, gameName, characterId, characterName, posts }) {
   const [searchTerm, setSearchTerm] = useState(''); // 검색어 상태
+  const [currentPage, setCurrentPage] = useState(1); // 현재 페이지 상태
+  const [postsPerPage] = useState(10); // 한 페이지에 표시할 게시글 수
   const navigate = useNavigate();
   const handleWritePost = () => {
     navigate(`/postWrite/${gameId}/${characterId}`);
@@ -105,7 +107,7 @@ function PostList({ gameId, gameName, characterId, characterName, posts }) {
           <button
             key={page}
             onClick={() => handlePageChange(page)}
-            className={currentPage === page ? "active" : ""}
+            className={currentPage === page ? 'active' : ''}
           >
             {page}
           </button>
