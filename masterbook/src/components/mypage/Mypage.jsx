@@ -11,7 +11,11 @@ const SERVER_IP = process.env.REACT_APP_SERVER_IP;
 function Mypage() {
   const [activeTab, setActiveTab] = useState("posts");
   const [data, setData] = useState([]);
-  const [userInfo, setUserInfo] = useState(null); // 사용자 정보 상태 추가
+  const [userInfo, setUserInfo] = useState({
+    name: "Guest",
+    email: "guest@example.com",
+  });
+  // 사용자 정보 상태 추가
 
   const fetchData = async (endpoint) => {
     try {
@@ -36,7 +40,7 @@ function Mypage() {
         return;
       }
 
-      const response = await fetch(`${SERVER_IP}/user/profile`, {
+      const response = await fetch(`${SERVER_IP}/mypage`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -57,6 +61,10 @@ function Mypage() {
   };
 
   useEffect(() => {
+    fetchUserInfo();
+  }, []);
+
+  useEffect(() => {
     if (activeTab === "posts") {
       fetchData("user/posts");
     } else if (activeTab === "comments") {
@@ -68,7 +76,7 @@ function Mypage() {
 
   return (
     <div className="profile-page">
-      <MypageProfile userInfo={userInfo} /> {/* Replace the header section */}
+      <MypageProfile userInfo={userInfo} />
       <MypageTab activeTab={activeTab} setActiveTab={setActiveTab} />
       <MypageContent data={data} />
     </div>
