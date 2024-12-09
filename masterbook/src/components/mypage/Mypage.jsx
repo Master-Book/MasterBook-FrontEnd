@@ -12,10 +12,8 @@ function Mypage() {
   const [activeTab, setActiveTab] = useState("posts");
   const [data, setData] = useState([]);
   const [userInfo, setUserInfo] = useState({
-    name: "Guest",
-    email: "guest@example.com",
+    name: localStorage.getItem("nickname") || "Guest", // localStorage에서 닉네임 가져오기
   });
-  // 사용자 정보 상태 추가
 
   const fetchData = async (endpoint) => {
     try {
