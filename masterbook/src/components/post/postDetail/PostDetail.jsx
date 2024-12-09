@@ -8,6 +8,7 @@ import PostContent from "./PostContent";
 import ValiditySection from "./ValiditySection";
 import PostActions from "./PostActions";
 import CommentsSection from "./CommentsSection";
+import AiValiditySection from "./AiValiditySection";
 import "./PostDetail.css";
 
 import { toast } from "react-toastify";
@@ -32,7 +33,7 @@ function PostDetail() {
     axios
       .get(`${SERVER_IP}/post/${postId}`, {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`,
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       })
       .then((response) => {
@@ -53,7 +54,7 @@ function PostDetail() {
         setValidCount(0); // 초기 유효함 카운트
         setInvalidCount(0); // 초기 유효하지 않음 카운트
       })
-      .catch((error) => console.error('Error fetching post:', error));
+      .catch((error) => console.error("Error fetching post:", error));
   }, [postId]);
 
   // 댓글 추가 핸들러
@@ -115,6 +116,9 @@ function PostDetail() {
         onValidClick={handleValidClick}
         onInvalidClick={handleInvalidClick}
       />
+
+      {/* Ai 유효성 검사 섹션 */}
+      <AiValiditySection onAiValidClick={handleValidClick} />
 
       {/* 좋아요 및 댓글 수 */}
       <PostActions
