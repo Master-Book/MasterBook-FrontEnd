@@ -27,18 +27,18 @@ function Main() {
         if (Array.isArray(postsData)) {
           setLatestPosts(postsData.slice(0, 6));
         } else {
-          console.error('Error: postsData is not an array', postsData);
+          console.error("Error: postsData is not an array", postsData);
         }
       })
       .catch((error) => {
-        console.error('Error fetching latest posts:', error);
+        console.error("Error fetching latest posts:", error);
       });
 
     // 인기 글 데이터 가져오기
     axios
       .get(`${SERVER_IP}/main/popular`, {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`,
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       })
       .then((response) => {
@@ -46,11 +46,11 @@ function Main() {
         if (Array.isArray(postsData)) {
           setPopularPosts(postsData.slice(0, 6));
         } else {
-          console.error('Error: postsData is not an array', postsData);
+          console.error("Error: postsData is not an array", postsData);
         }
       })
       .catch((error) => {
-        console.error('Error fetching popular posts:', error);
+        console.error("Error fetching popular posts:", error);
       });
 
     // 게임 데이터 가져오기
@@ -94,11 +94,6 @@ function Main() {
       {/* 최신 글 */}
       <h3>최신 글</h3>
       <PostCardList posts={latestPosts} />
-
-      {/* 마이페이지 링크 */}
-      <li>
-        <Link to="/mypage">마이페이지</Link>
-      </li>
     </div>
   );
 }

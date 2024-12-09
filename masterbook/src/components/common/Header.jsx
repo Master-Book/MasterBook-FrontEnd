@@ -1,17 +1,17 @@
 // src/components/common/Header.js
 
-import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import './Header.css';
+import React from "react";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+import "./Header.css";
 
 const SERVER_IP = process.env.REACT_APP_SERVER_IP;
 
 function Header() {
   const navigate = useNavigate();
-  const isLoggedIn = !!localStorage.getItem('token');
-  console.log('token:', localStorage.getItem('token'));
-  console.log('isLoggedIn:', isLoggedIn);
+  const isLoggedIn = !!localStorage.getItem("token");
+  console.log("token:", localStorage.getItem("token"));
+  console.log("isLoggedIn:", isLoggedIn);
 
   const handleLogout = () => {
     /*
@@ -36,7 +36,11 @@ function Header() {
         // 에러 처리 (필요에 따라 사용자에게 에러 메시지 표시)
       });
       */
-    localStorage.removeItem('token');
+    localStorage.removeItem("token");
+  };
+
+  const handleMyPage = () => {
+    navigate("/mypage");
   };
 
   return (
@@ -57,9 +61,14 @@ function Header() {
           <Link to="/contact">문의하기</Link>
           <span className="separator">|</span>
           {isLoggedIn ? (
-            <button onClick={handleLogout} className="logout-button">
-              로그아웃
-            </button>
+            <div>
+              <button onClick={handleLogout} className="logout-button">
+                로그아웃
+              </button>
+              <button onClick={handleMyPage} className="logout-button">
+                마이페이지
+              </button>
+            </div>
           ) : (
             <Link to="/login">로그인/회원가입</Link>
           )}
