@@ -22,6 +22,8 @@ function AiValiditySection() {
       });
 
       if (!response.ok) {
+        const errorText = await response.text();
+        console.error("응답 에러 내용:", errorText);
         throw new Error(`HTTP error! Status code: ${response.status}`);
       }
 
