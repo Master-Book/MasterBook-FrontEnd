@@ -65,6 +65,7 @@ function Header() {
               <button onClick={handleLogout} className="logout-button">
                 로그아웃
               </button>
+              <span className="separator">|</span>
               <button onClick={handleMyPage} className="logout-button">
                 마이페이지
               </button>
