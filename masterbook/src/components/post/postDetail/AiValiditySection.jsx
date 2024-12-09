@@ -22,16 +22,18 @@ function AiValiditySection() {
       });
 
       if (!response.ok) {
+        const errorText = await response.text();
+        console.error("응답 에러 내용:", errorText);
         throw new Error(`HTTP error! Status code: ${response.status}`);
       }
 
       const data = await response.json();
       console.log("백엔드 응답 데이터:", data);
 
-      if (data.isAccurate == 1) {
+      if (data.isAccurate === 1) {
         setMessage("유효합니다.");
         setMessageType("success"); // 성공 메시지 타입 설정
-      } else if (data.isAccurate == 0) {
+      } else if (data.isAccurate === 0) {
         setMessage("유효하지 않습니다.");
         setMessageType("error"); // 오류 메시지 타입 설정
       } else {
