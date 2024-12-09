@@ -1,7 +1,7 @@
 // src/components/post/postDetail/CommentItem.js
 
-import React from 'react';
-import './CommentItem.css';
+import React from "react";
+import "./CommentItem.css";
 
 function CommentItem({ author, content, date }) {
   return (

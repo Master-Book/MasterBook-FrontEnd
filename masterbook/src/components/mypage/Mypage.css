@@ -1,0 +1,12 @@
+/* src/components/mypage/Mypage.css */
+
+/* 전체 페이지 스타일 */
+.profile-page {
+  background-color: #1e1e1e;
+  color: white;
+  padding: 30px;
+  margin: 20px auto;
+  width: 70%;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+}

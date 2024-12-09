@@ -9,7 +9,6 @@ import { debounce } from 'lodash';
 function PostList({ gameId, gameName, characterId, characterName, posts }) {
   const [searchTerm, setSearchTerm] = useState(''); // 검색어 상태
   const navigate = useNavigate();
-
   const handleWritePost = () => {
     navigate(`/postWrite/${gameId}/${characterId}`);
   };
@@ -27,6 +26,16 @@ function PostList({ gameId, gameName, characterId, characterName, posts }) {
       post.author.toLowerCase().includes(lowerCaseSearchTerm)
     );
   });
+
+  // 페이지네이션 관련 계산
+  const totalPages = Math.ceil(filteredPosts.length / postsPerPage);
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentPosts = filteredPosts.slice(indexOfFirstPost, indexOfLastPost);
+
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
 
   return (
     <div id="PostList">
@@ -89,12 +98,18 @@ function PostList({ gameId, gameName, characterId, characterName, posts }) {
       ) : (
         <div className="no-posts">검색 결과가 없습니다.</div>
       )}
+
+      {/* 페이지네이션 */}
       <div className="pagination">
-        <button>Previous</button>
-        {[1, 2, 3, '...', 7].map((page, idx) => (
-          <button key={idx}>{page}</button>
+        {Array.from({ length: totalPages }, (_, idx) => idx + 1).map((page) => (
+          <button
+            key={page}
+            onClick={() => handlePageChange(page)}
+            className={currentPage === page ? "active" : ""}
+          >
+            {page}
+          </button>
         ))}
-        <button>Next</button>
       </div>
     </div>
   );

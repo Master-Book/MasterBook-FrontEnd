@@ -1,22 +1,22 @@
 // src/components/post/postDetail/PostDetail.js
 
-import React, { useEffect, useState } from 'react';
-import { useParams, useLocation, useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import PostHeader from './PostHeader';
-import PostContent from './PostContent';
-import ValiditySection from './ValiditySection';
-import PostActions from './PostActions';
-import CommentsSection from './CommentsSection';
-import './PostDetail.css';
+import React, { useEffect, useState } from "react";
+import { useParams, useLocation, useNavigate } from "react-router-dom";
+import axios from "axios";
+import PostHeader from "./PostHeader";
+import PostContent from "./PostContent";
+import ValiditySection from "./ValiditySection";
+import PostActions from "./PostActions";
+import CommentsSection from "./CommentsSection";
+import "./PostDetail.css";
 
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
 
 function PostDetail() {
   const { gameId, characterId, postId } = useParams();
   const [post, setPost] = useState(null);
   const [comments, setComments] = useState([]); // 댓글 목록 상태
-  const [newComment, setNewComment] = useState(''); // 새 댓글 입력 상태
+  const [newComment, setNewComment] = useState(""); // 새 댓글 입력 상태
   const [likes, setLikes] = useState(0); // 좋아요 수 상태
   const [isLiked, setIsLiked] = useState(false); // 좋아요 여부 상태
   const [validCount, setValidCount] = useState(0); // 유효함 클릭 수
@@ -63,12 +63,12 @@ function PostDetail() {
     // 로컬 상태에 댓글 추가
     const newCommentData = {
       id: comments.length + 1,
-      author: '익명', // 실제로는 로그인한 사용자 이름
+      author: "익명", // 실제로는 로그인한 사용자 이름
       content: newComment,
       date: new Date().toISOString(),
     };
     setComments([...comments, newCommentData]);
-    setNewComment('');
+    setNewComment("");
   };
 
   // 좋아요 버튼 핸들러
@@ -80,13 +80,13 @@ function PostDetail() {
   // 유효함 버튼 핸들러
   const handleValidClick = () => {
     setValidCount((prevCount) => prevCount + 1);
-    toast.success('유효함에 투표했습니다.');
+    toast.success("유효함에 투표했습니다.");
   };
 
   // 유효하지 않음 버튼 핸들러
   const handleInvalidClick = () => {
     setInvalidCount((prevCount) => prevCount + 1);
-    toast.error('유효하지 않음에 투표했습니다.');
+    toast.error("유효하지 않음에 투표했습니다.");
   };
 
   if (!post) return <p>Loading...</p>;

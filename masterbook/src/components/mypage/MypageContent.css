@@ -1,0 +1,42 @@
+/* src/components/mypage/MypageContent.css */
+
+.profile-content {
+  background-color: #262626;
+  border-radius: 10px;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.data-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #444;
+}
+
+.data-item:last-child {
+  border-bottom: none;
+}
+
+.data-title {
+  flex: 1;
+  color: #fff;
+}
+
+.data-author {
+  flex: 0.5;
+  color: #aaa;
+  text-align: center;
+}
+
+.data-date {
+  flex: 0.5;
+  color: #888;
+  text-align: right;
+}
+
+.no-data {
+  text-align: center;
+  color: #aaa;
+}
