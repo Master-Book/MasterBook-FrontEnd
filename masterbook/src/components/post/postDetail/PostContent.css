@@ -1,9 +1,8 @@
 /* src/components/post/postDetail/PostContent.css */
 
 .post-detail-content {
-  background-color: #191919;
+  background-color: white;
   padding: 20px;
-  border-radius: 20px;
-  color: #ddd;
+  border-radius: 8px;
   margin-bottom: 20px;
 }

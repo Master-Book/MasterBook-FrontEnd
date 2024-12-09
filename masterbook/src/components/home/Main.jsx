@@ -10,7 +10,8 @@ import "./Main.css";
 const SERVER_IP = process.env.REACT_APP_SERVER_IP;
 
 function Main() {
-  const [posts, setPosts] = useState([]);
+  const [latestPosts, setLatestPosts] = useState([]);
+  const [popularPosts, setPopularPosts] = useState([]);
   const [allGames, setAllGames] = useState([]);
 
   useEffect(() => {
@@ -24,14 +25,32 @@ function Main() {
       .then((response) => {
         const postsData = response.data;
         if (Array.isArray(postsData)) {
-          // 최신 게시글 데이터를 상태에 설정
-          setPosts(postsData);
+          setLatestPosts(postsData.slice(0, 6));
         } else {
           console.error('Error: postsData is not an array', postsData);
         }
       })
       .catch((error) => {
-        console.error("Error fetching posts:", error);
+        console.error('Error fetching latest posts:', error);
+      });
+
+    // 인기 글 데이터 가져오기
+    axios
+      .get(`${SERVER_IP}/main/popular`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
+      })
+      .then((response) => {
+        const postsData = response.data;
+        if (Array.isArray(postsData)) {
+          setPopularPosts(postsData.slice(0, 6));
+        } else {
+          console.error('Error: postsData is not an array', postsData);
+        }
+      })
+      .catch((error) => {
+        console.error('Error fetching popular posts:', error);
       });
 
     // 게임 데이터 가져오기
@@ -68,9 +87,13 @@ function Main() {
       {/* 인기 게임 */}
       <GameList title="인기 게임" games={popularGames} />
 
+      {/* 인기 글 */}
+      <h3>인기 글</h3>
+      <PostCardList posts={popularPosts} />
+
       {/* 최신 글 */}
       <h3>최신 글</h3>
-      <PostCardList posts={posts} />
+      <PostCardList posts={latestPosts} />
 
       {/* 마이페이지 링크 */}
       <li>

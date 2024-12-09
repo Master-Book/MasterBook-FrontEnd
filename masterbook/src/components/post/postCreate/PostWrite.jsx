@@ -9,6 +9,7 @@ import './PostWrite.css';
 import { toast } from 'react-toastify';
 
 const SERVER_IP = process.env.REACT_APP_SERVER_IP;
+const savedEmail = localStorage.getItem('userEmail');
 
 function PostWrite() {
   const navigate = useNavigate();
@@ -86,7 +87,7 @@ function PostWrite() {
       })
       .catch((error) => {
         toast.success('글 작성이 완료되었습니다.');
-        navigate(`/${gameId}/${characterId}`);
+        navigate(`/${gameId}`);
         // console.error('Error:', error);
         // toast.error('오류가 발생했습니다.', error);
       });

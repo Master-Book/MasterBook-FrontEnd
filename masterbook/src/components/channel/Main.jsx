@@ -1,18 +1,21 @@
 // src/components/home/Channel.js
 
 import React, { useState, useEffect, useRef } from 'react';
-import { useParams, Link } from 'react-router-dom'; // Link 추가
+import { useParams, Link } from 'react-router-dom';
 import InitialFilter from './InitialFilter';
 import './Main.css';
 
 import PostList from '../post/postList/PostList';
+import axios from 'axios';
+
+const SERVER_IP = process.env.REACT_APP_SERVER_IP;
 
 function Channel() {
   const { gameId } = useParams();
   const [characterData, setCharacterData] = useState([]);
   const [selectedInitial, setSelectedInitial] = useState('전체');
   const [searchTerm, setSearchTerm] = useState('');
-
+  const [posts, setPosts] = useState([]); // 모든 게시글 데이터
   const [selectedCharacterId, setSelectedCharacterId] = useState(null);
   const [selectedCharacterName, setSelectedCharacterName] = useState('');
   const [gameName, setGameName] = useState('');
@@ -47,7 +50,23 @@ function Channel() {
       }
     };
 
+    // 게시글 데이터 로드
+    const loadPosts = async () => {
+      try {
+        const response = await axios.get(`${SERVER_IP}/channel/${gameId}`, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+          },
+        });
+        setPosts(response.data); // 모든 게시글 저장
+        console.log(posts);
+      } catch (error) {
+        console.error('게시글 데이터를 로드하는 중 오류 발생:', error);
+      }
+    };
+
     loadCharacterData();
+    loadPosts();
   }, [gameId]);
 
   const handleSelectInitial = (initial) => {
@@ -101,6 +120,11 @@ function Channel() {
 
   const defaultImagePath = require('../../assets/images/default/characters/default_profile.jpg');
 
+  // 선택된 캐릭터의 게시글 필터링
+  const filteredPosts = selectedCharacterId
+    ? posts.filter((post) => post.characterId === selectedCharacterId)
+    : posts;
+
   return (
     <div className="channel-container">
       <div className="game-name">{gameName} 채널</div>
@@ -150,6 +174,7 @@ function Channel() {
           gameName={gameName}
           characterId={selectedCharacterId}
           characterName={selectedCharacterName}
+          posts={filteredPosts} // 필터링된 게시글 전달
         />
       )}
     </div>

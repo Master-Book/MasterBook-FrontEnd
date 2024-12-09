@@ -25,35 +25,42 @@ function PostDetail() {
   const navigate = useNavigate();
   const { gameName, characterName } = location.state || {};
 
+  const SERVER_IP = process.env.REACT_APP_SERVER_IP;
+
   useEffect(() => {
-    // 게시글 데이터 가져오기
+    // 서버에서 게시글 데이터 가져오기
     axios
-      .get("/posts.json") // 로컬 JSON 파일에서 데이터 가져오기
-      .then((response) => {
-        // 해당 게시글 찾기
-        const postData = response.data.find(
-          (item) =>
-            item.gameId === gameId &&
-            item.characterId === characterId &&
-            item.id === parseInt(postId)
-        );
-        if (postData) {
-          setPost(postData);
-          setLikes(postData.likes || 0);
-          setIsLiked(false); // 로컬 데이터이므로 기본값 설정
-          setComments(postData.comments || []);
-          setValidCount(postData.validCount || 0);
-          setInvalidCount(postData.invalidCount || 0);
-        }
+      .get(`${SERVER_IP}/post/${postId}`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
       })
-      .catch((error) => console.error("Error fetching post:", error));
-  }, [gameId, characterId, postId]);
+      .then((response) => {
+        const postData = response.data;
+        setPost({
+          postId: postData.postId,
+          title: postData.title,
+          author: postData.author,
+          authorId: postData.authorId,
+          content: postData.content,
+          date: postData.date,
+          gameId: postData.gameId,
+          characterId: postData.characterId,
+        });
+        // 초기 값 설정
+        setLikes(0); // 초기 좋아요는 0으로 설정
+        setComments([]); // 댓글은 별도 API로 가져오지 않으므로 초기 비어 있음
+        setValidCount(0); // 초기 유효함 카운트
+        setInvalidCount(0); // 초기 유효하지 않음 카운트
+      })
+      .catch((error) => console.error('Error fetching post:', error));
+  }, [postId]);
 
   // 댓글 추가 핸들러
   const handleAddComment = () => {
     if (!newComment.trim()) return;
 
-    // 로컬 데이터에 댓글 추가
+    // 로컬 상태에 댓글 추가
     const newCommentData = {
       id: comments.length + 1,
       author: "익명", // 실제로는 로그인한 사용자 이름
@@ -66,7 +73,6 @@ function PostDetail() {
 
   // 좋아요 버튼 핸들러
   const handleLikeToggle = () => {
-    // 로컬 데이터이므로 간단하게 상태만 변경
     setIsLiked(!isLiked);
     setLikes((prevLikes) => (isLiked ? prevLikes - 1 : prevLikes + 1));
   };
@@ -83,7 +89,7 @@ function PostDetail() {
     toast.error("유효하지 않음에 투표했습니다.");
   };
 
-  if (!post) return <p>Loading...</p>; // 데이터가 없을 때 로딩 표시
+  if (!post) return <p>Loading...</p>;
 
   // 유효성 검사 결과에 따른 인증 표시
   const isValid = validCount > invalidCount;
