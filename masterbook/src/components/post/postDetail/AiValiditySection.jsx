@@ -5,13 +5,14 @@ import "./AiValiditySection.css";
 
 const SERVER_IP = process.env.REACT_APP_SERVER_IP;
 
-function ValiditySection() {
+function AiValiditySection() {
+  const { postId } = useParams();
   const [message, setMessage] = useState("");
   const [messageType, setMessageType] = useState("");
 
   const checkValidity = async () => {
     try {
-      const response = await fetch(`${SERVER_IP}/api/check-validity`, {
+      const response = await fetch(`${SERVER_IP}/posts/${postId}/isAccurate`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -55,4 +56,4 @@ function ValiditySection() {
   );
 }
 
-export default ValiditySection;
+export default AiValiditySection;
