@@ -59,6 +59,7 @@ function Channel() {
           },
         });
         setPosts(response.data); // 모든 게시글 저장
+        console.log(posts);
       } catch (error) {
         console.error('게시글 데이터를 로드하는 중 오류 발생:', error);
       }
