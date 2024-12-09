@@ -1,33 +1,14 @@
 // src/components/post/postList/PostList.js
 
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './PostList.css';
 import { FaBook, FaSearch } from 'react-icons/fa';
 import { debounce } from 'lodash';
 
-function PostList({ gameId, gameName, characterId, characterName }) {
-  const [posts, setPosts] = useState([]); // 전체 게시글 목록
+function PostList({ gameId, gameName, characterId, characterName, posts }) {
   const [searchTerm, setSearchTerm] = useState(''); // 검색어 상태
   const navigate = useNavigate();
-
-  useEffect(() => {
-    // 컴포넌트가 마운트될 때 API 호출
-    axios
-      // 실제 API 엔드포인트로 변경해야 합니다.
-      .get('/posts.json')
-      .then((response) => {
-        // 게임 ID와 캐릭터 ID를 기반으로 필터링
-        const filteredPosts = response.data.filter(
-          (post) => post.gameId === gameId && post.characterId === characterId
-        );
-        setPosts(filteredPosts);
-      })
-      .catch((error) => {
-        console.error('Error fetching posts:', error);
-      });
-  }, [gameId, characterId]);
 
   const handleWritePost = () => {
     navigate(`/postWrite/${gameId}/${characterId}`);
@@ -86,11 +67,11 @@ function PostList({ gameId, gameName, characterId, characterName }) {
             </thead>
             <tbody>
               {filteredPosts.map((post) => (
-                <tr key={post.id}>
-                  <td>{post.id}</td>
+                <tr key={post.postId}>
+                  <td>{post.postId}</td>
                   <td className="post-title-cell">
                     <Link
-                      to={`/${gameId}/${characterId}/${post.id}`}
+                      to={`/${gameId}/${characterId}/${post.postId}`}
                       state={{ gameName, characterName }}
                       title={post.title}
                     >
@@ -98,7 +79,7 @@ function PostList({ gameId, gameName, characterId, characterName }) {
                     </Link>
                   </td>
                   <td title={post.author}>{post.author}</td>
-                  <td>{post.date}</td>
+                  <td>{new Date(post.date).toLocaleDateString()}</td>
                   <td>{post.views}</td>
                 </tr>
               ))}
