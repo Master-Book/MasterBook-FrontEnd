@@ -1,6 +1,7 @@
 // src/components/post/postDetail/ValiditySection.js
 
 import React, { useState } from "react";
+import { useParams } from "react-router-dom";
 import "./AiValiditySection.css";
 
 const SERVER_IP = process.env.REACT_APP_SERVER_IP;
