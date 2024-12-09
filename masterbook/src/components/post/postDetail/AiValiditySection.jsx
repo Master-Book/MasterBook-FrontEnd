@@ -17,7 +17,7 @@ function AiValiditySection() {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("token")}`, // 토큰 필요 시
+          //Authorization: `Bearer ${localStorage.getItem("token")}`, // 토큰 필요 시
         },
       });
 
