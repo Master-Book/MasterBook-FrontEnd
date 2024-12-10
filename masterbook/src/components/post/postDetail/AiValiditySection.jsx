@@ -14,7 +14,7 @@ function AiValiditySection() {
   const checkValidity = async () => {
     try {
       console.log("요청 URL:", `${SERVER_IP}/post/${postId}/isAccurate`);
-      const response = await fetch(`${SERVER_IP}/posts/${postId}/isAccurate`, {
+      const response = await fetch(`${SERVER_IP}/post/${postId}/isAccurate`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
