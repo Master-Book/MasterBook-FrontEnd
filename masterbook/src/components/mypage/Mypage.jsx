@@ -9,10 +9,10 @@ import "./Mypage.css";
 const SERVER_IP = process.env.REACT_APP_SERVER_IP;
 
 function Mypage() {
-  const [activeTab, setActiveTab] = useState("posts");
+  const [activeTab, setActiveTab] = useState(null);
   const [data, setData] = useState([]);
   const [userInfo, setUserInfo] = useState({
-    name: localStorage.getItem("nickname") || "Guest", // localStorage에서 닉네임 가져오기
+    nickname: "Guest", // 기본값을 "Guest"로 설정
   });
 
   const fetchData = async (endpoint) => {
@@ -35,6 +35,7 @@ function Mypage() {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       });
 
