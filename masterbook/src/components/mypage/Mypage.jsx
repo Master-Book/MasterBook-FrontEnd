@@ -20,6 +20,7 @@ function Mypage() {
       const response = await axios.get(`${SERVER_IP}/mypage/${endpoint}`, {
         headers: {
           "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       });
       setData(response.data);
